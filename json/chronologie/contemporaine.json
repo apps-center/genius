@@ -90,10 +90,6 @@
         "img": "histoire/victor hugo.webp"
       },
       {
-    "era": "✦ Républiques & Guerres Mondiales",
-    "cls": "republiques",
-    "events": [
-      {
         "icon": "🌍",
         "tag": "Événement",
         "date": "1830 – 1962",
@@ -149,8 +145,6 @@
         ],
         "kind": "histoire",
         "img": "histoire/haussman.webp"
-      }
-    ]
       },
       {
         "icon": "🏛️",
