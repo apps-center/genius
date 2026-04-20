@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards Historiques — L'Encyclopédie des Explorateurs</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060a14; --gold: #d4a843; --gold-dim: rgba(200,180,120,0.18);
+  --text: #e8dfc4; --text-dim: rgba(232,223,196,0.48);
+  --card-bg: rgba(8,13,26,0.94); --border: rgba(200,180,120,0.18);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Crimson Pro', Georgia, serif; min-height: 100vh; overflow-x: hidden; user-select: none; }
+#stars-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.content { position: relative; z-index: 1; }
+
+/* HEADER */
+header { text-align: center; padding: 52px 20px 28px; }
+.enc-label { font-size: .72rem; letter-spacing: .38em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; }
+h1 { font-family: 'Cinzel', serif; font-weight: 900; font-size: clamp(1.7rem, 4.5vw, 3.2rem); background: linear-gradient(135deg, #f5e6a3, #d4a843 38%, #f0c060 68%, #fff8e0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
+.tagline { margin-top: 10px; font-size: .95rem; color: var(--text-dim); font-style: italic; }
+.divider { height: 1px; background: var(--gold-dim); max-width: 300px; margin: 20px auto; }
+
+/* PROGRESS */
+.progress-wrap { max-width: 520px; margin: 0 auto 28px; text-align: center; }
+.progress-text { font-family: 'Cinzel', serif; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
+.progress-bar { height: 2px; background: var(--gold-dim); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--gold); transition: width .4s ease; border-radius: 2px; }
+
+/* FLASHCARD */
+.stage { display: flex; justify-content: center; align-items: center; perspective: 1400px; padding: 8px 0 20px; }
+.fc-wrap {
+  width: 420px; max-width: 88vw; height: 540px;
+  position: relative; transform-style: preserve-3d;
+  transition: transform .72s cubic-bezier(.4,0,.2,1);
+  cursor: pointer;
+}
+
+.fc-wrap.flipped { transform: rotateY(180deg); }
+.fc-wrap.no-anim { transition: none !important; }
+
+.face {
+  position: absolute; inset: 0; border-radius: 14px;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(200,180,120,.06);
+  overflow: hidden;
+}
+
+/* RECTO */
+.face-front { background: var(--card-bg); display: flex; flex-direction: column; }
+.face-front img { width: 100%; height: 400px; object-fit: cover; display: block; }
+
+.front-footer { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 20px; border-top: 1px solid var(--border); }
+.flip-hint { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-dim); }
+.flip-arrow { color: var(--gold); opacity: .7; font-size: 1rem; }
+
+/* VERSO */
+.face-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(145deg, #0a1220 0%, #111e33 50%, #0d1828 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 44px 36px; border-color: rgba(200,180,120,.38);
+}
+.face-back::before { content: ''; position: absolute; inset: 0; border-radius: 14px; background: radial-gradient(ellipse at 50% 20%, rgba(212,168,67,.07) 0%, transparent 65%); pointer-events: none; }
+.b-era { font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(212,168,67,.45); padding: 4px 16px; border-radius: 3px; margin-bottom: 28px; opacity: .9; }
+.b-date { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #f5e6a3, #d4a843); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; line-height: 1.2; }
+.b-title { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700; color: var(--text); line-height: 1.4; margin-bottom: 22px; }
+.b-desc { font-size: .95rem; line-height: 1.75; color: rgba(232,223,196,.62); font-style: italic; max-width: 280px; }
+
+/* OVERLAY NOIR */
+.overlay { position: absolute; inset: 0; border-radius: 14px; background: #000; z-index: 30; opacity: 0; pointer-events: none; transition: opacity 0.28s ease; }
+.overlay.dark { opacity: 1; }
+
+/* IRIS depuis le centre */
+@keyframes iris {
+  from { clip-path: inset(50% 50% 50% 50% round 8px); }
+  to   { clip-path: inset(0% 0% 0% 0% round 14px); }
+}
+.face-front.iris { animation: iris 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+/* BUTTONS */
+.controls { display: flex; justify-content: center; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.btn { font-family: 'Cinzel', serif; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; padding: 11px 26px; border-radius: 4px; border: 1px solid var(--border); background: rgba(6,10,20,.9); color: var(--text-dim); cursor: pointer; transition: all .2s; }
+.btn:hover { border-color: rgba(200,180,120,.5); color: var(--text); background: rgba(200,180,120,.07); }
+.btn-gold { border-color: rgba(212,168,67,.6); color: var(--gold); background: rgba(212,168,67,.07); }
+.btn-gold:hover { background: rgba(212,168,67,.16); box-shadow: 0 0 18px rgba(212,168,67,.2); }
+.btn-green { border-color: rgba(94,196,138,.5); color: #5ec48a; }
+.btn-green:hover { background: rgba(94,196,138,.1); }
+.btn-red { border-color: rgba(232,80,80,.5); color: #e84848; }
+.btn-red:hover { background: rgba(232,80,80,.1); }
+.review-row { display: flex; justify-content: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+.review-label { text-align: center; margin-top: 16px; font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-dim); }
+
+/* COUNTERS */
+.known-bar { max-width: 520px; margin: 20px auto 0; display: flex; gap: 20px; justify-content: center; }
+.known-stat { font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); }
+.known-stat span { color: var(--text); font-weight: 700; }
+
+/* STRIP */
+.strip { display: flex; gap: 8px; overflow-x: auto; padding: 12px 20px; scrollbar-width: none; }
+.strip::-webkit-scrollbar { display: none; }
+.thumb { width: 52px; height: 38px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border); flex-shrink: 0; opacity: .45; transition: opacity .2s; cursor: pointer; }
+.thumb:hover { opacity: .7; }
+.thumb.cur { opacity: 1; border-color: var(--gold); }
+
+.back{position:fixed;top:22px;left:24px;z-index:100;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(212,168,67,.5);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
+.back:hover{color:#d4a843;}
+@media (max-width: 600px) {
+  .fc-wrap { height: 460px; }
+  .face-front img { height: 330px; }
+  .b-date { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="stars-canvas"></canvas>
+<a class="back" href="/flashcards/index.html">← Flashcards</a>
+<div class="content">
+
+  <header>
+    <div class="enc-label">L'Encyclopédie des Explorateurs</div>
+    <h1>Flashcards Historiques</h1>
+    <div class="tagline">Voyage à travers le temps — testez vos connaissances</div>
+  </header>
+
+  <div style="padding: 0 20px 80px;">
+
+    <div class="progress-wrap">
+      <div class="progress-text" id="p-text">Carte 1 / 109</div>
+      <div class="progress-bar"><div class="progress-fill" id="p-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="stage">
+      <div class="fc-wrap" id="fc" onclick="flipCard()">
+        <div class="overlay" id="overlay"></div>
+        <div class="face face-front" id="front">
+          <img id="fc-img" src="" alt="Illustration historique">
+          <div class="front-footer">
+            <span class="flip-arrow">↩</span>
+            <span class="flip-hint">Cliquez pour révéler · re-cliquez pour passer</span>
+          </div>
+        </div>
+        <div class="face face-back">
+          <div class="b-era"   id="fc-era"></div>
+          <div class="b-date"  id="fc-date"></div>
+          <div class="b-title" id="fc-title"></div>
+          <div class="b-desc"  id="fc-desc"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn"      onclick="prevCard()">← Précédente</button>
+      <button class="btn btn-gold" onclick="nextCard()">Suivante →</button>
+      <button class="btn"      onclick="shuffleCards()">🔀 Mélanger</button>
+    </div>
+
+    <div class="review-label">Après avoir révélé la carte :</div>
+    <div class="review-row">
+      <button class="btn btn-green" onclick="markKnown()">✓ Je savais</button>
+      <button class="btn btn-red"   onclick="markReview()">↩ À revoir</button>
+    </div>
+
+    <div class="known-bar">
+      <div class="known-stat">Connues : <span id="k-count">0</span></div>
+      <div class="known-stat">À revoir : <span id="r-count">0</span></div>
+      <div class="known-stat">Restantes : <span id="rem-count">109</span></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="strip" id="strip"></div>
+  </div>
+
+</div>
+<script>
+const CARDS = [
+  { id:1,  img:"Naissance_de_l'univers_lumineux.webp",        title:"Le Big Bang — Naissance de l'Univers",            date:"~13,8 milliards av. J.-C.", year:-3000000, era:"Cosmologie",      desc:"En une fraction de seconde, toute la matière et l'énergie de l'Univers jaillissent d'un point infiniment dense. Lumière, espace et temps naissent simultanément." },
+  { id:2,  img:"naissance_planetes.webp",                      title:"Formation des Planètes",                          date:"~4,6 milliards av. J.-C.",  year:-3000000, era:"Cosmologie",      desc:"Un nuage de gaz et de poussières se contracte sous sa propre gravité. Le Soleil s'allume et les planètes se forment progressivement par accrétion." },
+  { id:3,  img:"creation_syst_solaire.webp",                   title:"La Création du Système Solaire",                  date:"~4,5 milliards av. J.-C.",  year:-3000000, era:"Cosmologie",      desc:"La Terre se solidifie et subit le Grand Bombardement météoritique. La Lune naît d'une collision titanesque avec Théia. Les océans se forment et posent les bases de la vie." },
+  { id:4,  img:"Vents_hydrothermaux_et_vie_abyssale.webp",     title:"Les Sources Hydrothermales — Berceau de la Vie",  date:"~3,8 milliards av. J.-C.",  year:-3000000, era:"Ère primaire",    desc:"Au fond des océans primitifs, des cheminées hydrothermales crachent minéraux et chaleur. Dans ces abysses bouillonnants apparaissent les toutes premières formes de vie." },
+  { id:5,  img:"Vue_préhistorique_sur_une_mer_d'algues.webp",  title:"La Mer d'Algues — Premières Plantes Marines",     date:"~1 milliard av. J.-C.",    year:-3000000, era:"Ère primaire",    desc:"Les premiers organismes photosynthétiques transforment l'atmosphère en libérant de l'oxygène. Les algues bleues précèdent de loin toute vie terrestre." },
+  { id:6,  img:"Écosystème_préhistorique_sous-marin_du_Cambrien.webp", title:"L'Explosion Cambrienne",               date:"~540 millions av. J.-C.",   year:-3000000, era:"Ère primaire",    desc:"En quelques millions d'années, la quasi-totalité des grands embranchements animaux apparaissent. Cette explosion de biodiversité marine est l'une des plus grandes énigmes de l'évolution." },
+  { id:7,  img:"Premiers_pas_de_la_vie_végétale.webp",         title:"La Conquête des Terres Émergées",                 date:"~470 millions av. J.-C.",   year:-3000000, era:"Ère primaire",    desc:"Les premières plantes colonisent la terre ferme, transformant durablement les continents. Les forêts carbonifères gigantesques stockeront du carbone pendant des millions d'années." },
+  { id:8,  img:"Le_rugissement_du_T-Rex_au_coucher_du_soleil.webp", title:"Le Règne des Dinosaures",                  date:"~150 millions av. J.-C.",   year:-3000000, era:"Ère secondaire",  desc:"Le Tyrannosaure rex domine les écosystèmes terrestres. Les dinosaures règnent 165 millions d'années avant leur extinction soudaine." },
+  { id:9,  img:"Chute_d'astéroïde_et_fuite_des_dinosaures.webp", title:"L'Astéroïde — Fin des Dinosaures",            date:"~66 millions av. J.-C.",    year:-3000000, era:"Ère secondaire",  desc:"Un astéroïde de 10 km frappe le Yucatán. L'hiver d'impact éradique 75 % des espèces, ouvrant la voie aux mammifères." },
+  { id:10, img:"Frise_chronologique_des_âges_préhistoriques.webp", title:"Les Grandes Ères Préhistoriques",           date:"De -3 M à -3 000 av. J.-C.", year:-500000, era:"Préhistoire",     desc:"La Préhistoire s'étend sur des millions d'années : Paléolithique, Mésolithique et Néolithique. Elle représente 99 % de l'aventure humaine." },
+  { id:11, img:"bipedie.webp",                                  title:"La Bipédie — Naissance des Hominidés",           date:"~3 000 000 av. J.-C.",      year:-3000000, era:"Préhistoire",     desc:"Les premiers hominidés se redressent sur deux jambes dans les savanes africaines. Cette révolution libère les mains pour l'usage d'outils." },
+  { id:12, img:"feu_prehistoire.webp",                          title:"La Maîtrise du Feu",                             date:"~400 000 av. J.-C.",        year:-400000,  era:"Préhistoire",     desc:"La maîtrise du feu transforme l'humanité : cuisson des aliments, protection contre le froid et création de liens sociaux autour du foyer." },
+  { id:13, img:"Chasseurs_sur_la_savane_au_lever_du_soleil.webp", title:"Les Premiers Chasseurs de la Savane",         date:"~100 000 av. J.-C.",        year:-100000,  era:"Préhistoire",     desc:"En groupes organisés, les Homo sapiens chassent dans les plaines africaines. La coopération sociale et le langage leur donnent un avantage décisif." },
+  { id:14, img:"Mains_préhistoriques_tissant_des_coquillages.webp", title:"Les Premières Parures — Naissance du Symbolique", date:"~75 000 av. J.-C.", year:-75000, era:"Préhistoire",      desc:"Les plus anciens bijoux connus — coquillages percés de Blombos — témoignent d'une pensée abstraite et symbolique, propre à l'Homo sapiens." },
+  { id:15, img:"sortie_afrique.webp",                           title:"La Sortie d'Afrique",                             date:"~70 000 av. J.-C.",         year:-70000,   era:"Préhistoire",     desc:"L'Homo sapiens quitte l'Afrique et colonise progressivement toute la planète, atteignant l'Asie, l'Europe, l'Australie et les Amériques." },
+  { id:16, img:"Homme_des_Neandertals_dans_la_neige.webp",      title:"L'Homme de Néandertal",                          date:"~50 000 av. J.-C.",         year:-50000,   era:"Préhistoire",     desc:"Néandertal enterre ses morts, soigne ses blessés et fabrique des outils sophistiqués. Il lègue 1 à 4 % de son ADN aux humains modernes." },
+  { id:17, img:"Confrontation_préhistorique_dans_la_nuit.webp", title:"Confrontation Préhistorique dans la Nuit",        date:"~50 000 av. J.-C.",         year:-50000,   era:"Préhistoire",     desc:"Homo sapiens et Néandertal coexistent et parfois s'affrontent. Leur rencontre sur des millénaires aboutit à la disparition des Néandertaliens vers -30 000." },
+  { id:18, img:"Traversée_préhistorique_sous_la_tempête.webp",  title:"La Grande Migration Préhistorique",               date:"~50 000 av. J.-C.",         year:-50000,   era:"Préhistoire",     desc:"Des groupes humains traversent mers et déserts pour coloniser de nouveaux territoires. La traversée du détroit de Béring permettra le peuplement des Amériques." },
+  { id:19, img:"Groupe_préhistorique_dans_la_tempête_de_neige.webp", title:"Le Groupe Préhistorique — Survie Collective", date:"~30 000 av. J.-C.",       year:-30000,   era:"Préhistoire",     desc:"La survie de l'humanité repose sur la cohésion du groupe. Le partage des ressources et des rôles est déjà parfaitement organisé au Paléolithique." },
+  { id:20, img:"Chasse_dans_la_tempête_de_neige.webp",          title:"Chasse dans la Tempête de Neige",                 date:"~30 000 av. J.-C.",         year:-30000,   era:"Préhistoire",     desc:"Pendant le dernier maximum glaciaire, les chasseurs-cueilleurs affrontent des conditions extrêmes grâce à leur connaissance intime du territoire et des saisons." },
+  { id:21, img:"Crépuscule_sur_l'immensité_glacée.webp",        title:"Le Grand Âge Glaciaire",                          date:"~20 000 av. J.-C.",         year:-20000,   era:"Préhistoire",     desc:"Au dernier maximum glaciaire, des calottes de glace couvrent l'Europe jusqu'à Paris. Le niveau des mers chute de 120 mètres, créant de nouveaux continents." },
+  { id:22, img:"Chasseur_préhistorique_et_mammouth_sauvage.webp", title:"La Chasse au Mammouth",                       date:"~20 000 av. J.-C.",         year:-20000,   era:"Préhistoire",     desc:"En groupe organisé, les Paléolithiques traquent le mammouth laineux. Sa chasse requiert planification, armes élaborées et coordination." },
+  { id:23, img:"Homme_préhistorique_jouant_une_flûte_osseuse.webp", title:"La Flûte en Os — Naissance de la Musique",  date:"~35 000 av. J.-C.",         year:-35000,   era:"Préhistoire",     desc:"Les premières flûtes en os d'oiseau témoignent d'une vie culturelle riche au Paléolithique supérieur. La musique est une capacité exclusive d'Homo sapiens." },
+  { id:24, img:"Artiste_préhistorique_peignant_un_cheval.webp", title:"L'Art Pariétal — Naissance de l'Art",            date:"~17 000 av. J.-C.",         year:-17000,   era:"Préhistoire",     desc:"Dans les grottes de Lascaux et d'Altamira, l'Homo sapiens peint chevaux et bisons à la lueur des torches. Ces chefs-d'œuvre révèlent une modernité artistique saisissante." },
+  { id:25, img:"peintures_rupestres.webp",                      title:"Peintures Rupestres",                             date:"~15 000 av. J.-C.",         year:-15000,   era:"Préhistoire",     desc:"Les peintures rupestres sur tous les continents témoignent d'une expression artistique universelle : animaux, mains négatives et scènes de chasse." },
+  { id:26, img:"Aiguille_en_os_sur_pierre_éclairée.webp",       title:"L'Aiguille en Os — Maîtrise du Vêtement",        date:"~25 000 av. J.-C.",         year:-25000,   era:"Préhistoire",     desc:"Les Homo sapiens fabriquent des aiguilles en os percées pour coudre des vêtements ajustés, révolutionnant l'adaptation aux grands froids." },
+  { id:27, img:"L'artisanat_préhistorique_à_l'ère_de_la_pierre.webp", title:"L'Artisanat de la Pierre Taillée",        date:"~100 000 av. J.-C.",        year:-100000,  era:"Préhistoire",     desc:"La taille du silex atteint une grande sophistication : bifaces et grattoirs révèlent une transmission organisée du savoir technique." },
+  { id:28, img:"L'homme_préhistorique_et_son_chien.webp",       title:"La Domestication du Chien",                       date:"~15 000 av. J.-C.",         year:-15000,   era:"Préhistoire",     desc:"Le loup gris est le premier animal domestiqué par l'Homme. Cette alliance fondatrice inaugurant 15 000 ans de cohabitation transforme la chasse et la garde." },
+  { id:29, img:"Lever_de_soleil_sur_Göbekli_Tepe.webp",         title:"Göbekli Tepe — Le Premier Temple",                date:"~9 600 av. J.-C.",          year:-9600,    era:"Préhistoire",     desc:"À Göbekli Tepe, des chasseurs-cueilleurs érigent les premiers monuments en pierre — 6 000 ans avant Stonehenge. La religion précède peut-être l'agriculture." },
+  { id:30, img:"Le_semeur_au_lever_du_soleil.webp",             title:"La Révolution Agricole",                          date:"~8 000 av. J.-C.",          year:-8000,    era:"Préhistoire",     desc:"Dans le Croissant Fertile, l'Homme sème pour la première fois blé et orge. Cette révolution néolithique déclenche la sédentarisation et les premières cités." },
+  { id:31, img:"Modelage_d'un_pot_en_argile.webp",              title:"La Poterie — Révolution du Stockage",             date:"~7 000 av. J.-C.",          year:-7000,    era:"Préhistoire",     desc:"L'invention de la poterie cuite permet de stocker, transporter et cuire les aliments. Elle accompagne la sédentarisation et les premières civilisations." },
+  { id:32, img:"Lever_de_soleil_sur_les_menhirs_de_Bretagne.webp", title:"Les Menhirs de Bretagne",                    date:"~4 500 av. J.-C.",          year:-4500,    era:"Préhistoire",     desc:"Les alignements de Carnac constituent le plus grand ensemble mégalithique du monde avec 3 000 pierres dressées, témoignant d'une organisation spirituelle élaborée." },
+  { id:33, img:"Levée_du_ciel_à_Stonehenge.webp",               title:"Stonehenge — Temple du Soleil",                   date:"~2 500 av. J.-C.",          year:-2500,    era:"Préhistoire",     desc:"Stonehenge est un observatoire astronomique et lieu rituel. L'alignement parfait des pierres avec le solstice d'été témoigne d'une science préhistorique avancée." },
+  { id:34, img:"Main_d'un_scribe_sur_tablette_d'argile.webp",   title:"L'Écriture Cunéiforme",                           date:"~3 200 av. J.-C.",          year:-3200,    era:"Antiquité",       desc:"En Mésopotamie, les Sumériens inventent l'écriture cunéiforme sur tablettes d'argile. Née de la comptabilité, elle devient vite le vecteur de toute civilisation." },
+  { id:35, img:"Atelier_de_charpentier_ancien.webp",            title:"L'Invention de la Roue",                          date:"~3 500 av. J.-C.",          year:-3500,    era:"Antiquité",       desc:"En Mésopotamie, la roue révolutionne transport, agriculture et poterie. Couplée à l'axe et au char, elle transforme durablement le commerce et la guerre." },
+  { id:36, img:"La_cité_ancienne_d'Ur_au_crépuscule.webp",      title:"La Cité d'Ur — Berceau de la Civilisation",       date:"~2 500 av. J.-C.",          year:-2500,    era:"Antiquité",       desc:"Ur, en Mésopotamie, est l'une des premières grandes cités de l'histoire avec ses ziggourats et son écriture cunéiforme — fondements de la civilisation." },
+  { id:37, img:"La_construction_des_pyramides_égyptiennes.webp",title:"La Construction des Pyramides",                   date:"~2 560 av. J.-C.",          year:-2560,    era:"Antiquité",       desc:"La Grande Pyramide de Gizeh, érigée pour Khéops, mobilise 20 000 ouvriers pendant 20 ans. Chef-d'œuvre d'ingénierie antique, la plus grande structure jamais bâtie." },
+  { id:38, img:"Adam_et_Ève_dans_le_jardin_d'Éden.webp",        title:"Adam et Ève — Le Récit de la Genèse",             date:"~4 000 av. J.-C. (tradition)", year:-4000, era:"Antiquité",    desc:"La Genèse, texte fondateur des religions abrahamiques, situe la création de l'humanité dans le Jardin d'Éden — un mythe structurant partagé par des milliards d'êtres humains." },
+  { id:39, img:"L'arche_de_Noé_sous_l'orage.webp",              title:"L'Arche de Noé — Le Déluge Universel",            date:"~2 900 av. J.-C. (tradition)", year:-2900, era:"Antiquité",   desc:"Le mythe du Déluge, partagé par de nombreuses cultures, évoque peut-être de vraies catastrophes climatiques et fonde l'idée d'une alliance entre Dieu et l'Humanité." },
+  { id:40, img:"Moïse_et_le_buisson_ardent.webp",               title:"Moïse et le Buisson Ardent",                      date:"~1 300 av. J.-C.",          year:-1300,    era:"Antiquité",       desc:"La révélation divine à Moïse fonde le monothéisme juif. L'Exode et la remise des Tables de la Loi sont au cœur des trois grandes traditions abrahamiques." },
+  { id:41, img:"Babylone_antique_et_ses_merveilles.webp",        title:"Babylone et ses Jardins Suspendus",               date:"~600 av. J.-C.",            year:-600,     era:"Antiquité",       desc:"Sous Nabuchodonosor II, Babylone devient la plus grande cité du monde. Ses jardins suspendus, l'une des sept merveilles de l'Antiquité, dominent l'Euphrate." },
+  { id:42, img:"David_et_Goliath_sur_le_champ_de_bataille.webp",title:"David contre Goliath",                           date:"~1 000 av. J.-C.",          year:-1000,    era:"Antiquité",       desc:"Le combat légendaire entre le jeune berger David et le géant Goliath symbolise le triomphe de la ruse sur la force brute. David fondera ensuite le royaume d'Israël." },
+  { id:43, img:"Vue_panoramique_de_la_vieille_ville_de_Jérusalem.webp", title:"Jérusalem — Ville des Trois Religions",  date:"~1 000 av. J.-C.",          year:-1000,    era:"Antiquité",       desc:"Fondée par David, Jérusalem devient capitale d'Israël et siège du Temple de Salomon — la ville la plus convoitée de l'histoire, au cœur des trois monothéismes." },
+  { id:44, img:"Le_cheval_de_Troie_entre_dans_la_ville.webp",   title:"Le Cheval de Troie",                             date:"~1 200 av. J.-C.",          year:-1200,    era:"Antiquité",       desc:"La ruse d'Ulysse — offrir aux Troyens un cheval dissimulant des soldats — scelle la chute de Troie après dix ans de siège. L'Iliade et l'Odyssée naîtront de cette épopée." },
+  { id:45, img:"Synagogue_dans_la_prière_et_l'étude.webp",      title:"La Synagogue — Prière et Savoir",                 date:"Ier siècle apr. J.-C.",     year:50,       era:"Antiquité",       desc:"Après la destruction du Temple (70 apr. J.-C.), la synagogue devient le cœur de la vie juive en diaspora : lieu de prière, d'étude et de solidarité communautaire." },
+  { id:46, img:"L'attaque_des_Gaulois_à_Rome.webp",             title:"L'Attaque des Gaulois à Rome",                    date:"390 av. J.-C.",             year:-390,     era:"Antiquité",       desc:"Les Gaulois Sénons saccagent Rome — seul le Capitole résiste, sauvé par les oies sacrées. 'Malheur aux vaincus !' Rome en tirera les leçons pour bâtir son empire." },
+  { id:47, img:"Hannibal_traversant_les_Alpes_enneigées.webp",  title:"Hannibal Traverse les Alpes",                     date:"218 av. J.-C.",             year:-218,     era:"Antiquité",       desc:"Le général carthaginois franchit les Alpes avec 37 éléphants pour attaquer Rome par le nord. Cette audace reste l'une des plus grandes épopées militaires antiques." },
+  { id:48, img:"alesia.webp",                                    title:"Bataille d'Alésia — Vercingétorix Capitule",      date:"52 av. J.-C.",              year:-52,      era:"Antiquité",       desc:"Jules César encercle Vercingétorix dans la forteresse d'Alésia. La reddition de la Gaule marque son entrée définitive dans la romanité." },
+  { id:49, img:"La_caravane_vers_le_Trésor_de_Petra.webp",      title:"Pétra — La Cité Rose des Nabatéens",              date:"~100 av. J.-C.",            year:-100,     era:"Antiquité",       desc:"Pétra, capitale nabatéenne taillée dans le grès rose de Jordanie, contrôle les routes caravanières entre l'Arabie, l'Égypte et la Méditerranée." },
+  { id:50, img:"pont_du_gard.webp",                              title:"Le Pont du Gard — Génie Romain",                  date:"~19 av. J.-C.",             year:-19,      era:"Antiquité",       desc:"Le Pont du Gard, aqueduc de 50 mètres de hauteur, achemine l'eau sur 50 km. Érigé sans mortier, il témoigne de la maîtrise exceptionnelle des ingénieurs romains." },
+  { id:51, img:"Construction_du_Colisée_à_Rome.webp",           title:"Construction du Colisée de Rome",                 date:"72–80 apr. J.-C.",          year:75,       era:"Antiquité",       desc:"Le Colisée, inauguré en 80, accueille 70 000 spectateurs. Ses jeux sont l'instrument de la politique du 'pain et des jeux' impériale." },
+  { id:52, img:"Vie_quotidienne_dans_une_villa_romaine.webp",    title:"Vie dans une Villa Romaine",                      date:"IIe siècle apr. J.-C.",     year:150,      era:"Antiquité",       desc:"La villa romaine est le symbole de la vie aristocratique : jardins, fresques, mosaïques et thermes privés. L'otium — le loisir cultivé — est l'idéal de l'élite romaine." },
+  { id:53, img:"Bains_romains__détente_et_interactions_sociales.webp", title:"Les Thermes Romains",                     date:"IIe siècle apr. J.-C.",     year:150,      era:"Antiquité",       desc:"Ouverts à tous, les thermes sont le cœur de la vie sociale romaine. Commerce, culture, hygiène et politique s'y mêlent sous des voûtes monumentales." },
+  { id:54, img:"La_division_de_l'Empire_romain.webp",           title:"La Division de l'Empire Romain",                  date:"395 apr. J.-C.",            year:395,      era:"Haut Moyen Âge",  desc:"À la mort de Théodose Ier, l'Empire est partagé en Orient et Occident. L'Occident s'effondrera en 476 sous les coups des peuples germaniques." },
+  { id:55, img:"Attila.webp",                                    title:"Attila et les Huns — La Terreur de Rome",         date:"451 apr. J.-C.",            year:451,      era:"Haut Moyen Âge",  desc:"Attila, le 'Fléau de Dieu', dévaste l'Europe occidentale. Sa défaite aux Champs Catalauniques l'arrête. Les grandes migrations barbares scellent le destin de Rome." },
+  { id:56, img:"Le_baptême_de_Clovis_à_Reims.webp",             title:"Le Baptême de Clovis",                            date:"496 apr. J.-C.",            year:496,      era:"Haut Moyen Âge",  desc:"Clovis Ier se convertit au christianisme et est baptisé à Reims par saint Rémi. Cette alliance du trône et de l'Église fonde la France catholique." },
+  { id:57, img:"Le_roi_merovingien_et_le_maire_du_palais.webp", title:"Les Mérovingiens et les Maires du Palais",        date:"VIIe siècle",               year:650,      era:"Haut Moyen Âge",  desc:"Les derniers Mérovingiens laissent le pouvoir réel aux maires du palais. Charles Martel concentre le pouvoir et prépare l'avènement des Carolingiens." },
+  { id:58, img:"La_migration_du_prophète_Muhammad.webp",        title:"L'Hégire — La Migration de Muhammad",             date:"622 apr. J.-C.",            year:622,      era:"Haut Moyen Âge",  desc:"La fuite de Muhammad vers Médine marque l'an 1 du calendrier musulman. Cet événement fondateur déclenche l'expansion fulgurante de l'Islam." },
+  { id:59, img:"raids_vikings.webp",                             title:"Les Raids Vikings",                               date:"~793 apr. J.-C.",           year:793,      era:"Haut Moyen Âge",  desc:"Le raid sur Lindisfarne (793) ouvre l'ère viking. Les Normands sillonnent l'Atlantique nord, fondent des royaumes et atteignent l'Amérique avant Colomb." },
+  { id:60, img:"sacre_charlemagne.webp",                         title:"Le Sacre de Charlemagne",                         date:"25 décembre 800",           year:800,      era:"Haut Moyen Âge",  desc:"Le pape Léon III couronne Charlemagne 'Empereur des Romains' à Rome. Cette alliance du pouvoir spirituel et temporel fonde l'idéal d'un empire chrétien d'Occident." },
+  { id:61, img:"urbain2_croisades.webp",                         title:"Le Pape Urbain II — Appel à la Croisade",         date:"1095 apr. J.-C.",           year:1095,     era:"Moyen Âge",       desc:"Au concile de Clermont, Urbain II appelle les chrétiens à libérer Jérusalem, déclenchant deux siècles d'expéditions militaires en Terre Sainte." },
+  { id:62, img:"templiers.webp",                                 title:"Les Chevaliers Templiers",                        date:"~1119 apr. J.-C.",          year:1119,     era:"Moyen Âge",       desc:"Fondé à Jérusalem, l'Ordre du Temple allie vœux monastiques et mission militaire. Premiers banquiers de l'histoire, leur puissance sera leur perte en 1307." },
+  { id:63, img:"alienor.webp",                                   title:"Aliénor d'Aquitaine — Reine de Deux Royaumes",    date:"XIIe siècle (vers 1137)",   year:1137,     era:"Moyen Âge",       desc:"Reine de France puis d'Angleterre, Aliénor incarne la puissance féminine médiévale. Mécène des troubadours, elle façonne la culture courtoise." },
+  { id:64, img:"arc_boutant.webp",                               title:"L'Arc-boutant — Naissance du Gothique",           date:"XIIe siècle (vers 1163)",   year:1163,     era:"Moyen Âge",       desc:"L'arc-boutant permet aux cathédrales de s'élever vers le ciel en reportant les poussées vers l'extérieur. Il révolutionne l'architecture médiévale européenne." },
+  { id:65, img:"mont_saint_michel.webp",                         title:"Le Mont-Saint-Michel",                            date:"~1144 apr. J.-C.",          year:1144,     era:"Moyen Âge",       desc:"Perchée sur son rocher battu par les marées, l'abbaye du Mont-Saint-Michel est la 'merveille de l'Occident' et principal lieu de pèlerinage après Rome." },
+  { id:66, img:"notre_dame_1200.webp",                           title:"Notre-Dame de Paris — La Cathédrale Gothique",    date:"~1200 apr. J.-C.",          year:1200,     era:"Moyen Âge",       desc:"Commencée en 1163, Notre-Dame incarne le gothique à son apogée. Ses arcs-boutants, ses rosaces et ses 69 mètres symbolisent la foi et le génie technique du Moyen Âge." },
+  { id:67, img:"La_bataille_de_Bouvines_en_1214.webp",          title:"Bataille de Bouvines",                            date:"27 juillet 1214",           year:1214,     era:"Moyen Âge",       desc:"Philippe Auguste écrase la grande coalition européenne. Bouvines consacre la France comme puissance dominante et forge le sentiment national français." },
+  { id:68, img:"Saint_Louis_dispense_la_justice_sous_le_chêne.webp", title:"Saint Louis rend Justice sous le Chêne",    date:"~1250 apr. J.-C.",          year:1250,     era:"Moyen Âge",       desc:"Louis IX rend personnellement la justice sous le chêne de Vincennes, accessible à tous. Il incarne l'alliance entre pouvoir royal et vertu chrétienne." },
+  { id:69, img:"Le_seigneur_et_le_vassal_supérieur.webp",       title:"La Féodalité — Le Seigneur et son Vassal",        date:"~1000 apr. J.-C.",          year:1000,     era:"Moyen Âge",       desc:"La société féodale repose sur une pyramide de liens personnels : le vassal prête hommage au seigneur qui lui concède un fief en échange de services militaires." },
+  { id:70, img:"Vie_médiévale_dans_un_paysage_rural.webp",      title:"La Vie Paysanne au Moyen Âge",                    date:"XIIIe siècle",              year:1250,     era:"Moyen Âge",       desc:"Serfs et vilains cultivent la terre en échange de la protection seigneuriale. Le rythme des saisons et les fêtes religieuses structurent la vie de 90 % des médiévaux." },
+  { id:71, img:"Gengis_Khan_sur_les_steppes_mongoles.webp",     title:"Gengis Khan — L'Empire Mongol",                   date:"~1206 apr. J.-C.",          year:1206,     era:"Moyen Âge",       desc:"Gengis Khan unifie les tribus mongoles et fonde le plus grand empire terrestre de l'histoire. De la Chine à l'Europe de l'Est, ses conquêtes bouleversent les civilisations." },
+  { id:72, img:"Tombuktu,_centre_du_savoir_médiéval.webp",      title:"Tombouctou — Cité du Savoir",                     date:"~1300 apr. J.-C.",          year:1300,     era:"Moyen Âge",       desc:"Au cœur de l'Empire du Mali, Tombouctou abrite des universités et des centaines de milliers de manuscrits scientifiques, théologiques et littéraires." },
+  { id:73, img:"peste.webp",                                     title:"La Peste Noire",                                  date:"1347–1351",                 year:1347,     era:"Moyen Âge",       desc:"La peste bubonique ravage l'Europe et emporte un tiers de sa population en quatre ans, accélérant la fin du féodalisme et transformant les mentalités." },
+  { id:74, img:"La_fin_de_la_lignée_capétienne.webp",           title:"La Fin des Capétiens Directs",                    date:"1328 apr. J.-C.",           year:1328,     era:"Moyen Âge",       desc:"La mort de Charles IV sans héritier mâle éteint la lignée capétienne fondée en 987. La succession française déclenchera la dévastatrice Guerre de Cent Ans." },
+  { id:75, img:"Bataille_de_Crécy_en_1346.webp",                title:"Bataille de Crécy",                               date:"26 août 1346",              year:1346,     era:"Moyen Âge",       desc:"Les archers gallois au longbow déciment la chevalerie française. Crécy marque l'avènement d'une nouvelle manière de faire la guerre et annonce la fin de la chevalerie." },
+  { id:76, img:"Bataille_d'Azincourt_sous_la_pluie.webp",       title:"Bataille d'Azincourt",                            date:"25 octobre 1415",           year:1415,     era:"Moyen Âge",       desc:"Henri V écrase la chevalerie française dans la boue normande. La fleur de la noblesse périt, replongeant le royaume dans la crise de la Guerre de Cent Ans." },
+  { id:77, img:"jeanne-d-arc.webp",                              title:"Jeanne d'Arc — La Pucelle d'Orléans",             date:"1429 apr. J.-C.",           year:1429,     era:"Moyen Âge",       desc:"Jeanne d'Arc délivre Orléans et fait sacrer Charles VII à Reims. Brûlée vive en 1431, elle devient le symbole éternel de la résistance et de l'identité françaises." },
+  { id:78, img:"Jacques_de_Molay_devant_Notre-Dame.webp",       title:"Jacques de Molay — La Fin des Templiers",         date:"18 mars 1314",              year:1314,     era:"Moyen Âge",       desc:"Le dernier Grand Maître des Templiers est brûlé vif à Paris. Depuis son bûcher, il aurait maudit Philippe IV et le pape — tous deux moururent dans l'année." },
+  { id:79, img:"Le_siège_de_Constantinople,_1453.webp",         title:"La Chute de Constantinople",                      date:"29 mai 1453",               year:1453,     era:"Moyen Âge",       desc:"Les canons ottomans brisent les murailles millénaires de Byzance. Cette chute marque la fin du Moyen Âge et pousse les Européens vers l'ouest." },
+  { id:80, img:"Gutenberg.webp",                                 title:"Gutenberg et l'Imprimerie",                       date:"~1450 apr. J.-C.",          year:1450,     era:"Renaissance",     desc:"L'imprimerie à caractères mobiles révolutionne la diffusion du savoir. En un siècle, des millions de livres circulent en Europe, démocratisant la connaissance." },
+  { id:81, img:"Traversée_en_mer_au_coucher_du_soleil.webp",    title:"Les Grandes Découvertes",                         date:"~1492–1522",                year:1500,     era:"Renaissance",     desc:"De Colomb à Magellan, les navigateurs européens cartographient le monde et bouleversent les échanges commerciaux et la vision de l'humanité." },
+  { id:82, img:"Premier_contact_au_lever_du_soleil.webp",       title:"Le Premier Contact — Deux Mondes se Rencontrent", date:"12 octobre 1492",           year:1492,     era:"Renaissance",     desc:"Christophe Colomb atteint les Caraïbes. Cette rencontre entre l'Ancien et le Nouveau Monde déclenche une révolution géographique, culturelle et biologique sans précédent." },
+  { id:83, img:"Louis_XI_et_ses_stratégies_secrètes.webp",      title:"Louis XI — Le Roi Araignée",                      date:"~1470 apr. J.-C.",          year:1470,     era:"Renaissance",     desc:"Louis XI unifie la France par la ruse plutôt que par les armes. Il soumet les grands féodaux et pose les bases de l'État centralisé français." },
+  { id:84, img:"Machiavel_en_pleine_réflexion_politique.webp",  title:"Machiavel — Le Prince",                           date:"1513 apr. J.-C.",           year:1513,     era:"Renaissance",     desc:"Machiavel rédige 'Le Prince', traité fondateur de la pensée politique moderne. Séparant éthique et politique, il conseille au souverain d'être 'lion' et 'renard'." },
+  { id:85, img:"Massacre_de_la_Saint-Barthélemy_à_Paris.webp",  title:"La Saint-Barthélemy",                             date:"24 août 1572",              year:1572,     era:"Renaissance",     desc:"Le massacre de la Saint-Barthélemy fait entre 5 000 et 30 000 victimes protestantes, au paroxysme des Guerres de Religion qui déchirent la France." },
+  { id:86, img:"marie_de_medecis_conspirant.webp",               title:"Marie de Médicis — Les Intrigues de la Régence",  date:"~1617 apr. J.-C.",          year:1617,     era:"Époque Moderne",  desc:"Régente après l'assassinat d'Henri IV, Marie de Médicis gouverne dans un climat d'intrigues. Sa rivalité avec Louis XIII et Richelieu marquera la monarchie absolue." },
+  { id:87, img:"Cardinal_Richelieu_surveillant_le_siège_de_La_Rochelle.webp", title:"Richelieu au Siège de La Rochelle", date:"1628 apr. J.-C.",          year:1628,     era:"Époque Moderne",  desc:"Richelieu dirige le siège de La Rochelle, bastion huguenot. En construisant une digue gigantesque, il affame la cité et anéantit le pouvoir politique protestant." },
+  { id:88, img:"Molière,_Racine_et_Corneille_au_théâtre.webp",  title:"Le Grand Siècle du Théâtre Français",             date:"~1660 apr. J.-C.",          year:1660,     era:"Époque Moderne",  desc:"Molière, Racine et Corneille élèvent le théâtre français à son apogée. Comédies sociales et tragédies classiques forgent l'identité littéraire française." },
+  { id:89, img:"Louis_XIV_dans_la_galerie_des_Glaces.webp",     title:"Louis XIV dans la Galerie des Glaces",            date:"~1682 apr. J.-C.",          year:1682,     era:"Époque Moderne",  desc:"La Galerie des Glaces de Versailles, avec ses 357 miroirs, symbolise l'absolutisme du Roi-Soleil. Versailles devient la capitale culturelle de toute l'Europe." },
+  { id:90, img:"Samouraï_noble_au_lever_du_jour.webp",          title:"Le Samouraï — L'Âme du Japon Féodal",             date:"~1600 apr. J.-C.",          year:1600,     era:"Époque Moderne",  desc:"Les samouraïs vivent selon le Bushido — la 'Voie du guerrier'. Leur code d'honneur, leur maîtrise du katana et leur culture raffinée marquent l'identité japonaise." },
+  { id:91, img:"Attaque_de_pirates_dans_les_Caraïbes.webp",     title:"L'Âge d'Or de la Piraterie",                      date:"~1700 apr. J.-C.",          year:1700,     era:"Époque Moderne",  desc:"Entre 1690 et 1730, des flibustiers comme Barbe Noire terrorisent les mers et défient ouvertement les puissances coloniales dans les Caraïbes." },
+  { id:92, img:"Le_commerce_triangulaire_transatlantique.webp", title:"Le Commerce Triangulaire",                        date:"XVIIe–XVIIIe siècle",      year:1700,     era:"Époque Moderne",  desc:"Le commerce triangulaire déporte 12 millions d'Africains vers les Amériques. Ce crime contre l'humanité finance en grande partie la révolution industrielle européenne." },
+  { id:93, img:"Bataille_de_la_guerre_de_Sept_Ans.webp",        title:"La Guerre de Sept Ans — Premier Conflit Mondial",  date:"1756–1763",                 year:1757,     era:"Époque Moderne",  desc:"Opposant France et Angleterre sur tous les continents, la Guerre de Sept Ans est le premier conflit vraiment mondial et remodèle l'empire colonial britannique." },
+  { id:94, img:"La_prise_de_la_Bastille_en_feu.webp",           title:"La Prise de la Bastille",                         date:"14 juillet 1789",           year:1789,     era:"XIXe siècle",     desc:"Le peuple de Paris s'empare de la Bastille, symbole du despotisme royal. Cet événement fondateur de la Révolution française est depuis lors célébré comme fête nationale." },
+  { id:95, img:"Exécution_à_la_guillotine_pendant_la_Révolution.webp", title:"La Terreur — La Guillotine Révolutionnaire", date:"1793–1794",               year:1793,     era:"XIXe siècle",     desc:"Sous Robespierre, la Terreur fait 40 000 victimes dont Louis XVI et Marie-Antoinette. La guillotine devient le symbole sanglant de la radicalisation révolutionnaire." },
+  { id:96, img:"Napoléon_se_couronnant_à_Notre-Dame.webp",      title:"Le Sacre de Napoléon",                            date:"2 décembre 1804",           year:1804,     era:"XIXe siècle",     desc:"Napoléon s'empare de la couronne des mains du pape et se couronne lui-même Empereur à Notre-Dame, illustrant sa rupture totale avec l'ordre monarchique ancien." },
+  { id:97, img:"batailles_Napoléoniennes.webp",                  title:"Les Batailles Napoléoniennes",                    date:"Vers 1805",                 year:1805,     era:"XIXe siècle",     desc:"Napoléon révolutionne l'art de la guerre. À Austerlitz (1805), il remporte sa plus brillante victoire contre les coalitions autrichienne et russe." },
+  { id:98, img:"Les_victoires_de_Napoléon_(1805-1809).webp",    title:"L'Apogée de l'Empire Napoléonien",                date:"1805–1809",                 year:1807,     era:"XIXe siècle",     desc:"De Iéna à Wagram, Napoléon domine l'Europe. À son apogée en 1812, son empire s'étend de l'Espagne à la Pologne, soit 70 millions d'habitants." },
+  { id:99, img:"revolution_industrielle.webp",                   title:"La Révolution Industrielle",                      date:"~1760–1850",                year:1800,     era:"XIXe siècle",     desc:"La machine à vapeur, le charbon et le textile lancent la révolution industrielle. L'usine remplace l'atelier, les villes explosent et le prolétariat naît." },
+  { id:100,img:"Construction_d'un_mariage_d'acier_et_de_progrès.webp", title:"L'Ère du Fer et de l'Acier",             date:"~1850–1900",                year:1870,     era:"XIXe siècle",     desc:"Le fer et l'acier deviennent les matériaux du progrès : ponts suspendus, voies ferrées et structures métalliques transforment radicalement les paysages européens." },
+  { id:101,img:"La_transformation_de_Paris_par_Haussmann.webp", title:"Haussmann Transforme Paris",                     date:"~1853–1870",                year:1860,     era:"XIXe siècle",     desc:"Mandaté par Napoléon III, Haussmann perce de larges boulevards et installe l'eau courante. Paris médiéval laisse place à la capitale moderne que nous connaissons." },
+  { id:102,img:"Les_victoires_de_Napoléon_III.webp",             title:"Napoléon III et le Second Empire",                date:"1852–1870",                 year:1860,     era:"XIXe siècle",     desc:"Napoléon III modernise la France par le chemin de fer et Haussmann. Sa défaite à Sedan (1870) met fin au Second Empire et provoque la Commune de Paris." },
+  { id:103,img:"Construire_la_Tour_Eiffel_au_coucher_du_soleil.webp", title:"Construction de la Tour Eiffel",          date:"1887–1889",                 year:1889,     era:"XIXe siècle",     desc:"La Tour Eiffel, érigée pour l'Exposition Universelle de 1889, est la prouesse technique du siècle. Décriée à sa naissance, elle devient le symbole universel de Paris." },
+  { id:104,img:"Bataille_historique_de_la_guerre_civile.webp",   title:"La Guerre de Sécession Américaine",              date:"1861–1865",                 year:1863,     era:"XIXe siècle",     desc:"La guerre la plus meurtrière de l'histoire américaine. Lincoln proclame l'abolition de l'esclavage en 1863 ; la victoire de l'Union préserve l'unité des États-Unis." },
+  { id:105,img:"Prospecteurs_au_travail_pendant_la_ruée_vers_l'or.webp", title:"La Ruée vers l'Or en Californie",     date:"1848–1855",                 year:1849,     era:"XIXe siècle",     desc:"La découverte d'or à Sutter's Mill déclenche un exode massif. 300 000 aventuriers affluent en un an, transformant la Californie et accélérant l'unité des États-Unis." },
+  { id:106,img:"Le_procès_de_Dreyfus_sous_tension.webp",         title:"L'Affaire Dreyfus",                              date:"1894–1906",                 year:1894,     era:"XIXe siècle",     desc:"Le capitaine Dreyfus est injustement condamné pour espionnage. L'affaire divise la France entre dreyfusards et antidreyfusards, révélant un antisémitisme d'État profond." },
+  { id:107,img:"Tranchées_boueuses_à_l'aube.webp",               title:"Les Tranchées de la Grande Guerre",              date:"1914–1918",                 year:1916,     era:"XXe siècle",      desc:"La Première Guerre Mondiale invente une guerre industrielle et totale. Dans les tranchées de la Somme et de Verdun, 10 millions de soldats périssent." },
+  { id:108,img:"Assaut_sur_Omaha_Beach_à_l'aube.webp",           title:"Le Débarquement d'Omaha Beach",                  date:"6 juin 1944",               year:1944,     era:"XXe siècle",      desc:"Les Alliés débarquent en Normandie. Omaha Beach voit 2 000 soldats américains tomber en quelques heures. Cette opération ouvre la voie à la libération de l'Europe." },
+  { id:109,img:"Nelson_Mandela_et_la_lutte_pour_la_liberté.webp",title:"Nelson Mandela — La Fin de l'Apartheid",        date:"1994 apr. J.-C.",           year:1994,     era:"XXe siècle",      desc:"Après 27 ans de prison, Mandela devient le premier président noir d'Afrique du Sud. Sa politique de réconciliation en fait une icône mondiale de la liberté." },
+];
+
+/* ── STARS ── */
+(function(){
+  const c=document.getElementById('stars-canvas'),ctx=c.getContext('2d');let stars=[];
+  function resize(){c.width=innerWidth;c.height=innerHeight;}
+  function init(){resize();stars=Array.from({length:220},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.3+.15,a:Math.random()*.55+.08,speed:Math.random()*.0004+.00015,phase:Math.random()*Math.PI*2}));}
+  let t=0;function draw(){t++;ctx.clearRect(0,0,c.width,c.height);for(const s of stars){const f=s.a*(.65+.35*Math.sin(t*s.speed*80+s.phase));ctx.beginPath();ctx.arc(s.x*c.width,s.y*c.height,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(232,223,196,${f})`;ctx.fill();}requestAnimationFrame(draw);}
+  addEventListener('resize',init);init();draw();
+})();
+
+/* ── STATE ── */
+let deck=[],idx=0,flipped=false,knownSet=new Set(),reviewSet=new Set();
+const fc=()=>document.getElementById('fc');
+const front=()=>document.getElementById('front');
+const overlay=()=>document.getElementById('overlay');
+
+/* ── LOAD CONTENT ── */
+function loadContent(){
+  const card=deck[idx];
+  document.getElementById('fc-img').src='../img/histoire/'+card.img;
+  document.getElementById('fc-era').textContent=card.era;
+  document.getElementById('fc-date').textContent=card.date;
+  document.getElementById('fc-title').textContent=card.title;
+  document.getElementById('fc-desc').textContent=card.desc||'';
+  const pct=(idx/deck.length)*100;
+  document.getElementById('p-text').textContent=`Carte ${idx+1} / ${deck.length}`;
+  document.getElementById('p-fill').style.width=pct+'%';
+  document.querySelectorAll('#strip .thumb').forEach((el,i)=>el.classList.toggle('cur',i===idx));
+}
+
+/* ── ADVANCE: fondu noir → iris ── */
+function advance(){
+  const ov=overlay(), fr=front(), wrap=fc();
+
+  // 1. Fondu NOIR
+  ov.classList.add('dark');
+
+  setTimeout(()=>{
+    // 2. Snap verso→recto SANS animation (bloqué par no-anim)
+    wrap.classList.add('no-anim');
+    wrap.classList.remove('flipped');
+    flipped=false;
+    fr.classList.remove('iris');
+
+    // 3. Charger le contenu sous le noir
+    loadContent();
+
+    // 4. Deux frames = snap peint avant de retirer le verrou
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      wrap.classList.remove('no-anim');
+      ov.classList.remove('dark');   // dissoudre le noir
+      fr.classList.add('iris');      // ouvrir l'iris
+    }));
+
+  }, 280);
+}
+
+/* ── FLIP ── */
+function flipCard(){
+  if(flipped){
+    idx=(idx+1)%deck.length;
+    advance();
+  } else {
+    flipped=true;
+    fc().classList.add('flipped');
+  }
+}
+
+/* ── NAVIGATION ── */
+function nextCard(){idx=(idx+1)%deck.length;advance();}
+function prevCard(){idx=(idx-1+deck.length)%deck.length;advance();}
+
+function shuffleCards(){
+  deck=shuffle([...CARDS]);idx=0;flipped=false;
+  knownSet.clear();reviewSet.clear();
+  updateCounters();buildStrip();advance();
+}
+
+function markKnown(){
+  knownSet.add(deck[idx].id);reviewSet.delete(deck[idx].id);
+  updateCounters();idx=(idx+1)%deck.length;advance();
+}
+
+function markReview(){
+  reviewSet.add(deck[idx].id);knownSet.delete(deck[idx].id);
+  const card=deck.splice(idx,1)[0];
+  deck.splice(Math.min(idx+3,deck.length),0,card);
+  updateCounters();if(idx>=deck.length)idx=0;advance();
+}
+
+/* ── UI ── */
+function updateCounters(){
+  document.getElementById('k-count').textContent=knownSet.size;
+  document.getElementById('r-count').textContent=reviewSet.size;
+  document.getElementById('rem-count').textContent=deck.length-knownSet.size-reviewSet.size;
+}
+
+function buildStrip(){
+  const strip=document.getElementById('strip');strip.innerHTML='';
+  deck.forEach((card,i)=>{
+    const img=document.createElement('img');
+    img.src='../img/histoire/'+card.img;img.alt=card.title;
+    img.className='thumb'+(i===0?' cur':'');
+    img.onclick=()=>{idx=i;advance();};
+    img.title=card.title;
+    strip.appendChild(img);
+  });
+}
+
+/* ── UTILS ── */
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+
+/* ── KEYBOARD ── */
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();nextCard();}
+  if(e.key==='ArrowLeft'){e.preventDefault();prevCard();}
+  if(e.key==='Enter'){e.preventDefault();flipCard();}
+  if(e.key==='k'||e.key==='K')markKnown();
+  if(e.key==='r'||e.key==='R')markReview();
+});
+
+/* ── BOOT ── */
+deck=shuffle([...CARDS]);
+buildStrip();
+loadContent(); // première carte sans animation
+</script>
+</body>
+</html>

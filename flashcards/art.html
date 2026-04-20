@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards Arts — L'Encyclopédie des Explorateurs</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060a14;--gold:#d4a843;--gold-dim:rgba(200,180,120,0.18);--text:#e8dfc4;--text-dim:rgba(232,223,196,0.48);--card-bg:rgba(8,13,26,0.94);--border:rgba(200,180,120,0.18);--rose:#e87ab0;--rose-dim:rgba(232,122,176,0.15);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',Georgia,serif;min-height:100vh;overflow-x:hidden;user-select:none;}
+#stars-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.content{position:relative;z-index:1;}
+.back{position:fixed;top:22px;left:24px;z-index:100;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(212,168,67,.5);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
+.back:hover{color:#d4a843;}
+header{text-align:center;padding:52px 20px 28px;}
+.enc-label{font-size:.72rem;letter-spacing:.38em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;}
+h1{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(1.7rem,4.5vw,3.2rem);background:linear-gradient(135deg,#f5d0e8,#e87ab0 38%,#f0a0c8 68%,#fff0f8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;}
+.tagline{margin-top:10px;font-size:.95rem;color:var(--text-dim);font-style:italic;}
+.divider{height:1px;background:var(--gold-dim);max-width:300px;margin:20px auto;}
+.filter-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:0 20px 20px;max-width:700px;margin:0 auto;}
+.filter-btn{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:3px;border:1px solid var(--border);background:rgba(6,10,20,.9);color:var(--text-dim);cursor:pointer;transition:all .2s;}
+.filter-btn:hover,.filter-btn.active{border-color:rgba(232,122,176,.5);color:var(--rose);background:rgba(232,122,176,.07);}
+.filter-btn.active{box-shadow:0 0 12px rgba(232,122,176,.12);}
+.progress-wrap{max-width:520px;margin:0 auto 28px;text-align:center;}
+.progress-text{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+.progress-bar{height:2px;background:var(--gold-dim);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--rose);transition:width .4s ease;border-radius:2px;}
+.stage{display:flex;justify-content:center;align-items:center;perspective:1400px;padding:8px 0 20px;}
+.fc-wrap{width:420px;max-width:88vw;height:480px;position:relative;transform-style:preserve-3d;transition:transform .72s cubic-bezier(.4,0,.2,1);cursor:pointer;}
+.fc-wrap.flipped{transform:rotateY(180deg);}
+.fc-wrap.no-anim{transition:none!important;}
+.face{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.7),0 0 0 1px rgba(200,180,120,.06);overflow:hidden;}
+.face-front{background:var(--card-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 36px 70px;}
+.face-front::before{content:'';position:absolute;inset:0;border-radius:14px;background:radial-gradient(ellipse at 50% 0%,rgba(232,122,176,.06) 0%,transparent 65%);pointer-events:none;}
+.q-category{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--rose);border:1px solid rgba(232,122,176,.35);padding:4px 14px;border-radius:3px;margin-bottom:24px;opacity:.9;}
+.q-text{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--text);line-height:1.6;}
+.q-hint{font-size:.82rem;color:var(--text-dim);font-style:italic;margin-top:14px;}
+.front-footer{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-top:1px solid var(--border);background:rgba(6,10,20,.6);}
+.flip-hint{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);}
+.flip-arrow{color:var(--gold);opacity:.7;font-size:1rem;}
+.face-back{transform:rotateY(180deg);background:linear-gradient(145deg,#150a1e 0%,#1e0f2a 50%,#140918 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 32px;border-color:rgba(232,122,176,.25);}
+.face-back::before{content:'';position:absolute;inset:0;border-radius:14px;background:radial-gradient(ellipse at 50% 20%,rgba(232,122,176,.07) 0%,transparent 65%);pointer-events:none;}
+.b-category{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rose);border:1px solid rgba(232,122,176,.4);padding:4px 16px;border-radius:3px;margin-bottom:20px;}
+.b-question{font-family:'Cinzel',serif;font-size:.82rem;font-weight:700;color:rgba(232,223,196,.45);line-height:1.4;margin-bottom:16px;}
+.b-answer{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:900;background:linear-gradient(135deg,#f5d0e8,#e87ab0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;line-height:1.35;}
+.b-explain{font-size:.88rem;line-height:1.75;color:rgba(232,223,196,.55);font-style:italic;max-width:300px;}
+.overlay{position:absolute;inset:0;border-radius:14px;background:#000;z-index:30;opacity:0;pointer-events:none;transition:opacity 0.28s ease;}
+.overlay.dark{opacity:1;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.face-front.iris{animation:fadeIn 0.35s ease forwards;}
+.controls{display:flex;justify-content:center;gap:12px;margin-top:20px;flex-wrap:wrap;}
+.btn{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:11px 26px;border-radius:4px;border:1px solid var(--border);background:rgba(6,10,20,.9);color:var(--text-dim);cursor:pointer;transition:all .2s;}
+.btn:hover{border-color:rgba(200,180,120,.5);color:var(--text);background:rgba(200,180,120,.07);}
+.btn-gold{border-color:rgba(212,168,67,.6);color:var(--gold);background:rgba(212,168,67,.07);}
+.btn-gold:hover{background:rgba(212,168,67,.16);box-shadow:0 0 18px rgba(212,168,67,.2);}
+.btn-green{border-color:rgba(94,196,138,.5);color:#5ec48a;}
+.btn-green:hover{background:rgba(94,196,138,.1);}
+.btn-red{border-color:rgba(232,80,80,.5);color:#e84848;}
+.btn-red:hover{background:rgba(232,80,80,.1);}
+.review-row{display:flex;justify-content:center;gap:12px;margin-top:12px;flex-wrap:wrap;}
+.review-label{text-align:center;margin-top:16px;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);}
+.known-bar{max-width:520px;margin:20px auto 0;display:flex;gap:20px;justify-content:center;}
+.known-stat{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);}
+.known-stat span{color:var(--text);font-weight:700;}
+.strip{display:flex;gap:8px;overflow-x:auto;padding:12px 20px;scrollbar-width:none;}
+.strip::-webkit-scrollbar{display:none;}
+.thumb-art{width:52px;height:38px;border-radius:4px;border:1px solid var(--border);flex-shrink:0;opacity:.45;transition:opacity .2s;cursor:pointer;background:rgba(232,122,176,.08);display:flex;align-items:center;justify-content:center;font-size:.55rem;font-family:'Cinzel',serif;color:rgba(232,122,176,.65);text-align:center;padding:2px;}
+.thumb-art:hover{opacity:.7;}
+.thumb-art.cur{opacity:1;border-color:var(--rose);}
+@media(max-width:600px){.fc-wrap{height:440px;}.b-answer{font-size:1.1rem;}}
+</style>
+</head>
+<body>
+<canvas id="stars-canvas"></canvas>
+<a class="back" href="/flashcards/index.html">← Flashcards</a>
+<div class="content">
+  <header>
+    <div class="enc-label">L'Encyclopédie des Explorateurs</div>
+    <h1>Flashcards Arts & Culture</h1>
+    <div class="tagline">Peinture · Musique · Littérature · Théâtre · Cinéma</div>
+  </header>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterBy('all',this)">Tout</button>
+    <button class="filter-btn" onclick="filterBy('Peinture',this)">🎨 Peinture</button>
+    <button class="filter-btn" onclick="filterBy('Musique',this)">🎵 Musique</button>
+    <button class="filter-btn" onclick="filterBy('Littérature',this)">📖 Littérature</button>
+    <button class="filter-btn" onclick="filterBy('Théâtre',this)">🎭 Théâtre</button>
+    <button class="filter-btn" onclick="filterBy('Cinéma',this)">🎬 Cinéma</button>
+  </div>
+
+  <div style="padding:0 20px 80px;">
+    <div class="progress-wrap">
+      <div class="progress-text" id="p-text">Carte 1 / 30</div>
+      <div class="progress-bar"><div class="progress-fill" id="p-fill" style="width:0%"></div></div>
+    </div>
+    <div class="stage">
+      <div class="fc-wrap" id="fc" onclick="flipCard()">
+        <div class="overlay" id="overlay"></div>
+        <div class="face face-front" id="front">
+          <div class="q-category" id="fc-cat"></div>
+          <div class="q-text" id="fc-q"></div>
+          <div class="q-hint" id="fc-hint"></div>
+          <div class="front-footer">
+            <span class="flip-arrow">↩</span>
+            <span class="flip-hint">Cliquez pour révéler</span>
+          </div>
+        </div>
+        <div class="face face-back">
+          <div class="b-category" id="fc-cat2"></div>
+          <div class="b-question" id="fc-q2"></div>
+          <div class="b-answer" id="fc-ans"></div>
+          <div class="b-explain" id="fc-exp"></div>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" onclick="prevCard()">← Précédente</button>
+      <button class="btn btn-gold" onclick="nextCard()">Suivante →</button>
+      <button class="btn" onclick="shuffleCards()">🔀 Mélanger</button>
+    </div>
+    <div class="review-label">Après avoir révélé la carte :</div>
+    <div class="review-row">
+      <button class="btn btn-green" onclick="markKnown()">✓ Je savais</button>
+      <button class="btn btn-red" onclick="markReview()">↩ À revoir</button>
+    </div>
+    <div class="known-bar">
+      <div class="known-stat">Connues : <span id="k-count">0</span></div>
+      <div class="known-stat">À revoir : <span id="r-count">0</span></div>
+      <div class="known-stat">Restantes : <span id="rem-count">30</span></div>
+    </div>
+    <div class="divider"></div>
+    <div class="strip" id="strip"></div>
+  </div>
+</div>
+
+<script>
+const ALL_CARDS = [
+// ── PEINTURE (8 cartes) ────────────────────────────────────────────
+{id:1, cat:"Peinture", q:"Qui a peint la Joconde ?", ans:"Léonard de Vinci", exp:"Peinte entre 1503 et 1519, elle est exposée au Louvre. Le sourire de Mona Lisa reste l'un des mystères de l'histoire de l'art.", hint:"Peintre, sculpteur et savant de la Renaissance italienne."},
+{id:2, cat:"Peinture", q:"Quel peintre est célèbre pour ses Nymphéas ?", ans:"Claude Monet", exp:"Monet a peint plus de 250 variations de Nymphéas entre 1896 et 1926 dans son jardin de Giverny. Il est le chef de file de l'impressionnisme.", hint:"Impressionnisme français, XIXe-XXe siècle."},
+{id:3, cat:"Peinture", q:"Qui a peint La Nuit étoilée ?", ans:"Vincent van Gogh", exp:"Peinte en juin 1889 depuis sa chambre à l'asile de Saint-Rémy-de-Provence. Elle est conservée au MoMA de New York.", hint:"Post-impressionniste néerlandais, peintre torturé du XIXe."},
+{id:4, cat:"Peinture", q:"Qu'est-ce que le sfumato ?", ans:"Une technique de peinture utilisant des contours flous et des transitions douces.", exp:"Inventée par Léonard de Vinci, elle crée une atmosphère brumeuse et donne du relief aux visages.", hint:"Terme italien signifiant 'évanoui comme de la fumée'."},
+{id:5, cat:"Peinture", q:"Quel mouvement artistique est associé à Salvador Dalí ?", ans:"Le surréalisme.", exp:"Le surréalisme explore le monde des rêves et de l'inconscient. Dalí y mêle précision technique et images délirantes (La Persistance de la mémoire, 1931).", hint:"Mouvement du XXe siècle lié aux théories de Freud."},
+{id:6, cat:"Peinture", q:"Qui a peint le plafond de la Chapelle Sixtine ?", ans:"Michel-Ange", exp:"Commandé par le pape Jules II, Michel-Ange a peint ce plafond entre 1508 et 1512. La scène centrale représente La Création d'Adam.", hint:"Génie de la Renaissance italienne, également sculpteur du David."},
+{id:7, cat:"Peinture", q:"Qu'est-ce que le cubisme ?", ans:"Un mouvement qui représente les objets sous plusieurs angles simultanément.", exp:"Fondé par Picasso et Braque vers 1907, il déconstruit la perspective traditionnelle en fragments géométriques.", hint:"Révolution artistique du XXe siècle, Picasso en est la figure centrale."},
+{id:8, cat:"Peinture", q:"Quel tableau de Picasso commémore le bombardement d'une ville basque ?", ans:"Guernica (1937)", exp:"Peint en réaction au bombardement de Guernica par les nazis en 1937 pendant la guerre civile espagnole. Chef-d'œuvre du cubisme et symbole anti-guerre.", hint:"Ville basque espagnole, 1937, guerre civile."},
+
+// ── MUSIQUE (7 cartes) ────────────────────────────────────────────
+{id:9, cat:"Musique", q:"Qui a composé les 9 symphonies dont la célèbre 5ème en do mineur ?", ans:"Ludwig van Beethoven", exp:"La Cinquième Symphonie commence par le fameux motif 'da-da-da-DUM'. Beethoven l'a composée entre 1804 et 1808, alors qu'il devenait sourd.", hint:"Compositeur allemand du classicisme/romantisme, sourd à la fin de sa vie."},
+{id:10, cat:"Musique", q:"Combien de symphonies Mozart a-t-il composées ?", ans:"41 symphonies.", exp:"Mozart a composé 41 symphonies dont la célèbre n°40 en sol mineur. Il a commencé à composer à l'âge de 5 ans.", hint:"Enfant prodige autrichien du XVIIIe siècle."},
+{id:11, cat:"Musique", q:"Qu'est-ce qu'une fugue en musique ?", ans:"Une composition contrapuntique où un thème est repris et imité par différentes voix.", exp:"Bach est le maître de la fugue. L'Art de la Fugue (BWV 1080) est son œuvre la plus complexe sur ce sujet.", hint:"Jean-Sébastien Bach en est le maître incontesté."},
+{id:12, cat:"Musique", q:"Quel compositeur romantique est surnommé 'le Poète du piano' ?", ans:"Frédéric Chopin", exp:"Chopin (1810-1849) a consacré presque toute son œuvre au piano. Ses nocturnes, valses et préludes restent parmi les plus beaux du répertoire.", hint:"Compositeur polonais ayant vécu à Paris."},
+{id:13, cat:"Musique", q:"Qu'est-ce qu'un opéra ?", ans:"Un spectacle musical où les personnages chantent leurs dialogues.", exp:"L'opéra est né à Florence vers 1600. Wagner, Verdi, Puccini sont parmi les plus grands compositeurs d'opéras.", hint:"Genre musical né en Italie à la fin de la Renaissance."},
+{id:14, cat:"Musique", q:"Qu'appelle-t-on le 'jazz' ?", ans:"Un genre musical né aux États-Unis à la fin du XIXe s., mêlant blues, gospel et improvisation.", exp:"Né à La Nouvelle-Orléans vers 1890-1910. Louis Armstrong, Miles Davis, John Coltrane en sont les figures emblématiques.", hint:"Né à La Nouvelle-Orléans, influencé par la culture afro-américaine."},
+{id:15, cat:"Musique", q:"Quel est le nom du célèbre requiem composé par Mozart et inachevé à sa mort ?", ans:"Requiem en ré mineur, K. 626.", exp:"Composé en 1791, l'année de sa mort, il fut complété par son élève Süssmayr. Ce mystère a alimenté de nombreuses théories et le film Amadeus.", hint:"Sa dernière œuvre, restée inachevée en 1791."},
+
+// ── LITTÉRATURE (8 cartes) ────────────────────────────────────────
+{id:16, cat:"Littérature", q:"Qui a écrit Les Misérables ?", ans:"Victor Hugo (1862)", exp:"Roman fleuve de 1500 pages suivant Jean Valjean. Hugo y dénonce les injustices sociales de la France du XIXe siècle. Adapté en comédie musicale mondiale.", hint:"Grand auteur romantique français du XIXe siècle."},
+{id:17, cat:"Littérature", q:"Qu'est-ce que l'Odyssée ?", ans:"Un poème épique d'Homère racontant le retour d'Ulysse après la guerre de Troie.", exp:"L'Odyssée compte 12 000 vers et 24 chants. Elle est avec l'Iliade l'œuvre fondatrice de la littérature occidentale.", hint:"Épopée grecque antique, compagnon de l'Iliade."},
+{id:18, cat:"Littérature", q:"Qui a écrit En attendant Godot ?", ans:"Samuel Beckett (1953)", exp:"Pièce du théâtre de l'absurde : deux personnages attendent Godot qui ne vient jamais. Beckett a reçu le Nobel de littérature en 1969.", hint:"Théâtre de l'absurde, Prix Nobel 1969."},
+{id:19, cat:"Littérature", q:"Qu'est-ce que le roman picaresque ?", ans:"Un roman suivant les aventures d'un héros de basse condition, rusé et débrouillard.", exp:"Né en Espagne au XVIe siècle (Lazarillo de Tormes). Il dénonce la société par l'ironie. Gil Blas de Lesage en est l'exemple français.", hint:"Genre littéraire né en Espagne, critique sociale par l'ironie."},
+{id:20, cat:"Littérature", q:"Qui a écrit À la recherche du temps perdu ?", ans:"Marcel Proust", exp:"Roman-fleuve en 7 volumes (1913-1927). La célèbre madeleine trempée dans du thé déclenche un flot de souvenirs. Chef-d'œuvre de la littérature mondiale.", hint:"Roman-fleuve français en 7 volumes, début XXe siècle."},
+{id:21, cat:"Littérature", q:"Qu'est-ce que l'alexandrin ?", ans:"Un vers de 12 syllabes, coupé en deux hémistiches de 6.", exp:"Vers noble de la poésie française classique (Racine, Corneille). Ex : 'Je le vis, je rou-gis, / je pâ-lis à sa vue.' (Racine, Phèdre)", hint:"Le vers roi du théâtre classique français."},
+{id:22, cat:"Littérature", q:"Qui est l'auteur de Don Quichotte ?", ans:"Miguel de Cervantes (1605-1615)", exp:"Don Quichotte est considéré comme le premier roman moderne. Le héros se prend pour un chevalier et combat des moulins à vent qu'il imagine être des géants.", hint:"Auteur espagnol du XVIIe, œuvre fondatrice du roman moderne."},
+{id:23, cat:"Littérature", q:"Qu'appelle-t-on le courant naturaliste en littérature ?", ans:"Un courant qui décrit la réalité sociale avec précision scientifique, sans idéalisation.", exp:"Zola en est le chef de file avec Les Rougon-Macquart (20 romans). Il veut appliquer la méthode scientifique à la littérature.", hint:"Émile Zola en est la figure centrale, XIXe siècle."},
+
+// ── THÉÂTRE (4 cartes) ────────────────────────────────────────────
+{id:24, cat:"Théâtre", q:"Quelle est la règle des trois unités du théâtre classique ?", ans:"Unité de temps (24h), de lieu (un seul endroit) et d'action (une seule intrigue).", exp:"Ces règles héritées d'Aristote ont été codifiées en France au XVIIe siècle pour Corneille, Molière et Racine.", hint:"Règle du théâtre classique français du XVIIe siècle."},
+{id:25, cat:"Théâtre", q:"Qui a écrit Hamlet, Macbeth et Roméo et Juliette ?", ans:"William Shakespeare", exp:"Shakespeare (1564-1616) a écrit 37 pièces et 154 sonnets. Ses œuvres sont les plus jouées au monde. Il a révolutionné le théâtre élisabéthain.", hint:"Dramaturge anglais de la Renaissance, le plus grand de tous les temps."},
+{id:26, cat:"Théâtre", q:"Qu'est-ce que la catharsis selon Aristote ?", ans:"La purification des passions du spectateur par le spectacle tragique.", exp:"Le spectateur qui assiste à une tragédie éprouve pitié et terreur, puis se libère de ces émotions. Concept clé de la Poétique d'Aristote.", hint:"Concept aristotélicien lié à la tragédie grecque."},
+{id:27, cat:"Théâtre", q:"Qui est Molière et pourquoi est-il important ?", ans:"Jean-Baptiste Poquelin (1622-1673), le plus grand auteur de comédie française.", exp:"Il a écrit Tartuffe, Le Misanthrope, L'Avare. Il jouait lui-même dans ses pièces et est mort sur scène. La Comédie-Française lui est dédiée.", hint:"Il est mort sur scène en jouant Le Malade imaginaire."},
+
+// ── CINÉMA (3 cartes) ─────────────────────────────────────────────
+{id:28, cat:"Cinéma", q:"Qui sont les frères qui ont inventé le cinématographe en 1895 ?", ans:"Auguste et Louis Lumière", exp:"La première projection publique payante eut lieu le 28 décembre 1895 au Grand Café de Paris. Ils ont filmé L'Arrivée d'un train en gare de La Ciotat.", hint:"Deux frères lyonnais, fin XIXe siècle."},
+{id:29, cat:"Cinéma", q:"Qu'est-ce que la Nouvelle Vague au cinéma ?", ans:"Un mouvement français des années 1960 prônant un cinéma libre, improvisé, personnel.", exp:"Godard, Truffaut, Chabrol en sont les figures. À bout de souffle (1960) en est le manifeste. Révolution contre le cinéma académique.", hint:"Mouvement français des années 60, Godard et Truffaut en tête."},
+{id:30, cat:"Cinéma", q:"Quel réalisateur est connu pour 2001 l'Odyssée de l'espace et Orange mécanique ?", ans:"Stanley Kubrick", exp:"Kubrick (1928-1999) est considéré comme l'un des plus grands réalisateurs. Perfectionniste absolu, il a aussi réalisé Shining et Full Metal Jacket.", hint:"Réalisateur américain perfectionniste, maître du genre."},
+];
+
+let deck=[], idx=0, flipped=false, knownSet=new Set(), reviewSet=new Set();
+
+function filterBy(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  deck = cat==='all' ? shuffle([...ALL_CARDS]) : shuffle(ALL_CARDS.filter(c=>c.cat===cat));
+  idx=0; flipped=false; knownSet.clear(); reviewSet.clear();
+  updateCounters(); buildStrip(); advance();
+}
+function loadContent(){
+  const card=deck[idx];
+  document.getElementById('fc-cat').textContent  = card.cat;
+  document.getElementById('fc-cat2').textContent = card.cat;
+  document.getElementById('fc-q').textContent    = card.q;
+  document.getElementById('fc-q2').textContent   = card.q;
+  document.getElementById('fc-ans').textContent  = card.ans;
+  document.getElementById('fc-exp').textContent  = card.exp||'';
+  document.getElementById('fc-hint').textContent = card.hint ? '💡 ' + card.hint : '';
+  const pct=(idx/deck.length)*100;
+  document.getElementById('p-text').textContent=`Carte ${idx+1} / ${deck.length}`;
+  document.getElementById('p-fill').style.width=pct+'%';
+  document.querySelectorAll('#strip .thumb-art').forEach((el,i)=>el.classList.toggle('cur',i===idx));
+}
+function advance(){
+  const ov=document.getElementById('overlay'),fr=document.getElementById('front'),wrap=document.getElementById('fc');
+  ov.classList.add('dark');
+  setTimeout(()=>{
+    wrap.classList.add('no-anim'); wrap.classList.remove('flipped'); flipped=false; fr.classList.remove('iris');
+    loadContent();
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{wrap.classList.remove('no-anim');ov.classList.remove('dark');fr.classList.add('iris');}));
+  },280);
+}
+function flipCard(){ if(flipped){idx=(idx+1)%deck.length;advance();}else{flipped=true;document.getElementById('fc').classList.add('flipped');} }
+function nextCard(){idx=(idx+1)%deck.length;advance();}
+function prevCard(){idx=(idx-1+deck.length)%deck.length;advance();}
+function shuffleCards(){deck=shuffle([...deck]);idx=0;flipped=false;knownSet.clear();reviewSet.clear();updateCounters();buildStrip();advance();}
+function markKnown(){knownSet.add(deck[idx].id);reviewSet.delete(deck[idx].id);updateCounters();idx=(idx+1)%deck.length;advance();}
+function markReview(){reviewSet.add(deck[idx].id);knownSet.delete(deck[idx].id);const c=deck.splice(idx,1)[0];deck.splice(Math.min(idx+3,deck.length),0,c);updateCounters();if(idx>=deck.length)idx=0;advance();}
+function updateCounters(){document.getElementById('k-count').textContent=knownSet.size;document.getElementById('r-count').textContent=reviewSet.size;document.getElementById('rem-count').textContent=deck.length-knownSet.size-reviewSet.size;}
+function buildStrip(){
+  const strip=document.getElementById('strip');strip.innerHTML='';
+  deck.forEach((card,i)=>{const d=document.createElement('div');d.className='thumb-art'+(i===0?' cur':'');d.textContent=card.cat.slice(0,4);d.onclick=()=>{idx=i;advance();};d.title=card.q;strip.appendChild(d);});
+}
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();nextCard();}
+  if(e.key==='ArrowLeft'){e.preventDefault();prevCard();}
+  if(e.key==='Enter'){e.preventDefault();flipCard();}
+  if(e.key==='k'||e.key==='K')markKnown();
+  if(e.key==='r'||e.key==='R')markReview();
+});
+(function(){
+  const c=document.getElementById('stars-canvas'),ctx=c.getContext('2d');let stars=[];
+  function resize(){c.width=innerWidth;c.height=innerHeight;}
+  function init(){resize();stars=Array.from({length:200},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.2+.15,a:Math.random()*.5+.08,speed:Math.random()*.0004+.00015,phase:Math.random()*Math.PI*2}));}
+  let t=0;function draw(){t++;ctx.clearRect(0,0,c.width,c.height);for(const s of stars){const f=s.a*(.65+.35*Math.sin(t*s.speed*80+s.phase));ctx.beginPath();ctx.arc(s.x*c.width,s.y*c.height,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,210,230,${f})`;ctx.fill();}requestAnimationFrame(draw);}
+  addEventListener('resize',init);init();draw();
+})();
+deck=shuffle([...ALL_CARDS]);buildStrip();loadContent();
+</script>
+</body>
+</html>
