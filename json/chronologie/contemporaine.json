@@ -90,6 +90,29 @@
         "img": "histoire/victor hugo.webp"
       },
       {
+    "era": "✦ Républiques & Guerres Mondiales",
+    "cls": "republiques",
+    "events": [
+      {
+        "icon": "🌍",
+        "tag": "Événement",
+        "date": "1830 – 1962",
+        "title": "L'Empire Colonial Français",
+        "desc": "La France bâtit le deuxième empire colonial du monde : Algérie (1830), Indochine, Afrique de l'Ouest, Madagascar, Polynésie. À son apogée en 1938, l'empire couvre 12 millions de km² et 110 millions d'habitants. Sa décolonisation, souvent violente, marquera profondément la France.",
+        "anecdotes": [
+          {
+            "e": "📐",
+            "t": "<b>La « mission civilisatrice » était l'argument officiel.</b> Jules Ferry défendit la colonisation à la tribune : « Les races supérieures ont le droit de civiliser les races inférieures. » Cette phrase lui fut reprochée jusqu'à sa mort — et au-delà."
+          },
+          {
+            "e": "🍫",
+            "t": "<b>La France consommait le cacao, le caoutchouc, le coton et le riz</b> produits par des millions de travailleurs forcés dans ses colonies. L'économie métropolitaine de la Belle Époque reposait directement sur ce système d'exploitation."
+          }
+        ],
+        "kind": "histoire",
+        "img": "histoire/epoque coloniale.webp"
+      },
+      {
         "icon": "🦅",
         "tag": "Empereur",
         "date": "1852 – 1870",
@@ -128,29 +151,6 @@
         "img": "histoire/haussman.webp"
       }
     ]
-  },
-  {
-    "era": "✦ Républiques & Guerres Mondiales",
-    "cls": "republiques",
-    "events": [
-      {
-        "icon": "🌍",
-        "tag": "Événement",
-        "date": "1830 – 1962",
-        "title": "L'Empire Colonial Français",
-        "desc": "La France bâtit le deuxième empire colonial du monde : Algérie (1830), Indochine, Afrique de l'Ouest, Madagascar, Polynésie. À son apogée en 1938, l'empire couvre 12 millions de km² et 110 millions d'habitants. Sa décolonisation, souvent violente, marquera profondément la France.",
-        "anecdotes": [
-          {
-            "e": "📐",
-            "t": "<b>La « mission civilisatrice » était l'argument officiel.</b> Jules Ferry défendit la colonisation à la tribune : « Les races supérieures ont le droit de civiliser les races inférieures. » Cette phrase lui fut reprochée jusqu'à sa mort — et au-delà."
-          },
-          {
-            "e": "🍫",
-            "t": "<b>La France consommait le cacao, le caoutchouc, le coton et le riz</b> produits par des millions de travailleurs forcés dans ses colonies. L'économie métropolitaine de la Belle Époque reposait directement sur ce système d'exploitation."
-          }
-        ],
-        "kind": "histoire",
-        "img": "histoire/epoque coloniale.webp"
       },
       {
         "icon": "🏛️",
