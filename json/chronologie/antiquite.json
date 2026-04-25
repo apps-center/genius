@@ -386,7 +386,7 @@
         "icon": "⚓",
         "tag": "Civilisation",
         "date": "–1 200 à –146 av. J.-C.",
-        "title": "Les Phéniciens — Marchands & Inventeurs de l'Alphabet",
+        "title": "Les Phéniciens — Marchands",
         "kind": "histoire",
         "desc": "Peuple de marins et de commerçants établis sur les côtes de l'actuel Liban (Tyr, Sidon, Byblos), les Phéniciens sont les grands explorateurs de la Méditerranée antique. Leurs vaisseaux atteignent l'Espagne, l'Afrique de l'Ouest et peut-être les îles britanniques. Mais leur legs le plus durable est invisible : l'alphabet consonantique de 22 lettres qu'ils diffusent partout où ils commercent. Les Grecs l'adoptent et ajoutent les voyelles — donnant naissance à l'alphabet que le monde entier utilise encore aujourd'hui.",
         "anecdotes": [
@@ -427,7 +427,7 @@
           "r": "22 consonnes — sans aucune voyelle",
           "hint": "Les lecteurs devaient deviner les voyelles selon le contexte. Les Grecs ajouteront les voyelles plus tard."
         },
-        "img": "histoire/Scène de commerce phénicien au port.webp"
+        "img": "histoire/alphabet_grec.webp"
       }
     ]
   },
