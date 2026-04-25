@@ -504,21 +504,6 @@
         "img": "histoire/Schéma et histoire du compas.webp"
       },
       {
-        "icon": "🌳",
-        "tag": "Roi",
-        "date": "1226 – 1270",
-        "title": "Louis IX — Saint Louis",
-        "desc": "Roi pieux, il rend la justice sous un chêne à Vincennes. Part deux fois en croisade, meurt à Tunis. Canonisé en 1297.",
-        "anecdotes": [
-          {
-            "e": "💸",
-            "t": "<b>Louis IX racheta la « couronne d'épines »</b> pour une fortune colossale. Pour l'abriter, il fit construire la Sainte-Chapelle — encore visible aujourd'hui."
-          }
-        ],
-        "kind": "histoire",
-        "img": "histoire/Louis IX.webp"
-      },
-      {
         "kind": "histoire",
         "icon": "👑",
         "tag": "Régence",
@@ -541,6 +526,21 @@
           "hint": "Elle venait d'Espagne et prit les rênes du royaume alors que son fils n'avait que 12 ans"
         },
         "img": "histoire/blanche castille.webp"
+      },
+      {
+        "icon": "🌳",
+        "tag": "Roi",
+        "date": "1226 – 1270",
+        "title": "Louis IX — Saint Louis",
+        "desc": "Roi pieux, il rend la justice sous un chêne à Vincennes. Part deux fois en croisade, meurt à Tunis. Canonisé en 1297.",
+        "anecdotes": [
+          {
+            "e": "💸",
+            "t": "<b>Louis IX racheta la « couronne d'épines »</b> pour une fortune colossale. Pour l'abriter, il fit construire la Sainte-Chapelle — encore visible aujourd'hui."
+          }
+        ],
+        "kind": "histoire",
+        "img": "histoire/Louis IX.webp"
       },
       {
         "kind": "histoire",
