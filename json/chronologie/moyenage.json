@@ -591,21 +591,25 @@
         "tag": "Religion",
         "date": "1309 – 1377",
         "title": "Les Papes à Avignon — Quand Rome s'Installa en France",
-        "desc": "Tu sais que le pape habite à Rome — mais pendant 68 ans au XIVe siècle, il habitait en France, à Avignon ! Comment ? Le roi Philippe le Bel était très influent, et le nouveau pape Clément V, qui était français, préféra rester près de chez lui. Il s'installa à Avignon en 1309. Les six papes suivants, tous français, firent pareil. C'était bizarre : le chef de toute la chrétienté vivait dans une ville française ! À Avignon, ils firent construire un immense palais, le Palais des Papes, qu'on peut encore visiter aujourd'hui.",
+        "desc": "Depuis l'Antiquité, le pape vit à Rome. Mais en 1309, à cause des guerres et tensions en Italie, le pape Clément V — français — décide de s'installer à Avignon. Ses six successeurs font de même. En 1335, l'un d'eux fait construire le Palais des Papes : forteresse et palais à la fois, avec chapelles, cours et jardins. Plus de 600 ouvriers et des peintres travaillent sur le chantier. En 1377, Grégoire XI rentre enfin à Rome. Pendant 68 ans, le chef de toute la chrétienté avait vécu en France.",
         "anecdotes": [
           {
-            "i": "🏰",
-            "t": "<b>Le Palais des Papes d'Avignon est le plus grand bâtiment gothique du monde.</b> Construit en seulement 20 ans, il est immense — deux fois le château de Versailles ! Aujourd'hui encore, avec ses tours de 50 mètres, il domine la ville. Chaque été, son immense cour accueille le Festival d'Avignon, le plus grand festival de théâtre du monde."
+            "e": "🏰",
+            "t": "<b>Le Palais des Papes : l'équivalent de quatre cathédrales.</b> Construit entre 1335 et 1352 sous Clément VI, il couvre 15 000 m² — cours et jardins inclus. Forteresse imprenable aux tours de 50 mètres, c'est aussi un monument religieux abritant de nombreuses chapelles. Aujourd'hui l'un des sites touristiques les plus visités de France, il accueille chaque été le Festival d'Avignon."
           },
           {
-            "i": "😤",
-            "t": "<b>Beaucoup de chrétiens trouvaient ça scandaleux.</b> Le pape était censé être le successeur de saint Pierre, martyrisé à Rome. Le voir installer sa cour en France, sous l'influence du roi de France, choquait. Le grand poète italien Pétrarque appelait Avignon 'l'enfer des vivants'. En 1377, le pape Grégoire XI finit par rentrer à Rome — non sans mal."
+            "e": "😤",
+            "t": "<b>Un scandale pour toute la chrétienté.</b> Le pape est censé être le successeur de saint Pierre, martyrisé à Rome. Le voir vivre sous l'influence du roi de France choquait profondément. Le poète Pétrarque appelait Avignon 'l'enfer des vivants'. Après le départ en 1377, l'Église se déchirera encore 40 ans dans le Grand Schisme — avec jusqu'à trois papes simultanément !"
+          },
+          {
+            "e": "🎨",
+            "t": "<b>Clément VI, le pape bâtisseur qui aimait le luxe.</b> C'est lui qui agrandit le palais et le fit décorer par les meilleurs peintres de l'époque. Il disait qu'un pape devait être généreux. Il acheta aussi officiellement la ville d'Avignon à la reine Jeanne de Naples pour 80 000 florins d'or — Avignon resta ainsi propriété du Vatican jusqu'en 1791 !"
           }
         ],
         "quiz": {
-          "q": "Pendant combien d'années les papes ont-ils habité à Avignon au lieu de Rome ?",
-          "r": "68 ans — de 1309 à 1377",
-          "hint": "Sept papes successifs, tous français, préférèrent rester en France plutôt que de rejoindre Rome"
+          "q": "Quelle est la superficie du Palais des Papes d'Avignon, jardins inclus ?",
+          "r": "15 000 m² — l'équivalent de quatre cathédrales",
+          "hint": "Construit entre 1335 et 1352, c'est à la fois une forteresse et un palais religieux."
         },
         "img": "histoire/pape avignon.webp"
       },
