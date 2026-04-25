@@ -1507,30 +1507,6 @@
         }
       },
       {
-        "icon": "🌾",
-        "tag": "Agriculture",
-        "date": "Ier–IIe siècle ap. J.-C.",
-        "title": "L'Agriculture Romaine en Gaule — La Révolution des Techniques",
-        "desc": "La conquête romaine apporte en Gaule une véritable révolution agricole. Le moulin à eau remplace le broyage à la main. La charrue à roues améliore le labour. La faucille à encoches (vallus) permet de moissonner mécaniquement — inventée par les Gaulois et adoptée par Rome. Les vignes, l'olivier, les vergers fruitiers se multiplient. Les grandes villae rusticae organisent une agriculture rationalisée qui nourrit les villes. La Gaule devient le grenier à blé de l'Empire.",
-        "kind": "histoire",
-        "img": "histoire/Le_semeur_au_lever_du_soleil.webp",
-        "anecdotes": [
-          {
-            "t": "<b>La vigne en France, c'est une invention romaine.</b> Avant la conquête, les Gaulois buvaient de la bière et importaient le vin à prix d'or depuis l'Italie. Les Romains plantent les premières vignes en Narbonnaise dès –125 av. J.-C. Bordeaux, Bourgogne, Alsace — les grands vignobles français sont d'origine romaine.",
-            "e": "🍇"
-          },
-          {
-            "t": "<b>Le vallus gaulois est la première moissonneuse-batteuse de l'histoire.</b> Cette machine à peignes tirée par un âne coupait les épis directement dans le champ. Elle disparaît avec l'Empire romain et ne sera réinventée qu'au XIXe siècle. 1 800 ans de régression technologique.",
-            "e": "⚙️"
-          }
-        ],
-        "quiz": {
-          "q": "Quel boisson les Gaulois consommaient-ils avant que les Romains introduisent massivement la vigne en Gaule ?",
-          "r": "La bière (cervoise)",
-          "hint": "Une boisson fermentée à base de céréales, encore populaire dans les pays du Nord"
-        }
-      },
-      {
         "kind": "histoire",
         "icon": "⚙️",
         "tag": "Invention",
@@ -1581,6 +1557,12 @@
           "hint": "Plus intacte que bien des monuments à Rome même, construite vers –19 av. J.-C."
         },
         "img": "histoire/Bains romains sous les voûtes majestueuses.webp"
+      },
+      {
+        "title": "Les Thermes de Caracalla — Le Palace du Peuple Romain",
+        "date": "216 apr. J.-C.",
+        "img": "histoire/Bains_romains__détente_et_interactions_sociales.webp",
+        "desc": "En 216, l'empereur Caracalla inaugure à Rome les plus grands thermes du monde antique : 22 hectares, 1 600 baigneurs simultanés, 80 000 litres d'eau chaude par citerne. Caldarium (chaud), tepidarium (tiède), frigidarium (froid), natatio (piscine), palestres, bibliothèques, jardins et stade. L'eau arrive par aqueduc, chauffée par le praefurnium via un hypocauste qui diffuse la chaleur sous les sols. Hommes et femmes s'y baignent à heures séparées, enduits d'huile, raclés au strigile. Les thermes sont à la fois hammam, gymnase, club social et lieu d'affaires — ouverts à tous pour quelques sesterces."
       },
       {
         "icon": "🏙️",
