@@ -359,34 +359,6 @@
         }
       },
       {
-        "title": "L'Alphabet Phénicien — La Révolution de l'Écriture",
-        "date": "–1 100 av. J.-C.",
-        "tag": "Invention",
-        "icon": "🔤",
-        "kind": "histoire",
-        "desc": "L'écriture existe depuis 5 000 ans — née en Mésopotamie et en Égypte sous forme de dessins. Mais c'est il y a 3 500 ans que des peuples sémites d'Égypte conçoivent le premier véritable alphabet. Les Phéniciens, grands navigateurs depuis Tyr (Liban actuel), l'adoptent et le diffusent dans toute la Méditerranée. Cet alphabet de 22 consonnes — sans voyelles — est l'ancêtre direct du grec, du latin, de l'arabe et de l'hébreu. L'écriture, réservée à une élite, se démocratise enfin.",
-        "anecdotes": [
-          {
-            "e": "🔡",
-            "t": "<b>Nos lettres A, B, C ont 3 200 ans.</b> Le A vient de aleph (tête de bœuf en phénicien). Le B de beth (maison). Le C de gimel (chameau). Les deux premières lettres grecques — alpha et bêta — donnent le mot « alphabet ». La forme de nos majuscules est encore reconnaissable dans les signes phéniciens originaux."
-          },
-          {
-            "e": "🌍",
-            "t": "<b>L'alphabet phénicien a engendré presque tous les alphabets du monde.</b> De lui dérivent l'alphabet grec (qui ajouta les voyelles), puis le latin, mais aussi l'hébreu, l'arabe, le cyrillique et même les alphabets de l'Inde. Quand tu écris en français, en arabe ou en hindi, tu utilises des lettres dont l'ancêtre est ce système phénicien."
-          },
-          {
-            "e": "⛵",
-            "t": "<b>Les Phéniciens ont diffusé l'alphabet grâce à leur génie commercial.</b> Depuis leur port de Tyr, ces grands navigateurs sillonnaient toute la Méditerranée pour commercer. L'alphabet simplifié facilitait leurs échanges. Les Grecs l'adoptèrent et y ajoutèrent les voyelles — donnant naissance à l'écriture telle qu'on la connaît. Hérodote raconte : « Les Phéniciens introduisirent en Grèce des lettres qui étaient inconnues auparavant. »"
-          }
-        ],
-        "quiz": {
-          "q": "Combien de lettres comptait l'alphabet phénicien original, et quelle particularité avait-il ?",
-          "r": "22 consonnes — sans aucune voyelle",
-          "hint": "Les lecteurs devaient deviner les voyelles selon le contexte. Les Grecs ajouteront les voyelles plus tard."
-        },
-        "img": "histoire/Scène de commerce phénicien au port.webp"
-      },
-      {
         "title": "L'Âge du Fer — La Démocratisation de l'Armement",
         "date": "–1 200 av. J.-C.",
         "tag": "Invention",
@@ -419,10 +391,6 @@
         "desc": "Peuple de marins et de commerçants établis sur les côtes de l'actuel Liban (Tyr, Sidon, Byblos), les Phéniciens sont les grands explorateurs de la Méditerranée antique. Leurs vaisseaux atteignent l'Espagne, l'Afrique de l'Ouest et peut-être les îles britanniques. Mais leur legs le plus durable est invisible : l'alphabet consonantique de 22 lettres qu'ils diffusent partout où ils commercent. Les Grecs l'adoptent et ajoutent les voyelles — donnant naissance à l'alphabet que le monde entier utilise encore aujourd'hui.",
         "anecdotes": [
           {
-            "t": "<b>Notre alphabet a 3 200 ans et vient des Phéniciens.</b> Les lettres A, B, C dérivent du phénicien aleph (tête de bœuf 𐤀), beth (maison 𐤁), gimel (chameau 𐤂). En retournant la lettre 'A' vous verrez encore la tête de bœuf cornu des origines phéniciennes.",
-            "e": "🔤"
-          },
-          {
             "t": "<b>Le mot 'Bible' vient de Byblos — une ville phénicienne.</b> Les Grecs importaient le papyrus égyptien via le port de Byblos, si bien qu'ils appelèrent 'byblos' tout support d'écriture, puis 'biblia' leurs livres. La ville phénicienne a donné son nom à la Bible.",
             "e": "🏺"
           },
@@ -431,10 +399,33 @@
             "e": "⛵"
           }
         ],
+        "img": "histoire/Scène de commerce phénicien au port.webp"
+      },
+      {
+        "title": "L'Alphabet Phénicien — La Révolution de l'Écriture",
+        "date": "–1 100 av. J.-C.",
+        "tag": "Invention",
+        "icon": "🔤",
+        "kind": "histoire",
+        "desc": "L'écriture existe depuis 5 000 ans — née en Mésopotamie et en Égypte sous forme de dessins. Mais c'est il y a 3 500 ans que des peuples sémites d'Égypte conçoivent le premier véritable alphabet. Les Phéniciens, grands navigateurs depuis Tyr (Liban actuel), l'adoptent et le diffusent dans toute la Méditerranée. Cet alphabet de 22 consonnes — sans voyelles — est l'ancêtre direct du grec, du latin, de l'arabe et de l'hébreu. L'écriture, réservée à une élite, se démocratise enfin.",
+        "anecdotes": [
+          {
+            "e": "🔡",
+            "t": "<b>Nos lettres A, B, C ont 3 200 ans.</b> Le A vient de aleph (tête de bœuf en phénicien). Le B de beth (maison). Le C de gimel (chameau). Les deux premières lettres grecques — alpha et bêta — donnent le mot « alphabet ». La forme de nos majuscules est encore reconnaissable dans les signes phéniciens originaux."
+          },
+          {
+            "e": "🌍",
+            "t": "<b>L'alphabet phénicien a engendré presque tous les alphabets du monde.</b> De lui dérivent l'alphabet grec (qui ajouta les voyelles), puis le latin, mais aussi l'hébreu, l'arabe, le cyrillique et même les alphabets de l'Inde. Quand tu écris en français, en arabe ou en hindi, tu utilises des lettres dont l'ancêtre est ce système phénicien."
+          },
+          {
+            "e": "⛵",
+            "t": "<b>Les Phéniciens ont diffusé l'alphabet grâce à leur génie commercial.</b> Depuis leur port de Tyr, ces grands navigateurs sillonnaient toute la Méditerranée pour commercer. L'alphabet simplifié facilitait leurs échanges. Les Grecs l'adoptèrent et y ajoutèrent les voyelles — donnant naissance à l'écriture telle qu'on la connaît. Hérodote raconte : « Les Phéniciens introduisirent en Grèce des lettres qui étaient inconnues auparavant. »"
+          }
+        ],
         "quiz": {
-          "q": "Combien de lettres comptait l'alphabet phénicien original ?",
-          "r": "22 lettres (consonnes uniquement)",
-          "hint": "Pas de voyelles — les lecteurs les devinaient selon le contexte, comme en arabe et hébreu aujourd'hui"
+          "q": "Combien de lettres comptait l'alphabet phénicien original, et quelle particularité avait-il ?",
+          "r": "22 consonnes — sans aucune voyelle",
+          "hint": "Les lecteurs devaient deviner les voyelles selon le contexte. Les Grecs ajouteront les voyelles plus tard."
         },
         "img": "histoire/Scène de commerce phénicien au port.webp"
       }
