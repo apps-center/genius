@@ -1421,34 +1421,6 @@
         "img": "histoire/Construction_du_Colisée_à_Rome.webp"
       },
       {
-        "kind": "histoire",
-        "icon": "🧱",
-        "tag": "Monument",
-        "date": "122 à 142 ap. J.-C.",
-        "title": "Le Mur d'Hadrien — La Frontière du Monde Romain",
-        "desc": "En 122 ap. J.-C., l'empereur Hadrien ordonne la construction d'un mur traversant l'île de Bretagne (actuelle Angleterre) d'est en ouest sur 118 km — pour marquer et défendre la frontière nord de l'Empire contre les Pictes d'Écosse. 15 000 légionnaires construisent en 6 ans une muraille de 4 à 6 mètres de haut avec forts, fossés et tours de guet tous les 1 500 mètres. En 142, son successeur Antonin fait bâtir un second mur 160 km plus au nord — mais il est abandonné en 20 ans, et l'Empire revient au mur d'Hadrien.",
-        "anecdotes": [
-          {
-            "e": "🗺️",
-            "t": "<b>Le Mur d'Hadrien représentait la fin du monde connu.</b> Au-delà : les Pictes, les brumes, l'inconnu. Des soldats de tout l'Empire y furent stationnés — des inscriptions en syriaque, en grec, en berbère ont été retrouvées sur les forts. Ce mur était la frontière physique entre la civilisation romaine et ce que les Romains appelaient la 'barbarie'. Il est inscrit au patrimoine mondial de l'UNESCO."
-          },
-          {
-            "e": "🏗️",
-            "t": "<b>Le mur d'Antonin, construit en 142 ap. J.-C., fut abandonné en 20 ans.</b> Érigé en tourbe (pas en pierre) 160 km plus au nord, sur seulement 60 km, il s'avéra intenable : trop long à défendre, trop exposé. L'Empire recula sur le mur d'Hadrien — acceptant implicitement qu'il existait des limites à sa capacité d'expansion. Hadrien fut le premier empereur à clairement renoncer à la conquête au profit de la consolidation."
-          },
-          {
-            "e": "🎭",
-            "t": "<b>Hadrien était l'un des empereurs les plus cultivés de Rome.</b> Architecte lui-même, il dessina le Panthéon de Rome (encore debout, la plus grande coupole non armée du monde pendant 1 300 ans), une villa colossale à Tivoli, et réorganisa l'administration de l'Empire. Son règne (117–138) est souvent cité comme l'apogée de la civilisation romaine — Gibbon parlait du IIe siècle comme du 'siècle le plus heureux de l'humanité'."
-          }
-        ],
-        "quiz": {
-          "q": "Quelle est la longueur du Mur d'Hadrien, construit en 122 ap. J.-C. pour délimiter la frontière nord de l'Empire romain ?",
-          "r": "118 km",
-          "hint": "Il traversait toute l'Angleterre d'est en ouest, de la mer du Nord à la mer d'Irlande"
-        },
-        "img": "histoire/Mur d'hadrien.webp"
-      },
-      {
         "icon": "🦅",
         "tag": "Apogée",
         "date": "117 ap. J.-C.",
@@ -1475,6 +1447,34 @@
           "hint": "Un empereur d'origine espagnole, premier provincial à diriger Rome"
         },
         "img": "histoire/LEmpire Trajan.webp"
+      },
+      {
+        "kind": "histoire",
+        "icon": "🧱",
+        "tag": "Monument",
+        "date": "122 à 142 ap. J.-C.",
+        "title": "Le Mur d'Hadrien — La Frontière du Monde Romain",
+        "desc": "En 122 ap. J.-C., l'empereur Hadrien ordonne la construction d'un mur traversant l'île de Bretagne (actuelle Angleterre) d'est en ouest sur 118 km — pour marquer et défendre la frontière nord de l'Empire contre les Pictes d'Écosse. 15 000 légionnaires construisent en 6 ans une muraille de 4 à 6 mètres de haut avec forts, fossés et tours de guet tous les 1 500 mètres. En 142, son successeur Antonin fait bâtir un second mur 160 km plus au nord — mais il est abandonné en 20 ans, et l'Empire revient au mur d'Hadrien.",
+        "anecdotes": [
+          {
+            "e": "🗺️",
+            "t": "<b>Le Mur d'Hadrien représentait la fin du monde connu.</b> Au-delà : les Pictes, les brumes, l'inconnu. Des soldats de tout l'Empire y furent stationnés — des inscriptions en syriaque, en grec, en berbère ont été retrouvées sur les forts. Ce mur était la frontière physique entre la civilisation romaine et ce que les Romains appelaient la 'barbarie'. Il est inscrit au patrimoine mondial de l'UNESCO."
+          },
+          {
+            "e": "🏗️",
+            "t": "<b>Le mur d'Antonin, construit en 142 ap. J.-C., fut abandonné en 20 ans.</b> Érigé en tourbe (pas en pierre) 160 km plus au nord, sur seulement 60 km, il s'avéra intenable : trop long à défendre, trop exposé. L'Empire recula sur le mur d'Hadrien — acceptant implicitement qu'il existait des limites à sa capacité d'expansion. Hadrien fut le premier empereur à clairement renoncer à la conquête au profit de la consolidation."
+          },
+          {
+            "e": "🎭",
+            "t": "<b>Hadrien était l'un des empereurs les plus cultivés de Rome.</b> Architecte lui-même, il dessina le Panthéon de Rome (encore debout, la plus grande coupole non armée du monde pendant 1 300 ans), une villa colossale à Tivoli, et réorganisa l'administration de l'Empire. Son règne (117–138) est souvent cité comme l'apogée de la civilisation romaine — Gibbon parlait du IIe siècle comme du 'siècle le plus heureux de l'humanité'."
+          }
+        ],
+        "quiz": {
+          "q": "Quelle est la longueur du Mur d'Hadrien, construit en 122 ap. J.-C. pour délimiter la frontière nord de l'Empire romain ?",
+          "r": "118 km",
+          "hint": "Il traversait toute l'Angleterre d'est en ouest, de la mer du Nord à la mer d'Irlande"
+        },
+        "img": "histoire/Mur d'hadrien.webp"
       }
     ]
   },
@@ -1559,38 +1559,32 @@
         "img": "histoire/Bains romains sous les voûtes majestueuses.webp"
       },
       {
-        "title": "Les Thermes de Caracalla — Le Palace du Peuple Romain",
+        "icon": "🛁",
+        "tag": "Époque",
         "date": "216 apr. J.-C.",
-        "img": "histoire/Bains_romains__détente_et_interactions_sociales.webp",
-        "desc": "En 216, l'empereur Caracalla inaugure à Rome les plus grands thermes du monde antique : 22 hectares, 1 600 baigneurs simultanés, 80 000 litres d'eau chaude par citerne. Caldarium (chaud), tepidarium (tiède), frigidarium (froid), natatio (piscine), palestres, bibliothèques, jardins et stade. L'eau arrive par aqueduc, chauffée par le praefurnium via un hypocauste qui diffuse la chaleur sous les sols. Hommes et femmes s'y baignent à heures séparées, enduits d'huile, raclés au strigile. Les thermes sont à la fois hammam, gymnase, club social et lieu d'affaires — ouverts à tous pour quelques sesterces."
-      },
-      {
-        "icon": "🏙️",
-        "tag": "Fondation",
-        "date": "Ier–IIe siècle ap. J.-C.",
-        "title": "Lutèce — La Naissance de Paris",
-        "desc": "Sur l'île de la Cité et la rive gauche de la Seine, les Romains développent Lutèce, chef-lieu des Parisii. Forum, thermes, amphithéâtre, temple — une ville compacte de 10 000 habitants. Les thermes de Cluny, encore debout aujourd'hui au cœur de Paris, datent de cette époque.",
+        "title": "Les Thermes de Caracalla — Le Palace du Peuple Romain",
+        "desc": "En 216, l'empereur Caracalla inaugure à Rome les plus grands thermes du monde antique : 22 hectares, 1 600 baigneurs simultanés, 80 000 litres d'eau chaude par citerne. Caldarium, tepidarium, frigidarium, natatio, palestres, bibliothèques et jardins — ouverts à tous pour quelques sesterces.",
         "anecdotes": [
           {
-            "e": "🛁",
-            "t": "<b>Les thermes de Cluny sont encore debout au cœur de Paris</b>, boulevard Saint-Michel. Construits au IIe siècle, leurs voûtes de 14 mètres ont traversé 1 800 ans. Les Parisiens médiévaux les appelaient « les thermes de Julien » — croyant que l'empereur Julien (qui vécut à Lutèce) les avait bâtis."
+            "e": "🔥",
+            "t": "<b>L'hypocauste : le chauffage par le sol inventé par les Romains.</b> Sous les dalles, un espace vide permettait à l'air chaud du praefurnium de circuler et de chauffer les pièces par le bas. Les murs creux prolongeaient la chaleur. Un système qui ne sera réinventé qu'au XXe siècle sous le nom de chauffage par le sol."
           },
           {
-            "e": "🌊",
-            "t": "<b>Lutèce tire son nom des Parisii</b>, tribu gauloise de l'île de la Cité. « Lutetia » signifie peut-être « lieu marécageux » — la Seine débordait régulièrement. C'est pourquoi Paris se construisit d'abord en hauteur sur la rive gauche collinaire, avant de descendre vers le fleuve."
+            "e": "💧",
+            "t": "<b>80 000 litres d'eau par citerne, acheminés par aqueduc.</b> L'eau parcourait des dizaines de kilomètres avant d'arriver aux thermes. Sur place, des citernes gigantesques stockaient l'eau froide. Puits et égouts évacuaient les eaux usées — une infrastructure sanitaire que l'Europe ne retrouvera qu'au XIXe siècle."
           },
           {
-            "e": "👑",
-            "t": "<b>En 360 ap. J.-C., les légions proclamèrent Julien Empereur à Lutèce</b> contre la volonté de Constantinople. Paris, théâtre d'un coup d'État romain. Julien, dernier empereur paien, tenta en vain de stopper la montée du christianisme — et mourut en campagne contre les Perses deux ans plus tard."
+            "e": "🫒",
+            "t": "<b>Pas de savon — de l'huile et un strigile.</b> Les Romains s'enduisaient le corps d'huile d'olive avant l'exercice à la palestre, puis se raclaient avec un strigile (lame recourbée) pour éliminer l'huile mêlée de sueur et de saleté. Hommes et femmes se baignaient à des heures différentes."
           }
         ],
         "kind": "histoire",
         "quiz": {
-          "q": "Quel vestige romain du IIe siècle est encore debout aujourd'hui au cœur de Paris, boulevard Saint-Michel ?",
-          "r": "Les thermes de Cluny",
-          "hint": "Leurs voûtes de 14 mètres de haut ont traversé 1 800 ans"
+          "q": "Comment s'appelle le système de chauffage par le sol inventé par les Romains pour leurs thermes ?",
+          "r": "L'hypocauste",
+          "hint": "L'air chaud circulait sous les dalles et dans les murs creux grâce au praefurnium."
         },
-        "img": "histoire/Lutetia au crépuscule du Ier siècle.webp"
+        "img": "histoire/Bains_romains__détente_et_interactions_sociales.webp"
       },
       {
         "icon": "⚔️",
