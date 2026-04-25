@@ -61,6 +61,34 @@
         "img": "histoire/Main_d'un_scribe_sur_tablette_d'argile.webp"
       },
       {
+        "icon": "🪨",
+        "tag": "Monument",
+        "date": "–3 100 à –1 500 av. J.-C.",
+        "title": "Stonehenge — Le Monument le Plus Mystérieux du Monde",
+        "desc": "Sur la plaine de Salisbury, en Angleterre, des générations de bâtisseurs érigent pendant 1 600 ans un cercle de pierres colossales. La phase principale commence vers –2 500 av. J.-C. : 80 blocs de grès bleuté (les « bluestones »), pesant jusqu'à 4 tonnes, sont acheminés depuis le Pays de Galles — à 240 km. Puis les immenses sarsen stones (25 tonnes chacune) arrivent de 30 km. Le tout s'aligne exactement sur le coucher de soleil du solstice d'hiver et le lever du solstice d'été. Sans roue. Sans métal. Sans écriture.",
+        "anecdotes": [
+          {
+            "e": "🚢",
+            "t": "<b>Les bluestones ont été transportées 240 km — en partie par voie maritime.</b> Les archéologues ont reconstitué le trajet : les pierres descendent des collines de Preseli (Pays de Galles) sur des traîneaux, sont chargées sur des radeaux longeant la côte galloise, remontées le long de la Severn, puis tirées à travers les plaines d'Angleterre. Des communautés entières consacrèrent des générations à ce chantier. Pourquoi ces pierres-là, et pas d'autres plus proches ? On ne sait toujours pas."
+          },
+          {
+            "e": "☀️",
+            "t": "<b>Stonehenge est un calendrier solaire d'une précision remarquable.</b> Le 21 juin au lever du soleil, les premiers rayons s'alignent exactement dans l'axe du monument, traversant le grand trilithon central. Le 21 décembre au coucher, même phénomène. Pour des agriculteurs sans écriture, connaître la date exacte du solstice — pour semer, récolter, célébrer — était une question de survie. Stonehenge était leur almanach de pierre."
+          },
+          {
+            "e": "❓",
+            "t": "<b>On ne sait toujours pas pourquoi Stonehenge a été construit.</b> Les théories sérieuses sont nombreuses : sanctuaire de guérison (des squelettes aux os brisés guéris viennent de loin), lieu de culte des ancêtres, observatoire astronomique, marqueur territorial. Les plus récentes fouilles ADN révèlent que les bâtisseurs de la phase principale étaient des fermiers immigrés d'Anatolie — les mêmes qui avaient apporté l'agriculture en Europe. Stonehenge pourrait être leur cathédrale."
+          }
+        ],
+        "kind": "histoire",
+        "quiz": {
+          "q": "De quelle région du Pays de Galles proviennent les bluestones de Stonehenge, transportées sur 240 km ?",
+          "r": "Les collines de Preseli (Pembrokeshire)",
+          "hint": "Ces blocs de 4 tonnes furent acheminés en partie par voie maritime"
+        },
+        "img": "histoire/Levée_du_ciel_à_Stonehenge.webp"
+      },
+      {
         "title": "Unification de l'Égypte — Ménès & la Double Couronne",
         "date": "–3 100 av. J.-C.",
         "tag": "Événement",
@@ -115,34 +143,6 @@
           "hint": "Ses quatre faces pointent vers le nord, sud, est et ouest avec une exactitude stupéfiante"
         },
         "img": "histoire/La construction de la pyramide.webp"
-      },
-      {
-        "icon": "🪨",
-        "tag": "Monument",
-        "date": "–3 100 à –1 500 av. J.-C.",
-        "title": "Stonehenge — Le Monument le Plus Mystérieux du Monde",
-        "desc": "Sur la plaine de Salisbury, en Angleterre, des générations de bâtisseurs érigent pendant 1 600 ans un cercle de pierres colossales. La phase principale commence vers –2 500 av. J.-C. : 80 blocs de grès bleuté (les « bluestones »), pesant jusqu'à 4 tonnes, sont acheminés depuis le Pays de Galles — à 240 km. Puis les immenses sarsen stones (25 tonnes chacune) arrivent de 30 km. Le tout s'aligne exactement sur le coucher de soleil du solstice d'hiver et le lever du solstice d'été. Sans roue. Sans métal. Sans écriture.",
-        "anecdotes": [
-          {
-            "e": "🚢",
-            "t": "<b>Les bluestones ont été transportées 240 km — en partie par voie maritime.</b> Les archéologues ont reconstitué le trajet : les pierres descendent des collines de Preseli (Pays de Galles) sur des traîneaux, sont chargées sur des radeaux longeant la côte galloise, remontées le long de la Severn, puis tirées à travers les plaines d'Angleterre. Des communautés entières consacrèrent des générations à ce chantier. Pourquoi ces pierres-là, et pas d'autres plus proches ? On ne sait toujours pas."
-          },
-          {
-            "e": "☀️",
-            "t": "<b>Stonehenge est un calendrier solaire d'une précision remarquable.</b> Le 21 juin au lever du soleil, les premiers rayons s'alignent exactement dans l'axe du monument, traversant le grand trilithon central. Le 21 décembre au coucher, même phénomène. Pour des agriculteurs sans écriture, connaître la date exacte du solstice — pour semer, récolter, célébrer — était une question de survie. Stonehenge était leur almanach de pierre."
-          },
-          {
-            "e": "❓",
-            "t": "<b>On ne sait toujours pas pourquoi Stonehenge a été construit.</b> Les théories sérieuses sont nombreuses : sanctuaire de guérison (des squelettes aux os brisés guéris viennent de loin), lieu de culte des ancêtres, observatoire astronomique, marqueur territorial. Les plus récentes fouilles ADN révèlent que les bâtisseurs de la phase principale étaient des fermiers immigrés d'Anatolie — les mêmes qui avaient apporté l'agriculture en Europe. Stonehenge pourrait être leur cathédrale."
-          }
-        ],
-        "kind": "histoire",
-        "quiz": {
-          "q": "De quelle région du Pays de Galles proviennent les bluestones de Stonehenge, transportées sur 240 km ?",
-          "r": "Les collines de Preseli (Pembrokeshire)",
-          "hint": "Ces blocs de 4 tonnes furent acheminés en partie par voie maritime"
-        },
-        "img": "histoire/Levée_du_ciel_à_Stonehenge.webp"
       },
       {
         "title": "L'Âge du Bronze — La Révolution des Métaux",
@@ -231,30 +231,6 @@
         "img": "histoire/Le sacrifice d'Isaac arrêté par l'ange.webp"
       },
       {
-        "kind": "histoire",
-        "icon": "🌊",
-        "tag": "Tradition biblique",
-        "date": "–1 250 av. J.-C.",
-        "title": "Moïse & l'Exode — La Libération d'Égypte",
-        "desc": "Selon la Bible, le peuple hébreu est réduit en esclavage en Égypte. Moïse, hébreu élevé à la cour du Pharaon, reçoit de Dieu une mission au buisson ardent : libérer son peuple. Les dix plaies d'Égypte, la traversée de la mer Rouge, les Tables de la Loi reçues au Sinaï — ces récits fondent l'identité juive. <em>Note : aucun document égyptien ne mentionne cet Exode, et l'archéologie du Sinaï n'a pas retrouvé de traces d'un campement de masse. L'événement est historiquement non confirmé mais theólogiquement fondateur.</em>",
-        "anecdotes": [
-          {
-            "t": "<b>L'archéologie n'a pas retrouvé de trace d'un Exode massif.</b> Aucun document égyptien ne mentionne une fuite hébraïque ni une série de plaies. Le désert du Sinaï, fouillé intensivement, n'a livré aucun artefact d'un campement de 600 000 personnes pendant 40 ans. Cela ne signifie pas que l'événement n'a pas eu lieu — mais son ampleur biblique est probablement symbolique.",
-            "e": "🌊"
-          },
-          {
-            "t": "<b>La Pâque juive (Pessah) commémore l'Exode chaque année depuis 3 000 ans.</b> Le repas du Seder — pain sans levain, herbes amères, agneau — reconstitue rituellement la nuit de la fuite. C'est l'une des célébrations religieuses les plus anciennes encore pratiquées dans le monde.",
-            "e": "🕯️"
-          }
-        ],
-        "quiz": {
-          "q": "Quel est le nom de la fête juive qui commémore chaque année la libération d'Égypte sous Moïse ?",
-          "r": "La Pâque (Pessah)",
-          "hint": "Le repas du Seder rejoue symboliquement la nuit de la fuite — pain sans levain, herbes amères, agneau"
-        },
-        "img": "histoire/Moïse_et_le_buisson_ardent.webp"
-      },
-      {
         "title": "Akhenaton — Le Pharaon Hérétique",
         "date": "–1 372 à –1 336 av. J.-C.",
         "tag": "Pharaon",
@@ -335,6 +311,30 @@
         "img": "histoire/Ramsès II devant ses temples majestueux.webp"
       },
       {
+        "kind": "histoire",
+        "icon": "🌊",
+        "tag": "Tradition biblique",
+        "date": "–1 250 av. J.-C.",
+        "title": "Moïse & l'Exode — La Libération d'Égypte",
+        "desc": "Selon la Bible, le peuple hébreu est réduit en esclavage en Égypte. Moïse, hébreu élevé à la cour du Pharaon, reçoit de Dieu une mission au buisson ardent : libérer son peuple. Les dix plaies d'Égypte, la traversée de la mer Rouge, les Tables de la Loi reçues au Sinaï — ces récits fondent l'identité juive. <em>Note : aucun document égyptien ne mentionne cet Exode, et l'archéologie du Sinaï n'a pas retrouvé de traces d'un campement de masse. L'événement est historiquement non confirmé mais theólogiquement fondateur.</em>",
+        "anecdotes": [
+          {
+            "t": "<b>L'archéologie n'a pas retrouvé de trace d'un Exode massif.</b> Aucun document égyptien ne mentionne une fuite hébraïque ni une série de plaies. Le désert du Sinaï, fouillé intensivement, n'a livré aucun artefact d'un campement de 600 000 personnes pendant 40 ans. Cela ne signifie pas que l'événement n'a pas eu lieu — mais son ampleur biblique est probablement symbolique.",
+            "e": "🌊"
+          },
+          {
+            "t": "<b>La Pâque juive (Pessah) commémore l'Exode chaque année depuis 3 000 ans.</b> Le repas du Seder — pain sans levain, herbes amères, agneau — reconstitue rituellement la nuit de la fuite. C'est l'une des célébrations religieuses les plus anciennes encore pratiquées dans le monde.",
+            "e": "🕯️"
+          }
+        ],
+        "quiz": {
+          "q": "Quel est le nom de la fête juive qui commémore chaque année la libération d'Égypte sous Moïse ?",
+          "r": "La Pâque (Pessah)",
+          "hint": "Le repas du Seder rejoue symboliquement la nuit de la fuite — pain sans levain, herbes amères, agneau"
+        },
+        "img": "histoire/Moïse_et_le_buisson_ardent.webp"
+      },
+      {
         "title": "La Guerre de Troie",
         "date": "–1 250 av. J.-C.",
         "tag": "Mythe épique",
@@ -359,30 +359,54 @@
         }
       },
       {
-        "title": "L'Âge du Fer & l'Alphabet Phénicien",
-        "date": "–1 200 av. J.-C.",
+        "title": "L'Alphabet Phénicien — La Révolution de l'Écriture",
+        "date": "–1 100 av. J.-C.",
         "tag": "Invention",
         "icon": "🔤",
-        "desc": "Deux révolutions simultanées transforment le monde méditerranéen : l'Âge du Fer remplace le bronze par un métal plus résistant et abondant, démocratisant l'armement. Les Phéniciens, marchands de génie, inventent le premier alphabet de 22 consonnes — ancêtre direct de l'alphabet grec, latin, arabe et hébreu. L'écriture devient enfin accessible à tous.",
         "kind": "histoire",
+        "desc": "L'écriture existe depuis 5 000 ans — née en Mésopotamie et en Égypte sous forme de dessins. Mais c'est il y a 3 500 ans que des peuples sémites d'Égypte conçoivent le premier véritable alphabet. Les Phéniciens, grands navigateurs depuis Tyr (Liban actuel), l'adoptent et le diffusent dans toute la Méditerranée. Cet alphabet de 22 consonnes — sans voyelles — est l'ancêtre direct du grec, du latin, de l'arabe et de l'hébreu. L'écriture, réservée à une élite, se démocratise enfin.",
         "anecdotes": [
           {
-            "t": "Notre alphabet a 3 200 ans. Les lettres A, B, C viennent du phénicien aleph (tête de bœuf), beth (maison), gimel (chameau). La forme de nos lettres majuscules est encore reconnaissable dans les hiéroglyphes phéniciens originaux.",
-            "e": "🔤"
+            "e": "🔡",
+            "t": "<b>Nos lettres A, B, C ont 3 200 ans.</b> Le A vient de aleph (tête de bœuf en phénicien). Le B de beth (maison). Le C de gimel (chameau). Les deux premières lettres grecques — alpha et bêta — donnent le mot « alphabet ». La forme de nos majuscules est encore reconnaissable dans les signes phéniciens originaux."
           },
           {
-            "t": "<b>Le fer était connu depuis longtemps — mais trop rare et trop fragile.</b> Les premières traces de fer travaillé remontent à –3 000 av. J.-C., dans des météorites. Mais maîtriser la fonte du fer terrestre — qui nécessite des températures bien plus élevées que le cuivre — fut une révolution technique. Une fois maîtrisé, le fer changea tout : il était abondant partout, beaucoup moins cher que le bronze, et plus dur. L'armement en fer démocratisa la guerre — n'importe quelle tribu pouvait désormais équiper ses guerriers.",
-            "e": "⚙️"
+            "e": "🌍",
+            "t": "<b>L'alphabet phénicien a engendré presque tous les alphabets du monde.</b> De lui dérivent l'alphabet grec (qui ajouta les voyelles), puis le latin, mais aussi l'hébreu, l'arabe, le cyrillique et même les alphabets de l'Inde. Quand tu écris en français, en arabe ou en hindi, tu utilises des lettres dont l'ancêtre est ce système phénicien."
           },
           {
-            "t": "<b>L'alphabet phénicien a engendré presque tous les alphabets du monde.</b> De lui dérivent l'alphabet grec (qui ajouta les voyelles), puis le latin (notre alphabet), mais aussi l'hébreu, l'arabe, le cyrillique (russe, bulgare...), le géorgien et même les alphabets de l'Inde. Quand tu écris en français, en anglais, en arabe ou en hindi, tu utilises des lettres dont l'ancêtre commun est ce système phénicien de –1 200 av. J.-C.",
-            "e": "🌍"
+            "e": "⛵",
+            "t": "<b>Les Phéniciens ont diffusé l'alphabet grâce à leur génie commercial.</b> Depuis leur port de Tyr, ces grands navigateurs sillonnaient toute la Méditerranée pour commercer. L'alphabet simplifié facilitait leurs échanges. Les Grecs l'adoptèrent et y ajoutèrent les voyelles — donnant naissance à l'écriture telle qu'on la connaît. Hérodote raconte : « Les Phéniciens introduisirent en Grèce des lettres qui étaient inconnues auparavant. »"
           }
         ],
         "quiz": {
-          "q": "Combien de lettres comptait l'alphabet phénicien original ?",
-          "r": "22 consonnes",
-          "hint": "Pas de voyelles — les lecteurs devaient les deviner selon le contexte"
+          "q": "Combien de lettres comptait l'alphabet phénicien original, et quelle particularité avait-il ?",
+          "r": "22 consonnes — sans aucune voyelle",
+          "hint": "Les lecteurs devaient deviner les voyelles selon le contexte. Les Grecs ajouteront les voyelles plus tard."
+        },
+        "img": "histoire/Scène de commerce phénicien au port.webp"
+      },
+      {
+        "title": "L'Âge du Fer — La Démocratisation de l'Armement",
+        "date": "–1 200 av. J.-C.",
+        "tag": "Invention",
+        "icon": "⚔️",
+        "kind": "histoire",
+        "desc": "Vers –1 200 av. J.-C., le fer remplace le bronze comme métal dominant. Plus abondant et plus dur, il révolutionne l'armement et l'agriculture. N'importe quelle tribu peut désormais équiper ses guerriers — la guerre change d'échelle. Les outils agricoles en fer augmentent les rendements et transforment durablement les sociétés méditerranéennes.",
+        "anecdotes": [
+          {
+            "e": "⚙️",
+            "t": "<b>Le fer était connu depuis longtemps — mais trop rare et trop fragile.</b> Les premières traces de fer travaillé remontent à –3 000 av. J.-C., dans des météorites. Maîtriser la fonte du fer terrestre — qui nécessite des températures bien plus élevées que le cuivre — fut une révolution technique. Une fois maîtrisé, le fer était abondant partout, beaucoup moins cher que le bronze, et plus dur."
+          },
+          {
+            "e": "🌾",
+            "t": "<b>Le fer a transformé l'agriculture autant que la guerre.</b> La charrue en fer permettait de labourer des sols plus durs, auparavant impossibles à cultiver. Les rendements agricoles augmentèrent, les populations purent croître, et des régions jusqu'alors marginales devinrent fertiles. La maîtrise du fer est une des causes directes de l'essor des civilisations grecque et romaine."
+          }
+        ],
+        "quiz": {
+          "q": "Pourquoi le fer a-t-il remplacé le bronze vers –1 200 av. J.-C. ?",
+          "r": "Le fer était plus abondant, moins cher et plus dur que le bronze",
+          "hint": "Contrairement au bronze, le fer ne nécessite pas d'importer de l'étain depuis des pays lointains."
         },
         "img": "histoire/Marché de l'Âge du Fer.webp"
       },
