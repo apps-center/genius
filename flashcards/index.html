@@ -33,16 +33,15 @@ h1{font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,3.4rem);font-weight:900
 
 /* GENIUS BANNER */
 .genius-wrap{position:relative;z-index:10;max-width:860px;margin:0 auto 36px;padding:0 24px;}
-.genius-card{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;background:linear-gradient(135deg,rgba(212,168,67,.08) 0%,rgba(180,100,20,.12) 50%,rgba(212,168,67,.06) 100%);border:1px solid rgba(212,168,67,.35);border-radius:8px;padding:28px 36px;cursor:pointer;text-decoration:none;color:inherit;overflow:hidden;transition:border-color .25s,box-shadow .25s;opacity:0;transform:translateY(18px);}
+.genius-card{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;background:rgba(10,18,36,.75);border:1px solid rgba(212,168,67,.3);border-radius:8px;padding:28px 36px;cursor:pointer;text-decoration:none;color:inherit;overflow:hidden;transition:border-color .25s,box-shadow .25s;opacity:0;transform:translateY(18px);}
 .genius-card.vis{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease,border-color .25s,box-shadow .25s;}
-.genius-card:hover{border-color:rgba(212,168,67,.65);box-shadow:0 0 32px rgba(212,168,67,.1);}
-.genius-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(212,168,67,.06) 0%,transparent 65%);pointer-events:none;}
+.genius-card:hover{border-color:rgba(212,168,67,.7);box-shadow:0 0 0 1px rgba(212,168,67,.18);}
 .genius-left{display:flex;align-items:center;gap:22px;}
 .genius-icon{font-size:2.4rem;line-height:1;flex-shrink:0;}
 .genius-title{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,#f5e6a3,#d4a843);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;}
 .genius-desc{font-size:.9rem;color:rgba(232,223,196,.55);font-style:italic;max-width:420px;line-height:1.5;}
-.genius-badge{flex-shrink:0;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;padding:8px 20px;border-radius:4px;background:rgba(212,168,67,.15);border:1px solid rgba(212,168,67,.5);color:var(--gold);white-space:nowrap;transition:background .25s;}
-.genius-card:hover .genius-badge{background:rgba(212,168,67,.22);}
+.genius-badge{flex-shrink:0;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;padding:8px 20px;border-radius:4px;background:rgba(212,168,67,.12);border:1px solid rgba(212,168,67,.4);color:var(--gold);white-space:nowrap;transition:border-color .25s;}
+.genius-card:hover .genius-badge{border-color:rgba(212,168,67,.7);}
 
 /* THEME GRID */
 .grid-section{position:relative;z-index:10;max-width:860px;margin:0 auto;padding:0 24px 100px;}
