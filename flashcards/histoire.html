@@ -99,6 +99,23 @@ h1 { font-family: 'Cinzel', serif; font-weight: 900; font-size: clamp(1.7rem, 4.
 .known-stat { font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); }
 .known-stat span { color: var(--text); font-weight: 700; }
 
+/* EPOCH FILTER */
+.epoch-wrap { max-width: 680px; margin: 0 auto 28px; padding: 0 20px; }
+.epoch-label { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(212,168,67,.38); text-align: center; margin-bottom: 14px; }
+.epoch-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.ep-pill {
+  font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  padding: 7px 16px; border-radius: 20px; border: 1px solid rgba(200,180,120,.18);
+  background: rgba(6,10,20,.8); color: rgba(232,223,196,.38);
+  cursor: pointer; transition: all .22s; white-space: nowrap;
+}
+.ep-pill:hover { border-color: rgba(212,168,67,.45); color: rgba(212,168,67,.75); background: rgba(212,168,67,.06); }
+.ep-pill.active {
+  border-color: rgba(212,168,67,.75); color: var(--gold);
+  background: rgba(212,168,67,.12); box-shadow: 0 0 14px rgba(212,168,67,.15);
+}
+.epoch-count { text-align: center; font-size: .7rem; color: rgba(232,223,196,.3); font-style: italic; margin-top: 10px; transition: color .3s; }
+
 /* STRIP */
 .strip { display: flex; gap: 8px; overflow-x: auto; padding: 12px 20px; scrollbar-width: none; }
 .strip::-webkit-scrollbar { display: none; }
@@ -127,6 +144,19 @@ h1 { font-family: 'Cinzel', serif; font-weight: 900; font-size: clamp(1.7rem, 4.
   </header>
 
   <div style="padding: 0 20px 80px;">
+
+    <div class="epoch-wrap">
+      <div class="epoch-label">Filtrer par époque</div>
+      <div class="epoch-pills">
+        <button class="ep-pill active" onclick="setEpoch('all')"     id="ep-all">⏳ Toutes les époques</button>
+        <button class="ep-pill"        onclick="setEpoch('prehistoire')" id="ep-prehistoire">🦕 Préhistoire</button>
+        <button class="ep-pill"        onclick="setEpoch('antiquite')"   id="ep-antiquite">🏛️ Antiquité</button>
+        <button class="ep-pill"        onclick="setEpoch('moyenage')"    id="ep-moyenage">⚔️ Moyen Âge</button>
+        <button class="ep-pill"        onclick="setEpoch('modernes')"    id="ep-modernes">⚜️ Temps Modernes</button>
+        <button class="ep-pill"        onclick="setEpoch('contemporaine')" id="ep-contemporaine">🏭 Époque Contemporaine</button>
+      </div>
+      <div class="epoch-count" id="epoch-count">205 cartes</div>
+    </div>
 
     <div class="progress-wrap">
       <div class="progress-text" id="p-text">Carte 1 / 109</div>
@@ -456,7 +486,9 @@ function nextCard(){idx=(idx+1)%deck.length;advance();}
 function prevCard(){idx=(idx-1+deck.length)%deck.length;advance();}
 
 function shuffleCards(){
-  deck=shuffle([...CARDS]);idx=0;flipped=false;
+  const eras = EPOCH_MAP[currentEpoch];
+  const filtered = eras ? CARDS.filter(c => eras.includes(c.era)) : [...CARDS];
+  deck=shuffle(filtered);idx=0;flipped=false;
   knownSet.clear();reviewSet.clear();
   updateCounters();buildStrip();advance();
 }
@@ -504,8 +536,46 @@ document.addEventListener('keydown',e=>{
   if(e.key==='r'||e.key==='R')markReview();
 });
 
+/* ── EPOCH FILTER ── */
+const EPOCH_MAP = {
+  all:           null, // pas de filtre
+  prehistoire:   ['Ère Cosmique','Ère Biologique','Préhistoire'],
+  antiquite:     ['Premières Civilisations — −3500 à −2000','Égypte, Mésopotamie & Récits Fondateurs — −2000 à −1200',
+                  'Proche-Orient & Méditerranée — −1200 à −600','Grèce Antique & Monde Hellénistique — −800 à −300',
+                  'Rome — République & Conquêtes — −300 à −27','Empire Romain & Naissance du Christianisme — −27 à 200',
+                  'Gaule Romaine & Déclin de l\'Empire — 200 à 476'],
+  moyenage:      ['Mérovingiens','Carolingiens','Haut Moyen Âge','Capétiens & Moyen Âge'],
+  modernes:      ['Renaissance & Réforme','Monarchie Absolue'],
+  contemporaine: ['Révolution, Empires & XIXe siècle','France Contemporaine'],
+};
+
+let currentEpoch = 'all';
+
+function setEpoch(key) {
+  currentEpoch = key;
+  // Mettre à jour les pills
+  document.querySelectorAll('.ep-pill').forEach(p => p.classList.remove('active'));
+  document.getElementById('ep-'+key).classList.add('active');
+  // Filtrer les cartes
+  const eras = EPOCH_MAP[key];
+  const filtered = eras ? CARDS.filter(c => eras.includes(c.era)) : [...CARDS];
+  deck = shuffle(filtered);
+  idx = 0; flipped = false;
+  knownSet.clear(); reviewSet.clear();
+  updateCounters();
+  buildStrip();
+  advance();
+  // Mettre à jour le compteur
+  const names = {
+    all:'toutes les époques', prehistoire:'Préhistoire', antiquite:'Antiquité',
+    moyenage:'Moyen Âge', modernes:'Temps Modernes', contemporaine:'Époque Contemporaine'
+  };
+  document.getElementById('epoch-count').textContent = `${deck.length} carte${deck.length>1?'s':''} — ${names[key]}`;
+}
+
 /* ── BOOT ── */
 deck=shuffle([...CARDS]);
+document.getElementById('epoch-count').textContent = `${deck.length} cartes — toutes les époques`;
 buildStrip();
 loadContent(); // première carte sans animation
 </script>
