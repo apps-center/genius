@@ -25,11 +25,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quel est le nom du premier être humain dont on connaît le nom dans l'histoire ?",
-          "r": "Kushim — un comptable d'Uruk",
-          "hint": "Pas un roi, pas un héros : son nom figure sur une tablette d'inventaire de grain"
-        },
         "img": "histoire/croissant fertile.webp"
       },
       {
@@ -53,11 +48,6 @@
             "e": "📚"
           }
         ],
-        "quiz": {
-          "q": "En quelle matière les premières tablettes d'écriture cunéiforme étaient-elles façonnées ?",
-          "r": "En argile cuite",
-          "hint": "Un matériau abondant en Mésopotamie, entre le Tigre et l'Euphrate"
-        },
         "img": "histoire/Main_d'un_scribe_sur_tablette_d'argile.webp"
       },
       {
@@ -81,11 +71,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "De quelle région du Pays de Galles proviennent les bluestones de Stonehenge, transportées sur 240 km ?",
-          "r": "Les collines de Preseli (Pembrokeshire)",
-          "hint": "Ces blocs de 4 tonnes furent acheminés en partie par voie maritime"
-        },
         "img": "histoire/Levée_du_ciel_à_Stonehenge.webp"
       },
       {
@@ -109,12 +94,7 @@
             "t": "<b>L'unité de l'Égypte tient à un miracle géographique.</b> Le Nil, fleuve prévisible qui inonde régulièrement ses rives au même moment chaque année, irrigue une bande de terre fertile longue de 1 000 km dans un désert hostile. Cette géographie unique — une route naturelle fermée par le désert des deux côtés — rendait l'unification non seulement possible mais presque inévitable. L'Égypte est 'un don du Nil', disait Hérodote.",
             "e": "📐"
           }
-        ],
-        "quiz": {
-          "q": "Quel objet archéologique célèbre commémore l'unification de l'Égypte par Narmer/Ménès vers –3 100 av. J.-C. ?",
-          "r": "La palette de Narmer, retrouvée à Hiérakonpolis — elle est conservée au Musée du Caire",
-          "hint": "Cette ardoise sculptée des deux côtés montre le pharaon frappant un ennemi avec sa massue"
-        }
+        ]
       },
       {
         "icon": "🔺",
@@ -137,11 +117,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quelle est la précision de l'alignement cardinal de la Grande Pyramide ?",
-          "r": "0,05 degré — plus précis que l'Observatoire de Paris construit 4 400 ans plus tard",
-          "hint": "Ses quatre faces pointent vers le nord, sud, est et ouest avec une exactitude stupéfiante"
-        },
         "img": "histoire/La construction de la pyramide.webp"
       },
       {
@@ -165,11 +140,6 @@
             "e": "⚔️"
           }
         ],
-        "quiz": {
-          "q": "Quels deux métaux compose-t-on pour obtenir le bronze ?",
-          "r": "Cuivre et étain",
-          "hint": "L'un est rouge, l'autre est blanc-argenté"
-        },
         "img": "histoire/Rassemblement de guerriers et marchands du Bronze.webp"
       }
     ]
@@ -195,11 +165,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Combien d'articles contient le Code d'Hammurabi, et où est-il conservé aujourd'hui ?",
-          "r": "282 articles — gravés sur basalte, conservés au Louvre à Paris",
-          "hint": "Il prévoit présomption d'innocence mais aussi 'œil pour œil' selon le statut social"
-        },
         "img": "histoire/babylone vers -1800.webp"
       },
       {
@@ -223,11 +188,6 @@
             "e": "🐐"
           }
         ],
-        "quiz": {
-          "q": "Quelle est la date traditionnelle de la destruction du premier Temple de Jérusalem, qui provoqua l'exil des Hébreux à Babylone ?",
-          "r": "–586 av. J.-C.",
-          "hint": "Nabuchodonosor II, roi de Babylone, détruisit le Temple et déporta le peuple hébreu"
-        },
         "img": "histoire/Le sacrifice d'Isaac arrêté par l'ange.webp"
       },
       {
@@ -247,12 +207,7 @@
             "e": "🏺"
           }
         ],
-        "img": "histoire/La destruction des anciens dieux à Amarna.webp",
-        "quiz": {
-          "q": "Quel dieu unique Akhenaton imposa-t-il aux Égyptiens, balayant tous les autres dieux ?",
-          "r": "Aton — le disque solaire, représenté comme un soleil aux rayons terminés par des mains",
-          "hint": "Ce pharaon prit même un nouveau nom pour honorer ce dieu et déplaça la capitale à Amarna"
-        }
+        "img": "histoire/La destruction des anciens dieux à Amarna.webp"
       },
       {
         "title": "Toutankhamon — Le Pharaon Enfant",
@@ -275,12 +230,7 @@
             "e": "💎"
           }
         ],
-        "img": "histoire/Le jeune pharaon et ses trésors.webp",
-        "quiz": {
-          "q": "Quel archéologue britannique découvrit la tombe intacte de Toutankhamon en 1922, dans la Vallée des Rois ?",
-          "r": "Howard Carter — financé par Lord Carnarvon",
-          "hint": "Sa découverte déclencha une véritable égyptomanie mondiale et la légende de la 'malédiction du pharaon'"
-        }
+        "img": "histoire/Le jeune pharaon et ses trésors.webp"
       },
       {
         "icon": "☀️",
@@ -303,11 +253,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quel est le premier traité de paix international connu, signé par Ramsès II ?",
-          "r": "Le traité de Qadesh (–1 259 av. J.-C.), avec le roi hittite Hattusili III",
-          "hint": "Une copie est accrochée au siège de l'ONU à New York"
-        },
         "img": "histoire/Ramsès II devant ses temples majestueux.webp"
       },
       {
@@ -327,11 +272,6 @@
             "e": "🕯️"
           }
         ],
-        "quiz": {
-          "q": "Quel est le nom de la fête juive qui commémore chaque année la libération d'Égypte sous Moïse ?",
-          "r": "La Pâque (Pessah)",
-          "hint": "Le repas du Seder rejoue symboliquement la nuit de la fuite — pain sans levain, herbes amères, agneau"
-        },
         "img": "histoire/Moïse_et_le_buisson_ardent.webp"
       },
       {
@@ -351,12 +291,7 @@
             "t": "<b>Homère écrit 450 ans après les faits qu'il décrit.</b> C'est comme si un auteur d'aujourd'hui racontait la Guerre de Cent Ans (1337-1453) sans aucune source écrite — uniquement à partir de chansons orales transmises de génération en génération.",
             "e": "🏺"
           }
-        ],
-        "quiz": {
-          "q": "Combien d'années dura le siège de Troie selon la tradition ?",
-          "r": "Dix ans",
-          "hint": "Une décennie de guerre pour une femme, selon le mythe"
-        }
+        ]
       },
       {
         "title": "L'Âge du Fer — La Démocratisation de l'Armement",
@@ -375,11 +310,6 @@
             "t": "<b>Le fer a transformé l'agriculture autant que la guerre.</b> La charrue en fer permettait de labourer des sols plus durs, auparavant impossibles à cultiver. Les rendements agricoles augmentèrent, les populations purent croître, et des régions jusqu'alors marginales devinrent fertiles. La maîtrise du fer est une des causes directes de l'essor des civilisations grecque et romaine."
           }
         ],
-        "quiz": {
-          "q": "Pourquoi le fer a-t-il remplacé le bronze vers –1 200 av. J.-C. ?",
-          "r": "Le fer était plus abondant, moins cher et plus dur que le bronze",
-          "hint": "Contrairement au bronze, le fer ne nécessite pas d'importer de l'étain depuis des pays lointains."
-        },
         "img": "histoire/Marché de l'Âge du Fer.webp"
       },
       {
@@ -422,11 +352,6 @@
             "t": "<b>Les Phéniciens ont diffusé l'alphabet grâce à leur génie commercial.</b> Depuis leur port de Tyr, ces grands navigateurs sillonnaient toute la Méditerranée pour commercer. L'alphabet simplifié facilitait leurs échanges. Les Grecs l'adoptèrent et y ajoutèrent les voyelles — donnant naissance à l'écriture telle qu'on la connaît. Hérodote raconte : « Les Phéniciens introduisirent en Grèce des lettres qui étaient inconnues auparavant. »"
           }
         ],
-        "quiz": {
-          "q": "Combien de lettres comptait l'alphabet phénicien original, et quelle particularité avait-il ?",
-          "r": "22 consonnes — sans aucune voyelle",
-          "hint": "Les lecteurs devaient deviner les voyelles selon le contexte. Les Grecs ajouteront les voyelles plus tard."
-        },
         "img": "histoire/alphabet_grec.webp"
       }
     ]
@@ -461,12 +386,7 @@
             "t": "<b>L'historicité de David est attestée extrabibliquement.</b> La 'stèle de Tel Dan' (–835), découverte en 1993, mentionne la 'Maison de David' — première référence non biblique à ce personnage. David n'est donc pas qu'un personnage légendaire : il a bien existé et régnait sur une entité politique reconnue.",
             "e": "📜"
           }
-        ],
-        "quiz": {
-          "q": "Dans quelle vallée se déroula selon la Bible le combat entre David et Goliath ?",
-          "r": "La vallée d'Éla",
-          "hint": "Un affrontement qui donna naissance à l'expression 'combat de David contre Goliath'"
-        }
+        ]
       },
       {
         "icon": "🕌",
@@ -485,12 +405,7 @@
             "t": "<b>Le Mur des Lamentations, l'Église du Saint-Sépulcre et le Dôme du Rocher sont distants de 500 mètres.</b> Dans ce rayon, les trois plus grandes religions monothéistes ont leur site le plus sacré : le lieu de la résurrection du Christ, le mur de l'ancien Temple juif, et le rocher d'où le prophète Mahomet serait monté au ciel.",
             "e": "🗿"
           }
-        ],
-        "quiz": {
-          "q": "Quel roi hébreu fit de Jérusalem sa capitale vers –1000 av. J.-C. ?",
-          "r": "Le roi David",
-          "hint": "Il est aussi célèbre pour avoir vaincu un géant philistin avec une fronde"
-        }
+        ]
       },
       {
         "kind": "histoire",
@@ -513,11 +428,6 @@
             "e": "🐐"
           }
         ],
-        "quiz": {
-          "q": "Que contenait l'Arche d'Alliance, placée au cœur du Temple de Salomon ?",
-          "r": "Les Tables de la Loi reçues par Moïse au mont Sinaï",
-          "hint": "L'Arche disparaît en –586 lors de la destruction du Temple — son sort reste un mystère"
-        },
         "img": "histoire/Temple de Salomon et l'Arche sainte.webp"
       },
       {
@@ -541,12 +451,7 @@
             "e": "🧂"
           }
         ],
-        "img": "histoire/La fondation de Carthage par Didon.webp",
-        "quiz": {
-          "q": "Quelle reine phénicienne fonda Carthage selon la légende, et comment obtint-elle les terres nécessaires ?",
-          "r": "La reine Didon — elle obtint autant de terre qu'une peau de bœuf pouvait en couvrir, et la fit découper en fines lanières pour délimiter une grande surface",
-          "hint": "Cette ruse ingénieuse lui permit de fonder 'Qart Hadasht' — la nouvelle ville — sur les côtes de l'actuelle Tunisie"
-        }
+        "img": "histoire/La fondation de Carthage par Didon.webp"
       },
       {
         "kind": "histoire",
@@ -569,11 +474,6 @@
             "t": "<b>L'exil babylonien a transformé une religion de Temple en religion de Livre.</b> Avant –586, le judaïsme était centré sur les sacrifices au Temple de Jérusalem — impossible à pratiquer loin de Jérusalem. En 50 ans d'exil, les rabbins inventent la synagogue (lieu de prière sans sacrifice), codifient la Torah par écrit, et développent le Sabbat. Cette religion 'portable' permettra au judaïsme de survivre à 2 500 ans de diaspora — là où d'autres religions liées à un territoire ont disparu."
           }
         ],
-        "quiz": {
-          "q": "Quel roi perse libéra les Juifs exilés à Babylone en –538, dans le premier décret de tolérance religieuse connu de l'histoire ?",
-          "r": "Cyrus le Grand (Cyrus II de Perse)",
-          "hint": "Il est le seul non-Juif appelé 'messie' dans la Bible — et son Édit est exposé à l'ONU"
-        },
         "img": "histoire/Cyrus libère les captifs juifs.webp"
       },
       {
@@ -593,11 +493,6 @@
             "e": "📜"
           }
         ],
-        "quiz": {
-          "q": "Sous quel nom désigne-t-on la traduction en grec de la Bible hébraïque, réalisée vers –250 av. J.-C. à Alexandrie ?",
-          "r": "La Septante (ou LXX)",
-          "hint": "Son nom vient du latin 'septuaginta' (70) — selon la légende, 70 rabbins la traduisirent"
-        },
         "img": "histoire/Moïse et les prophètes sous l'orage.webp"
       },
       {
@@ -617,12 +512,7 @@
             "t": "<b>Les Nabatéens ont vaincu le désert par l'ingénierie.</b> Leurs canaux et citernes collectaient chaque goutte de pluie et de rosée. Pétra pouvait alimenter 30 000 habitants dans un désert aride — une prouesse d'ingénierie hydraulique sans équivalent dans l'Antiquité.",
             "e": "💧"
           }
-        ],
-        "quiz": {
-          "q": "Dans quelle roche la ville de Pétra est-elle principalement sculptée ?",
-          "r": "Dans le grès rose-rouge",
-          "hint": "La couleur de la roche lui vaut parfois le surnom de 'ville rose'"
-        }
+        ]
       }
     ]
   },
@@ -651,11 +541,6 @@
             "t": "<b>Homère était peut-être aveugle — et peut-être plusieurs personnes.</b> Les Anciens débattaient déjà de la 'question homérique' : un seul auteur ou une tradition collective ? Les linguistes modernes ont identifié des formules répétitives caractéristiques de la poésie orale — Homère composait en chantant, de mémoire, devant un public, en improvisant sur des structures fixes."
           }
         ],
-        "quiz": {
-          "q": "Quel est le premier mot de l'Iliade d'Homère, qui donne le thème central de l'épopée ?",
-          "r": "Mênis — la colère (d'Achille contre Agamemnon)",
-          "hint": "Ce mot ouvre le premier grand texte littéraire de l'Occident"
-        },
         "img": "histoire/L'odyssée d'Ulysse et les créatures mythologiques.webp"
       },
       {
@@ -679,11 +564,6 @@
             "e": "🫒"
           }
         ],
-        "quiz": {
-          "q": "Quelle récompense recevaient les vainqueurs des Jeux Olympiques antiques ?",
-          "r": "Une couronne d'olivier",
-          "hint": "Rien de matériel — juste la gloire éternelle"
-        },
         "img": "histoire/Les jeux olympiques antiques à Olympie.webp"
       },
       {
@@ -707,11 +587,6 @@
             "e": "🐺"
           }
         ],
-        "quiz": {
-          "q": "Selon la légende, qui allaita Romulus et Remus après leur abandon sur le Tibre ?",
-          "r": "Une louve",
-          "hint": "Un animal symbole de Rome encore aujourd'hui"
-        },
         "img": "histoire/fondation de rome.webp"
       },
       {
@@ -735,11 +610,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quelle culture a fondé Marseille vers –600 av. J.-C. et introduit la vigne en France ?",
-          "r": "Les Phocéens, des marins grecs d'Asie Mineure",
-          "hint": "Massalia est la plus ancienne ville de France — 2 600 ans avant l'hymne national"
-        },
         "img": "histoire/Masalia vue sur la cité antique au coucher du soleil.webp"
       },
       {
@@ -763,11 +633,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quelle découverte de Pythagore relie mathématiques et musique ?",
-          "r": "Que les intervalles musicaux harmonieux correspondent à des rapports numériques simples (1/2, 2/3, 3/4)",
-          "hint": "Une corde pincée à la moitié produit une note une octave plus haute — exactement"
-        },
         "img": "histoire/Les savants grecs en pleine étude.webp"
       },
       {
@@ -791,11 +656,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "De quelle façon Socrate fut-il condamné à mort par ses concitoyens athéniens en –399 ?",
-          "r": "Il dut boire la ciguë (un poison)",
-          "hint": "Condamné pour 'corrompre la jeunesse et nier les dieux' — il refusa l'exil"
-        },
         "img": "histoire/Rassemblement philosophique à Athènes.webp"
       },
       {
@@ -819,11 +679,6 @@
             "t": "<b>Salamine fut décidée par la ruse de Thémistocle.</b> L'amiral athénien fit croire à Xerxès que les Grecs allaient fuir — poussant la flotte perse à entrer dans le détroit étroit de Salamine où sa supériorité numérique devenait un désavantage. Xerxès, assis sur un trône d'or sur la côte, regarda sa flotte se faire massacrer. Si les Perses avaient gagné, la démocratie athénienne n'aurait jamais eu le temps de se développer — et toute l'histoire occidentale aurait été différente."
           }
         ],
-        "quiz": {
-          "q": "Comment s'appelle la bataille navale de –480 av. J.-C. où la Grèce détruisit la flotte perse de Xerxès ?",
-          "r": "La bataille de Salamine",
-          "hint": "Thémistocle attira la flotte perse dans un détroit étroit où sa supériorité numérique devenait un piège"
-        },
         "img": "histoire/Batailles iconiques des guerres gréco-perses.webp"
       },
       {
@@ -847,11 +702,6 @@
             "e": "💬"
           }
         ],
-        "quiz": {
-          "q": "Comment Socrate fut-il condamné à mourir en 399 av. J.-C. ?",
-          "r": "En buvant la ciguë",
-          "hint": "Un poison végétal bu dans une coupe, devant ses amis"
-        },
         "img": "histoire/Socrates face à la fatalité.webp"
       },
       {
@@ -875,11 +725,6 @@
             "t": "<b>L'Europe médiévale appelait Aristote simplement 'Le Philosophe'.</b> Comme s'il n'en existait qu'un. Ses textes, traduits en arabe par Al-Kindi et Averroès, furent retraduits en latin au XIIe siècle et bouleversèrent toute la pensée chrétienne. Thomas d'Aquin passa sa vie à réconcilier Aristote avec la Bible. Sans la civilisation islamique qui conserva ses textes, Aristote — et avec lui toute la philosophie grecque — aurait été perdu."
           }
         ],
-        "quiz": {
-          "q": "Aristote fut le précepteur de quel futur conquérant, qu'il instruisit à partir de ses 13 ans ?",
-          "r": "Alexandre le Grand",
-          "hint": "Alexandre dormait avec l'Iliade annotée par Aristote sous son oreiller"
-        },
         "img": "histoire/Aristote Le philosophe et ses disciples aux étoiles.webp"
       },
       {
@@ -903,11 +748,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quel était le nom du cheval d'Alexandre le Grand, auquel il dédia une ville en Inde ?",
-          "r": "Bucéphale — la ville s'appelait Bucéphalie",
-          "hint": "Alexandre avait dompté ce cheval à 16 ans en comprenant qu'il avait peur de son ombre"
-        },
         "img": "histoire/Alexandre le grand Le général au coucher du soleil.webp"
       },
       {
@@ -931,11 +771,6 @@
             "e": "🏮"
           }
         ],
-        "quiz": {
-          "q": "Que répondit Diogène à Alexandre le Grand qui lui proposait d'exaucer n'importe quel vœu ?",
-          "r": "« Ôte-toi de mon soleil. »",
-          "hint": "Alexandre, ébloui, déclara : 'Si je n'étais pas Alexandre, je voudrais être Diogène'"
-        },
         "img": "histoire/Diogène et l’agora d’Athènes.webp"
       }
     ]
@@ -970,11 +805,6 @@
             "t": "<b>Le Temple d'Artémis à Éphèse fut brûlé par un homme qui voulait devenir célèbre.</b> Érostrate incendia en –356 le plus grand temple du monde grec — uniquement pour que son nom soit retenu. Les Éphésiens décidèrent de punir cet acte en interdisant de prononcer son nom. Leur loi fut si efficacement violée que nous connaissons encore son nom 2 400 ans plus tard. L'érostratisme — devenir célèbre par un acte destructeur — porte encore son nom."
           }
         ],
-        "quiz": {
-          "q": "Quelle est la seule des 7 Merveilles du monde antique encore debout aujourd'hui ?",
-          "r": "Les Pyramides de Gizeh (Égypte)",
-          "hint": "Les 6 autres ont été détruites par des séismes, incendies ou pillages entre le IIIe et le XVe siècle"
-        },
         "img": "histoire/Les sept merveilles du monde antique.webp"
       },
       {
@@ -998,11 +828,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quel élément essentiel de notre système d'écriture les Étrusques ont-ils transmis aux Romains ?",
-          "r": "L'alphabet latin",
-          "hint": "Ils l'avaient eux-mêmes adapté de l'alphabet grec"
-        },
         "img": "histoire/Transition historique entre Étrusques et Romains.webp"
       },
       {
@@ -1026,11 +851,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Combien d'éléphants de guerre Hannibal emmena-t-il lors de la traversée des Alpes en –218 ?",
-          "r": "37 éléphants",
-          "hint": "En novembre, en plein hiver — sur 90 000 hommes partis, moins de 30 000 atteignirent l'Italie"
-        },
         "img": "histoire/Hannibal_traversant_les_Alpes_enneigées.webp"
       },
       {
@@ -1054,11 +874,6 @@
             "e": "✍️"
           }
         ],
-        "quiz": {
-          "q": "Quelle phrase César aurait-il prononcée en franchissant le Rubicon ?",
-          "r": "Alea jacta est (le sort en est jeté)",
-          "hint": "Une phrase en latin qui signifie qu'il n'y a plus de retour en arrière"
-        },
         "img": "histoire/Jules César _ de général à empereur.webp"
       },
       {
@@ -1082,11 +897,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Combien de Gaulois César revendique-t-il avoir tués ou réduits en esclavage dans ses Commentaires ?",
-          "r": "1 million tués et 1 million réduits en esclavage",
-          "hint": "Sur une population estimée à 8-10 millions — Plutarque lui-même trouvait ces chiffres scandaleux"
-        },
         "img": "histoire/La Gaule et ses peuples anciens.webp"
       },
       {
@@ -1110,11 +920,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quelle longueur mesurait la double enceinte de fortification construite par César autour d'Alésia ?",
-          "r": "40 km de double enceinte",
-          "hint": "Pour assiéger Vercingétorix tout en se défendant d'une armée de secours de 250 000 hommes"
-        },
         "img": "histoire/Le siège romain d'Alesia enflammé.webp"
       },
       {
@@ -1138,11 +943,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Combien de langues Cléopâtre VII parlait-elle, selon les sources antiques ?",
-          "r": "9 langues",
-          "hint": "Elle était la première de sa lignée ptolémaïque à parler égyptien"
-        },
         "img": "histoire/Cléopâtre surplombant Alexandrie au crépuscule.webp"
       }
     ]
@@ -1172,12 +972,7 @@
             "e": "📜"
           }
         ],
-        "img": "histoire/Auguste.webp",
-        "quiz": {
-          "q": "Quels sont les deux mois de l'année qui portent encore aujourd'hui les noms de César et d'Auguste ?",
-          "r": "Juillet (Julius Caesar) et Août (Augustus) — les deux mois d'été portent les noms de ces deux hommes",
-          "hint": "Avant eux, ces mois s'appelaient Quintilis et Sextilis — le 5e et 6e mois du calendrier romain originel"
-        }
+        "img": "histoire/Auguste.webp"
       },
       {
         "icon": "🏙️",
@@ -1200,11 +995,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quel futur empereur romain est né à Lyon en –10 av. J.-C. ?",
-          "r": "Claude (Claudius)",
-          "hint": "Il plaida au Sénat pour que les notables gaulois puissent accéder aux plus hautes fonctions romaines"
-        },
         "img": "histoire/Lugdunum à son apogée.webp"
       },
       {
@@ -1228,11 +1018,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quelle est la pente du canal du Pont du Gard sur ses 50 km de longueur ?",
-          "r": "34 cm de dénivelé sur 50 km — soit 0,07 % d'inclinaison",
-          "hint": "Cette précision géodésique sans instruments modernes reste un exploit d'ingénierie"
-        },
         "img": "histoire/pont_du_gard.webp"
       },
       {
@@ -1256,11 +1041,6 @@
             "e": "📅"
           }
         ],
-        "quiz": {
-          "q": "Quel personnage, ancien persécuteur des chrétiens, fut le principal propagateur du christianisme dans tout l'Empire romain ?",
-          "r": "Paul de Tarse (saint Paul)",
-          "hint": "Ses épîtres, vers 50-60 ap. J.-C., sont les plus anciens textes chrétiens connus — antérieurs aux Évangiles"
-        },
         "img": "histoire/La Nativité sous l'étoile brillante.webp"
       },
       {
@@ -1284,11 +1064,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Dans quelle œuvre biblique le nombre 666 désigne-t-il probablement Néron en code hébreu ?",
-          "r": "L'Apocalypse de Jean",
-          "hint": "Les lettres de 'Néron César' en hébreu donnent la valeur numérique 666"
-        },
         "img": "histoire/Néron contemple la ville en flammes.webp"
       },
       {
@@ -1316,11 +1091,6 @@
             "e": "📜"
           }
         ],
-        "quiz": {
-          "q": "Quel écrivain chrétien du IIe siècle formula la célèbre phrase : 'Le sang des martyrs est semence de chrétiens' ?",
-          "r": "Tertullien (Quintus Septimius Florens Tertullianus)",
-          "hint": "Un théologien de Carthage, vers 200 ap. J.-C. — il voulait dire que chaque exécution publique convertissait des spectateurs"
-        },
         "img": "histoire/Persécution des chrétiens dans l'arène.webp"
       },
       {
@@ -1344,11 +1114,6 @@
             "e": "🏛️"
           }
         ],
-        "quiz": {
-          "q": "Quel objet sacré du Temple de Jérusalem est représenté sur l'Arc de Titus à Rome ?",
-          "r": "La Menorah (chandelier à 7 branches)",
-          "hint": "Ce candélabre à sept branches est encore aujourd'hui le symbole de l'État d'Israël"
-        },
         "img": "histoire/La chute de Jérusalem sous siège.webp"
       },
       {
@@ -1372,11 +1137,6 @@
             "t": "<b>Les 4 Évangiles ont des dates de rédaction très différentes.</b> Marc (~70 ap. J.-C.) est le plus ancien. Matthieu et Luc (~80-90) s'en inspirent en ajoutant d'autres sources. Jean (~95-100) est le plus tardif et le plus théologique. Entre la mort de Jésus (~30) et la rédaction du premier Évangile (~70), 40 ans de transmission orale. La question de l'historicité de certains récits reste un débat vivant entre historiens et théologiens."
           }
         ],
-        "quiz": {
-          "q": "Quel personnage, ancien persécuteur des chrétiens, fut le principal propagateur du christianisme dans tout l'Empire romain ?",
-          "r": "Paul de Tarse (saint Paul)",
-          "hint": "Ses épîtres, vers 50-60 ap. J.-C., sont les plus anciens textes chrétiens connus — antérieurs aux Évangiles"
-        },
         "img": "histoire/L'expansion du christianisme au Ier siècle.webp"
       },
       {
@@ -1400,11 +1160,6 @@
             "e": "🔬"
           }
         ],
-        "quiz": {
-          "q": "Combien de mètres de cendres et de ponces ont enseveli Pompéi lors de l'éruption du Vésuve ?",
-          "r": "6 mètres",
-          "hint": "Une couche suffisante pour dissimuler une ville entière pendant 17 siècles"
-        },
         "img": "histoire/L'éruption de Pompéi en 79 après J.-C..webp"
       },
       {
@@ -1428,11 +1183,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Que signifiait réellement le pouce levé dans les combats de gladiateurs, contrairement à la légende hollywoodienne ?",
-          "r": "Tuer le vaincu (et non l'épargner) — le pouce caché dans le poing signifiait la grâce",
-          "hint": "Hollywood a inversé le symbole — le pouce levé imitait un coup d'épée"
-        },
         "img": "histoire/Construction_du_Colisée_à_Rome.webp"
       },
       {
@@ -1456,11 +1206,6 @@
             "e": "⚖️"
           }
         ],
-        "quiz": {
-          "q": "Sous quel empereur l'Empire romain atteint-il sa plus grande extension territoriale en 117 ap. J.-C. ?",
-          "r": "L'empereur Trajan",
-          "hint": "Un empereur d'origine espagnole, premier provincial à diriger Rome"
-        },
         "img": "histoire/LEmpire Trajan.webp"
       },
       {
@@ -1484,11 +1229,6 @@
             "t": "<b>Hadrien était l'un des empereurs les plus cultivés de Rome.</b> Architecte lui-même, il dessina le Panthéon de Rome (encore debout, la plus grande coupole non armée du monde pendant 1 300 ans), une villa colossale à Tivoli, et réorganisa l'administration de l'Empire. Son règne (117–138) est souvent cité comme l'apogée de la civilisation romaine — Gibbon parlait du IIe siècle comme du 'siècle le plus heureux de l'humanité'."
           }
         ],
-        "quiz": {
-          "q": "Quelle est la longueur du Mur d'Hadrien, construit en 122 ap. J.-C. pour délimiter la frontière nord de l'Empire romain ?",
-          "r": "118 km",
-          "hint": "Il traversait toute l'Angleterre d'est en ouest, de la mer du Nord à la mer d'Irlande"
-        },
         "img": "histoire/Mur d'hadrien.webp"
       }
     ]
@@ -1514,12 +1254,7 @@
             "t": "<b>Les Romains se lavaient tous les jours — chose rare dans l'Antiquité.</b> Les thermes publics (accessibles pour une somme modique) étaient des centres sociaux : on s'y baignait dans des bassins à différentes températures (frigidarium, tepidarium, caldarium), mais aussi on y discutait affaires, politique et philosophie.",
             "e": "🚿"
           }
-        ],
-        "quiz": {
-          "q": "Comment appelait-on la pièce centrale d'une maison romaine, dotée d'un bassin pour recueillir l'eau de pluie ?",
-          "r": "L'atrium",
-          "hint": "Ce mot a donné 'atrium' en français moderne, désignant encore aujourd'hui un hall central ouvert"
-        }
+        ]
       },
       {
         "kind": "histoire",
@@ -1538,11 +1273,6 @@
             "t": "<b>Les Gaulois romanisés étaient d'excellents ingénieurs.</b> Ils inventèrent aussi le tonneau en bois (remplaçant les amphores), le savon, la chaîne de transmission et le recuit de l'acier — innovations que Rome adopta et diffusa dans tout l'Empire."
           }
         ],
-        "quiz": {
-          "q": "Quel écrivain latin du Ier siècle a décrit la vallus, moissonneuse gauloise inventée 1 800 ans avant l'ère industrielle ?",
-          "r": "Pline l'Ancien",
-          "hint": "Cette machine fut oubliée puis réinventée au XIXe siècle par des ingénieurs qui l'ignoraient"
-        },
         "img": "histoire/moissonneuse gauloise.webp"
       },
       {
@@ -1566,11 +1296,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quel monument romain de Nîmes inspira Thomas Jefferson pour l'architecture du Capitole de Virginie ?",
-          "r": "La Maison Carrée de Nîmes",
-          "hint": "Plus intacte que bien des monuments à Rome même, construite vers –19 av. J.-C."
-        },
         "img": "histoire/Bains romains sous les voûtes majestueuses.webp"
       },
       {
@@ -1594,11 +1319,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Comment s'appelle le système de chauffage par le sol inventé par les Romains pour leurs thermes ?",
-          "r": "L'hypocauste",
-          "hint": "L'air chaud circulait sous les dalles et dans les murs creux grâce au praefurnium."
-        },
         "img": "histoire/Bains_romains__détente_et_interactions_sociales.webp"
       },
       {
@@ -1622,11 +1342,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Combien d'empereurs Rome eut-elle entre 235 et 284 ap. J.-C. ?",
-          "r": "50 empereurs en 50 ans",
-          "hint": "La plupart furent assassinés par leurs propres soldats après quelques mois de règne"
-        },
         "img": "histoire/premieres invasion barbare sur l empire romain.webp"
       },
       {
@@ -1650,11 +1365,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quelle vision Constantin aurait-il eue la veille de la bataille du pont Milvius en 312 ?",
-          "r": "Une croix lumineuse dans le ciel avec l'inscription 'In hoc signo vinces' (Par ce signe tu vaincras)",
-          "hint": "Il fit peindre la croix sur les boucliers de ses soldats — et remporta la victoire"
-        },
         "img": "histoire/L'édiction de l'Édit de Milan.webp"
       },
       {
@@ -1678,11 +1388,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quelle tradition sportive antique Théodose supprima-t-il en 393 ap. J.-C. comme 'fête païenne' ?",
-          "r": "Les Jeux Olympiques",
-          "hint": "Célébrés sans interruption depuis –776 — ils ne reprirent qu'en 1896, après 1 503 ans"
-        },
         "img": "histoire/Les deux souverains face à face.webp"
       },
       {
@@ -1706,11 +1411,6 @@
             "e": "🕯️"
           }
         ],
-        "quiz": {
-          "q": "Quel est le surnom donné à la montagne parisienne qui porte le nom de sainte Geneviève, sur laquelle est construit le Panthéon ?",
-          "r": "La Montagne Sainte-Geneviève",
-          "hint": "C'est le quartier du Ve arrondissement de Paris, cœur du Quartier latin"
-        },
         "img": "histoire/Sainte Geneviève défendant Paris en 451.webp"
       },
       {
@@ -1734,11 +1434,6 @@
           }
         ],
         "kind": "histoire",
-        "quiz": {
-          "q": "Quelle sainte aurait, selon la tradition, protégé Paris d'Attila par ses prières ?",
-          "r": "Sainte Geneviève",
-          "hint": "Elle est la patronne de Paris et donne son nom à une célèbre montagne parisienne"
-        },
         "img": "histoire/Atila.webp"
       },
       {
@@ -1762,11 +1457,6 @@
             "e": "🏛️"
           }
         ],
-        "quiz": {
-          "q": "Quel était le nom du dernier empereur romain d'Occident déposé en 476 ?",
-          "r": "Romulus Augustule",
-          "hint": "Il portait le nom du fondateur légendaire de Rome — une ironie de l'histoire"
-        },
         "img": "histoire/La chute de Rome, 476 après J.-C..webp"
       }
     ]
