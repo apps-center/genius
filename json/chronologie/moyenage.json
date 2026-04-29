@@ -172,11 +172,6 @@
             "e": "✂️"
           }
         ],
-        "quiz": {
-          "q": "Pourquoi les Serments de Strasbourg sont-ils importants pour la langue française ?",
-          "r": "C'est le premier texte écrit en vieux-français, ancêtre direct de notre langue",
-          "hint": "Le latin se transformait peu à peu — et ce serment en garde la première trace écrite"
-        },
         "img": "histoire/serment de strasbourg.webp"
       },
       {
@@ -196,11 +191,6 @@
             "e": "👑"
           }
         ],
-        "quiz": {
-          "q": "Quel pays futur correspond aux terres que Charles le Chauve reçoit au traité de Verdun en 843 ?",
-          "r": "La France (la Francia occidentalis — l'Ouest des Francs)",
-          "hint": "L'Ouest de l'empire de Charlemagne deviendra progressivement le royaume de France"
-        },
         "img": "histoire/traite de verdun.webp"
       },
       {
@@ -301,11 +291,6 @@
             "e": "🗺️"
           }
         ],
-        "quiz": {
-          "q": "Quelle conséquence inattendue la conquête de Guillaume eut-elle sur la langue anglaise ?",
-          "r": "La moitié des mots anglais viennent du français apporté par la noblesse normande",
-          "hint": "Beef, pork, justice, noble, adventure… tous ces mots anglais sont en réalité du vieux-français"
-        },
         "img": "histoire/guillaume le conquerant.webp"
       },
       {
@@ -408,11 +393,6 @@
             "e": "🏗️"
           }
         ],
-        "quiz": {
-          "q": "Quel moine a inventé le style gothique en reconstruisant la basilique Saint-Denis en 1144 ?",
-          "r": "Suger, abbé de Saint-Denis",
-          "hint": "Il voulait que les églises soient remplies de lumière pour symboliser la présence de Dieu"
-        },
         "img": "histoire/basilique saint denis gothique.webp"
       },
       {
@@ -520,11 +500,6 @@
             "e": "💪"
           }
         ],
-        "quiz": {
-          "q": "Pourquoi Blanche de Castille fut-elle une figure exceptionnelle dans l'histoire de France ?",
-          "r": "Première femme étrangère à gouverner la France, elle assura la régence pendant la minorité de Louis IX",
-          "hint": "Elle venait d'Espagne et prit les rênes du royaume alors que son fils n'avait que 12 ans"
-        },
         "img": "histoire/blanche castille.webp"
       },
       {
@@ -559,11 +534,6 @@
             "e": "📋"
           }
         ],
-        "quiz": {
-          "q": "Quelle institution née en 1302 sous Philippe le Bel est l'ancêtre lointain de notre Assemblée Nationale ?",
-          "r": "Les États Généraux",
-          "hint": "Cette réunion de nobles, prêtres et bourgeois sera convoquée à nouveau en 1789 — avec des conséquences explosives"
-        },
         "img": "histoire/1ers etats generaux.webp"
       },
       {
@@ -602,11 +572,6 @@
             "e": "😤"
           }
         ],
-        "quiz": {
-          "q": "Pendant combien d'années les papes ont-ils habité à Avignon au lieu de Rome ?",
-          "r": "68 ans — de 1309 à 1377",
-          "hint": "Sept papes successifs, tous français, préférèrent rester en France plutôt que de rejoindre Rome"
-        },
         "img": "histoire/pape avignon.webp"
       },
       {
@@ -739,11 +704,6 @@
             "e": "💰"
           }
         ],
-        "quiz": {
-          "q": "Qu'arriva-t-il d'extraordinaire au roi Jean II de France lors de la bataille de Poitiers en 1356 ?",
-          "r": "Il fut fait prisonnier par les Anglais et emmené en Angleterre",
-          "hint": "La France dut payer une rançon gigantesque pour récupérer son roi"
-        },
         "img": "histoire/roi prisonnier.webp"
       },
       {
@@ -801,11 +761,6 @@
             "e": "🌍"
           }
         ],
-        "quiz": {
-          "q": "En quelle année les Juifs de France obtinrent-ils enfin les mêmes droits que tous les citoyens ?",
-          "r": "1791 — lors de la Révolution française",
-          "hint": "Il fallut attendre 397 ans après l'expulsion de 1394 pour que la France reconnaisse pleinement leur citoyenneté"
-        },
         "img": "histoire/expulsion juifs.webp"
       },
       {
@@ -825,11 +780,6 @@
             "e": "💪"
           }
         ],
-        "quiz": {
-          "q": "Quel livre remarquable Christine de Pisan écrit-elle en 1405 pour défendre la valeur des femmes ?",
-          "r": "La Cité des Dames",
-          "hint": "Elle imagine une ville imaginaire peuplée des femmes les plus remarquables de l'histoire"
-        },
         "img": "histoire/christine de pisan.webp"
       },
       {
@@ -948,11 +898,6 @@
             "e": "🍷"
           }
         ],
-        "quiz": {
-          "q": "Quelle nouvelle arme permit à la France de remporter la victoire décisive de Castillon en 1453 ?",
-          "r": "Les canons (l'artillerie à poudre)",
-          "hint": "Cette arme rendit obsolètes les archers anglais aux longbows qui avaient dominé à Crécy et Azincourt"
-        },
         "img": "histoire/castillon la bataille.webp"
       },
       {
@@ -991,11 +936,6 @@
             "e": "🕵️"
           }
         ],
-        "quiz": {
-          "q": "Sous quel roi les relais de poste furent-ils organisés en France en 1476 ?",
-          "r": "Louis XI, surnommé 'l'Universelle Araignée'",
-          "hint": "Ce roi rusé voulait pouvoir communiquer plus vite que tous ses ennemis"
-        },
         "img": "histoire/relais de poste.webp"
       },
       {
@@ -1015,11 +955,6 @@
             "e": "🗺️"
           }
         ],
-        "quiz": {
-          "q": "Comment la Provence est-elle devenue française en 1481 ?",
-          "r": "Le comte de Provence mourut sans héritier et légua sa région au roi Louis XI",
-          "hint": "Ni guerre ni mariage — juste un héritage transmis directement au roi de France"
-        },
         "img": "histoire/provence rejoint france.webp"
       },
       {
@@ -1039,11 +974,6 @@
             "e": "🤝"
           }
         ],
-        "quiz": {
-          "q": "Qui était Charles le Téméraire, et pourquoi sa mort en 1477 profita-t-elle tant au roi Louis XI ?",
-          "r": "Duc de Bourgogne, il était le plus puissant rival de la France — sa mort permit à Louis XI de récupérer la Bourgogne et la Picardie",
-          "hint": "Son rêve était de créer un grand empire entre France et Allemagne — il mourut en bataille avant d'y parvenir"
-        },
         "img": "histoire/picardie.webp"
       }
     ]

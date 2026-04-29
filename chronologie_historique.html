@@ -230,9 +230,7 @@ footer{position:relative;z-index:10;text-align:center;padding:0 20px 50px;
   .disc-legend{gap:6px 14px;padding:10px 12px 0;}
   .dl-item{font-size:.62rem;}
 
-  /* Flashcard quiz */
   .flashcard{padding:24px 18px;}
-  .quiz-filter{gap:6px;}
   .qf-btn{padding:4px 10px;font-size:.6rem;}
 }
 
@@ -304,27 +302,6 @@ header{padding:48px 20px 28px;}
   background:rgba(200,180,120,.1);border:1px solid rgba(200,180,120,.45);color:var(--star);}
 .cta-btn:hover{background:rgba(200,180,120,.22);border-color:rgba(200,180,120,.8);
   box-shadow:0 0 18px rgba(200,160,60,.2);}
-.cta-quiz{background:rgba(96,200,160,.08);border-color:rgba(96,200,160,.4);color:#60c8a0;}
-.cta-quiz:hover{background:rgba(96,200,160,.18);border-color:rgba(96,200,160,.8);
-  box-shadow:0 0 18px rgba(96,200,160,.2);}
-.tab-quiz{color:#60c8a0 !important;border-color:rgba(96,200,160,.35) !important;}
-.tab-quiz.active{background:rgba(96,200,160,.12) !important;border-color:rgba(96,200,160,.6) !important;}
-
-/* QUIZ MODE */
-#quiz-overlay{position:fixed;inset:0;z-index:200;background:rgba(4,8,18,.96);
-  backdrop-filter:blur(12px);display:none;flex-direction:column;
-  align-items:center;justify-content:center;padding:20px;}
-#quiz-overlay.open{display:flex;}
-
-.quiz-header{text-align:center;margin-bottom:36px;}
-.quiz-header h2{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;
-  background:linear-gradient(135deg,#f5e6a3,#d4a843 50%,#f0c060);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.quiz-header p{font-size:.82rem;color:rgba(232,223,196,.45);margin-top:8px;letter-spacing:.08em;}
-
-.quiz-score{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(232,223,196,.4);margin-bottom:28px;}
-.quiz-score span{color:#60c8a0;font-weight:700;}
 
 /* ── FLASHCARD — système déclaratif ── */
 .flashcard{width:min(540px,90vw);background:#0e1a2e;border:1px solid rgba(200,180,120,.3);
@@ -371,35 +348,6 @@ header{padding:48px 20px 28px;}
 .qz-nope:hover{background:rgba(220,60,60,.2);border-color:rgba(220,60,60,.6);}
 .qz-knew{background:rgba(96,200,160,.1);border:1px solid rgba(96,200,160,.38);color:#60c8a0;}
 .qz-knew:hover{background:rgba(96,200,160,.24);border-color:rgba(96,200,160,.7);}
-
-/* No quiz message */
-.qz-empty{text-align:center;color:rgba(232,223,196,.45);font-size:.88rem;
-  font-style:italic;line-height:1.7;padding:20px 0;}
-
-.quiz-nav{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;justify-content:center;}
-.qnav-btn{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-  padding:9px 22px;border-radius:3px;cursor:pointer;transition:all .2s;
-  background:rgba(200,180,120,.08);border:1px solid rgba(200,180,120,.3);color:rgba(232,223,196,.7);}
-.qnav-btn:hover{background:rgba(200,180,120,.18);color:var(--star);}
-.qnav-btn.primary{background:rgba(96,200,160,.1);border-color:rgba(96,200,160,.45);color:#60c8a0;}
-.qnav-btn.primary:hover{background:rgba(96,200,160,.22);}
-
-.quiz-progress{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap;justify-content:center;max-width:400px;}
-.qp-dot{width:8px;height:8px;border-radius:50%;background:rgba(200,180,120,.2);transition:background .3s;}
-.qp-dot.done{background:#60c8a0;}
-.qp-dot.current{background:rgba(200,180,120,.7);}
-
-.quiz-filter{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;justify-content:center;}
-.qf-btn{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;
-  border-radius:20px;cursor:pointer;border:1px solid;transition:all .2s;background:none;}
-.qf-btn.active{opacity:1;}
-.qf-btn:not(.active){opacity:.35;}
-
-footer{position:relative;z-index:10;text-align:center;padding:40px 20px 50px;
-  border-top:1px solid rgba(200,180,120,.08);margin-top:20px;}
-.footer-sources{color:rgba(232,223,196,.22);font-size:.75rem;letter-spacing:.12em;}
-.footer-label{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.22em;
-  text-transform:uppercase;color:rgba(232,223,196,.3);margin-right:10px;}
 
 /* ── ANTI-FLICKER gradient text ── */
 h1,-webkit-text-fill-color{-webkit-backface-visibility:hidden;backface-visibility:hidden;}
@@ -470,12 +418,7 @@ body{padding-top:44px;}
     <button class="cta-btn" id="cta-explore" onclick="document.querySelector('.tabs').scrollIntoView({behavior:'smooth'})">
       ✦ Commencer l'exploration
     </button>
-    <button class="cta-btn cta-quiz" id="cta-quiz-header" onclick="startQuiz('question')">
-      🎯 Quiz Questions
-    </button>
-    <button class="cta-btn cta-quiz" onclick="startQuiz('date')" style="background:rgba(96,160,220,.08);border-color:rgba(96,160,220,.4);color:#60a0dc;">
-      🗓️ Quiz Dates
-    </button>
+
   </div>
 </header>
 
@@ -494,72 +437,6 @@ body{padding-top:44px;}
 <div id="tempsmodernes" class="branch"></div>
 <div id="contemporaine" class="branch"></div>
 
-<!-- QUIZ OVERLAY -->
-<div id="quiz-overlay">
-  <div class="quiz-header">
-    <h2 id="quiz-mode-title">🎯 Mode Quiz</h2>
-    <p id="quiz-mode-sub">Réponds à voix haute, puis révèle la réponse</p>
-    <div style="display:flex;gap:8px;justify-content:center;margin-top:10px;">
-      <button onclick="startQuiz('question')" id="qmode-q"
-        style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
-        padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid rgba(96,200,160,.5);
-        background:rgba(96,200,160,.12);color:#60c8a0;transition:all .2s">🎯 Questions</button>
-      <button onclick="startQuiz('date')" id="qmode-d"
-        style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
-        padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid rgba(96,160,220,.35);
-        background:none;color:rgba(96,160,220,.7);transition:all .2s">🗓️ Dates</button>
-    </div>
-  </div>
-  <div class="quiz-filter" id="quiz-filter">
-    <button class="qf-btn active" style="color:#e8dfc4;border-color:rgba(232,223,196,.4)" data-filter="all">Tout</button>
-    <button class="qf-btn active" style="color:#40c8e0;border-color:#40c8e0" data-filter="science">🔬 Science</button>
-    <button class="qf-btn active" style="color:#e0b840;border-color:#e0b840" data-filter="litterature">📖 Litté</button>
-    <button class="qf-btn active" style="color:#e060b0;border-color:#e060b0" data-filter="art">🎨 Art</button>
-    <button class="qf-btn active" style="color:#60d080;border-color:#60d080" data-filter="musique">🎵 Musique</button>
-    <button class="qf-btn active" style="color:#d4a843;border-color:#d4a843" data-filter="histoire">📜 Histoire</button>
-  </div>
-  <div class="quiz-score">Question <span id="q-num">1</span> / <span id="q-total">20</span> &nbsp;·&nbsp; Score : <span id="q-score">0</span></div>
-  <div class="quiz-progress" id="quiz-progress"></div>
-
-  <div class="flashcard" id="flashcard">
-
-    <!-- Phase 1 : Question -->
-    <div class="qz-question-wrap" id="qz-question-wrap">
-      <div class="qz-meta" id="qz-meta"></div>
-      <div class="qz-question" id="qz-question"></div>
-      <button class="qz-hint-btn" id="qz-hint-btn" onclick="showHint()">💡 Indice</button>
-      <div class="qz-hint-text" id="qz-hint-text"></div>
-      <button class="fc-reveal-btn" onclick="revealCard()">Révéler la réponse →</button>
-    </div>
-
-    <!-- Phase 2 : Réponse + jugement -->
-    <div class="qz-answer-wrap" id="qz-answer-wrap">
-      <div class="qz-meta" id="qz-meta2"></div>
-      <div class="qz-question-small" id="qz-question-small"></div>
-      <div class="qz-answer" id="qz-answer">
-        <span class="qz-answer-label">Réponse</span>
-        <span id="qz-answer-text"></span>
-      </div>
-      <div class="qz-judge">
-        <button class="qz-btn qz-nope" onclick="markCard(false)">❌ Je ne savais pas</button>
-        <button class="qz-btn qz-knew" onclick="markCard(true)">✅ Je savais !</button>
-      </div>
-    </div>
-
-    <!-- Phase 3 : Écran de fin — structure séparée, jamais détruite -->
-    <div class="qz-question-wrap" id="qz-end-screen" style="display:none;text-align:center;padding:10px 0">
-      <div id="qz-end-emoji" style="font-size:2.8rem;margin-bottom:16px"></div>
-      <div id="qz-end-score" style="font-family:'Cinzel',serif;font-size:2rem;font-weight:900;color:#60c8a0;margin-bottom:8px"></div>
-      <div id="qz-end-msg" style="font-size:.9rem;color:rgba(232,223,196,.5);margin-bottom:24px;letter-spacing:.05em"></div>
-      <button class="fc-reveal-btn" onclick="startQuiz()">🔄 Rejouer</button>
-    </div>
-
-  </div>
-
-  <div class="quiz-nav">
-    <button class="qnav-btn" onclick="closeQuiz()">✕ Quitter</button>
-  </div>
-</div>
 
 <div id="france" class="branch"></div>
 <div id="monde" class="branch"></div>
@@ -766,212 +643,6 @@ function setupObs(){
   document.querySelectorAll('.branch.active .ev, .branch.active .disc').forEach(el=>obs.observe(el));
 }
 // (init déplacé dans loadData() pour s'exécuter après le rendu async)
-
-// ── QUIZ MODE ──
-let quizCards=[], quizIdx=0, quizScore=0, quizMode='question';
-let activeFilters=new Set(['all','science','litterature','art','musique','histoire']);
-
-const KIND_COLORS_Q={'science':'#40c8e0','litterature':'#e0b840','art':'#e060b0','musique':'#60d080','histoire':'#d4a843'};
-const KIND_LABELS_Q={'science':'Science & Invention','litterature':'Littérature','art':'Art','musique':'Musique','histoire':'Événement historique'};
-const ALL_BRANCHES=['prehistoire','antiquite','moyenage','tempsmodernes','contemporaine','monde'];
-
-function buildQuizDeck(){
-  const all=[];
-  for(const branch of ALL_BRANCHES){
-    for(const era of (DATA[branch]||[])){
-      for(const ev of era.events){
-        if(ev.quiz) all.push({...ev,_era:era.era,_branch:branch});
-      }
-    }
-  }
-  const filtered=activeFilters.has('all')?all:all.filter(ev=>activeFilters.has(ev.kind||'histoire'));
-  return filtered.sort(()=>Math.random()-.5).slice(0,Math.min(20,filtered.length));
-}
-
-function buildDateQuizDeck(){
-  const all=[];
-  for(const branch of ALL_BRANCHES){
-    for(const era of (DATA[branch]||[])){
-      for(const ev of era.events){
-        if(ev.date&&ev.title){
-          // Randomly assign direction for each card
-          const dir=Math.random()>.5?'date2event':'event2date';
-          all.push({...ev,_era:era.era,_branch:branch,_dir:dir});
-        }
-      }
-    }
-  }
-  const filtered=activeFilters.has('all')?all:all.filter(ev=>activeFilters.has(ev.kind||'histoire'));
-  return filtered.sort(()=>Math.random()-.5).slice(0,Math.min(20,filtered.length));
-}
-
-function startQuiz(mode='question'){
-  quizMode=mode;
-  quizCards=mode==='date'?buildDateQuizDeck():buildQuizDeck();
-  quizIdx=0; quizScore=0;
-  document.getElementById('q-total').textContent=quizCards.length||'—';
-  document.getElementById('q-score').textContent=0;
-
-  // Update header
-  const isDate=mode==='date';
-  document.getElementById('quiz-mode-title').textContent=isDate?'🗓️ Quiz Dates':'🎯 Quiz Questions';
-  document.getElementById('quiz-mode-sub').textContent=isDate?
-    'Trouve la date ou l\'événement — réponds à voix haute':
-    'Réponds à voix haute, puis révèle la réponse';
-  // Highlight active mode button
-  document.getElementById('qmode-q').style.opacity=isDate?'.45':'1';
-  document.getElementById('qmode-d').style.opacity=isDate?'1':'.45';
-  // Show/hide filters (irrelevant for date quiz)
-  document.getElementById('quiz-filter').style.display=isDate?'none':'flex';
-
-  document.getElementById('qz-end-screen').style.display='none';
-  document.getElementById('qz-answer-wrap').style.display='none';
-
-  if(!quizCards.length){
-    document.getElementById('qz-question-wrap').style.display='none';
-    document.getElementById('qz-end-screen').style.display='block';
-    document.getElementById('qz-end-emoji').textContent='⏳';
-    document.getElementById('qz-end-score').textContent='';
-    document.getElementById('qz-end-msg').textContent='Aucune question disponible pour ces filtres.';
-  } else {
-    renderQuizCard();
-  }
-  document.getElementById('quiz-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
-}
-
-function closeQuiz(){
-  document.getElementById('quiz-overlay').classList.remove('open');
-  document.body.style.overflow='';
-  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
-  document.querySelector('[data-tab="prehistoire"]').classList.add('active');
-  document.getElementById('prehistoire').classList.add('active');
-}
-
-function renderQuizCard(){
-  if(!quizCards.length) return;
-  const card=quizCards[quizIdx];
-  const kind=card.kind||'histoire';
-  const c=KIND_COLORS_Q[kind]||'#d4a843';
-
-  // Progress dots
-  document.getElementById('q-num').textContent=quizIdx+1;
-  document.getElementById('q-score').textContent=quizScore;
-  const prog=document.getElementById('quiz-progress');
-  prog.innerHTML='';
-  quizCards.forEach((_,i)=>{
-    const d=document.createElement('div');
-    d.className='qp-dot'+(i<quizIdx?' done':i===quizIdx?' current':'');
-    prog.appendChild(d);
-  });
-
-  if(quizMode==='date'){
-    renderDateCard(card,c,kind);
-  } else {
-    renderQuestionCard(card,c,kind);
-  }
-
-  document.getElementById('qz-question-wrap').style.display='block';
-  document.getElementById('qz-answer-wrap').style.display='none';
-  document.getElementById('qz-end-screen').style.display='none';
-}
-
-function renderQuestionCard(card,c,kind){
-  const quiz=card.quiz;
-  // ── FIX SPOILER : on n'affiche PAS la date dans la question ──
-  // Seulement la catégorie — la date apparaît dans la phase réponse
-  const metaQ=`<span style="color:${c};font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">${KIND_LABELS_Q[kind]||kind}</span>`;
-  const metaA=`<span style="color:${c};font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">${KIND_LABELS_Q[kind]||kind}</span><span style="color:rgba(232,223,196,.25);margin:0 10px">·</span><span style="color:${c};font-size:.72rem;font-family:'Cinzel',serif;font-weight:700">${card.date}</span>`;
-  document.getElementById('qz-meta').innerHTML=metaQ;
-  document.getElementById('qz-meta2').innerHTML=metaA;
-  document.getElementById('qz-question').textContent=quiz.q;
-  document.getElementById('qz-question-small').textContent=quiz.q;
-  document.getElementById('qz-answer-text').textContent=quiz.r;
-  const hintBtn=document.getElementById('qz-hint-btn');
-  const hintText=document.getElementById('qz-hint-text');
-  hintText.textContent=''; hintText.style.display='none';
-  if(quiz.hint){hintBtn.dataset.hint=quiz.hint;hintBtn.style.display='inline-block';}
-  else{hintBtn.style.display='none';}
-}
-
-function renderDateCard(card,c,kind){
-  const dir=card._dir;
-  const isDate2Event=dir==='date2event';
-  // Hide hint in date mode
-  document.getElementById('qz-hint-btn').style.display='none';
-  document.getElementById('qz-hint-text').style.display='none';
-  document.getElementById('qz-hint-text').textContent='';
-
-  if(isDate2Event){
-    // Question : date → trouver l'événement
-    document.getElementById('qz-meta').innerHTML=
-      `<span style="color:#60a0dc;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">📅 Que s'est-il passé à cette date ?</span>`;
-    document.getElementById('qz-meta2').innerHTML=
-      `<span style="color:#60a0dc;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">📅 ${card.date}</span>`;
-    document.getElementById('qz-question').textContent=card.date;
-    document.getElementById('qz-question').style.fontSize='1.6rem';
-    document.getElementById('qz-question-small').textContent='Que s\'est-il passé à cette date ?';
-    document.getElementById('qz-answer-text').textContent=card.title;
-  } else {
-    // Question : événement → trouver la date
-    document.getElementById('qz-meta').innerHTML=
-      `<span style="color:#60a0dc;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">📅 Quand cela s'est-il passé ?</span>`;
-    document.getElementById('qz-meta2').innerHTML=
-      `<span style="color:${c};font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">${KIND_LABELS_Q[kind]||kind}</span>`;
-    document.getElementById('qz-question').textContent=card.title;
-    document.getElementById('qz-question').style.fontSize='';  // reset
-    document.getElementById('qz-question-small').textContent=card.title;
-    document.getElementById('qz-answer-text').textContent=card.date;
-  }
-}
-
-function showHint(){
-  const hint=document.getElementById('qz-hint-btn').dataset.hint;
-  if(hint){
-    const t=document.getElementById('qz-hint-text');
-    t.textContent='💡 '+hint; t.style.display='block';
-    document.getElementById('qz-hint-btn').style.display='none';
-  }
-}
-
-function revealCard(){
-  document.getElementById('qz-question-wrap').style.display='none';
-  document.getElementById('qz-answer-wrap').style.display='flex';
-  // Reset font size that may have been set by date mode
-  document.getElementById('qz-question').style.fontSize='';
-}
-
-function markCard(knew){
-  if(knew){quizScore++;document.getElementById('q-score').textContent=quizScore;}
-  if(quizIdx<quizCards.length-1){
-    quizIdx++; renderQuizCard();
-  } else {
-    const pct=quizScore/quizCards.length;
-    const msg=pct===1?'🏆 Parfait ! Tu es un expert !':pct>=.7?'👍 Très bien ! Encore un effort…':'📚 Continue à explorer la chronologie !';
-    document.getElementById('qz-question-wrap').style.display='none';
-    document.getElementById('qz-answer-wrap').style.display='none';
-    document.getElementById('qz-end-emoji').textContent='🎉';
-    document.getElementById('qz-end-score').textContent=`${quizScore} / ${quizCards.length}`;
-    document.getElementById('qz-end-msg').textContent=msg;
-    document.getElementById('qz-end-screen').style.display='block';
-  }
-}
-
-// Filter buttons
-document.querySelectorAll('.qf-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const f=btn.dataset.filter;
-    if(f==='all'){
-      activeFilters=new Set(['all','science','litterature','art','musique','histoire']);
-      document.querySelectorAll('.qf-btn').forEach(b=>b.classList.add('active'));
-    } else {
-      activeFilters.delete('all');
-      btn.classList.toggle('active');
-      if(btn.classList.contains('active')) activeFilters.add(f);
-      else activeFilters.delete(f);
-    }
-  });
 });
 
 </script>
