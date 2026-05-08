@@ -436,7 +436,7 @@ h1,-webkit-text-fill-color{-webkit-backface-visibility:hidden;backface-visibilit
 #inf-close-btn{position:absolute;top:10px;right:12px;z-index:2;background:rgba(6,10,20,.7);border:1px solid rgba(200,180,120,.3);color:var(--star);font-size:1rem;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;}
 #inf-close-btn:hover{background:rgba(212,168,67,.15);border-color:var(--gold);}
 #inf-modal-scroll{flex:1;overflow:auto;min-height:0;padding:16px;}
-#inf-modal-img{display:block;margin:0 auto;transition:width .18s;}
+#inf-modal-img{display:block;margin:0 auto;max-width:none;transition:width .18s;}
 #inf-zoom-bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 0;border-top:1px solid rgba(200,180,120,.12);}
 .inf-zoom-btn{font-family:'Cinzel',serif;font-size:1.1rem;width:32px;height:32px;border-radius:4px;border:1px solid rgba(200,180,120,.3);background:rgba(212,168,67,.07);color:var(--gold);cursor:pointer;transition:border-color .2s,background .2s;display:flex;align-items:center;justify-content:center;}
 .inf-zoom-btn:hover{background:rgba(212,168,67,.18);border-color:var(--gold);}
@@ -1429,6 +1429,7 @@ const INFOGRAPHIES = [
 ];
 
 let infZoom = 1;
+let infBaseWidth = 0;
 let infPinchDist0 = null;
 let infZoom0 = 1;
 
@@ -1456,11 +1457,16 @@ function openInfModal(idx){
   const img = document.getElementById('inf-modal-img');
   img.src = inf.img;
   img.alt = inf.title;
-  img.onload = () => { img.style.width = '100%'; updateInfZoomLabel(); };
-  img.style.width = '100%';
-  updateInfZoomLabel();
+  img.style.maxWidth = 'none';
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
+  const setBase = () => {
+    infBaseWidth = document.getElementById('inf-modal-scroll').clientWidth - 32;
+    img.style.width = infBaseWidth + 'px';
+    updateInfZoomLabel();
+  };
+  img.onload = setBase;
+  if(img.complete && img.naturalWidth) setBase();
 }
 
 function closeInfModal(e){
@@ -1471,9 +1477,7 @@ function closeInfModal(e){
 
 function adjInfZoom(delta){
   infZoom = Math.min(3, Math.max(1, infZoom + delta));
-  const scroll = document.getElementById('inf-modal-scroll');
-  const img = document.getElementById('inf-modal-img');
-  img.style.width = (infZoom * 100) + '%';
+  document.getElementById('inf-modal-img').style.width = Math.round(infBaseWidth * infZoom) + 'px';
   updateInfZoomLabel();
 }
 
@@ -1501,7 +1505,7 @@ document.getElementById('inf-modal-scroll').addEventListener('touchmove', e => {
     e.preventDefault();
     const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
     infZoom = Math.min(3, Math.max(1, infZoom0 * dist / infPinchDist0));
-    document.getElementById('inf-modal-img').style.width = (infZoom * 100) + '%';
+    document.getElementById('inf-modal-img').style.width = Math.round(infBaseWidth * infZoom) + 'px';
     updateInfZoomLabel();
   }
 }, {passive: false});
