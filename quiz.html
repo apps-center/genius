@@ -36,7 +36,7 @@ h1{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:900;b
 .stat-label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(232,223,196,.32);margin-top:3px;}
 
 /* MODE CARDS */
-.modes{position:relative;z-index:10;display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;margin:0 auto 80px;padding:0 24px;}
+.modes{position:relative;z-index:10;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto 80px;padding:0 24px;}
 .mode-card{position:relative;background:var(--card-bg);border:1px solid rgba(200,180,120,.15);border-radius:10px;padding:36px 28px 32px;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:14px;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
 .mode-card:hover{border-color:rgba(212,168,67,.45);box-shadow:0 4px 28px rgba(0,0,0,.4);}
 .mode-card::before{content:'';position:absolute;inset:0;opacity:.07;background:var(--acc);pointer-events:none;}
@@ -47,7 +47,7 @@ h1{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:900;b
 .mode-arrow{position:absolute;bottom:20px;right:20px;font-size:.9rem;color:rgba(212,168,67,.35);transition:color .25s;}
 .mode-card:hover .mode-arrow{color:rgba(212,168,67,.7);}
 
-@media(max-width:600px){.modes{grid-template-columns:1fr;}}
+@media(max-width:660px){.modes{grid-template-columns:1fr;}}
 
 /* ═══════════════════════════════════════════
    QUIZ OVERLAY
@@ -78,6 +78,7 @@ h1{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:900;b
 .qdot.done-ok{background:var(--green);}
 .qdot.done-ko{background:var(--red);}
 .qdot.current{background:var(--gold);box-shadow:0 0 8px rgba(212,168,67,.4);}
+.qdot.done-mid{background:var(--gold);}
 
 /* SCORE LINE */
 .quiz-scoreline{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,223,196,.38);margin-bottom:28px;}
@@ -109,6 +110,14 @@ h1{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:900;b
 .quiz-date-input:focus{outline:none;border-color:rgba(212,168,67,.6);}
 .quiz-date-input.correct{border-color:var(--green);color:var(--green);}
 .quiz-date-input.wrong{border-color:var(--red);color:var(--red);}
+.quiz-date-input.approx{border-color:var(--gold);color:var(--gold);}
+
+/* IMAGE QUIZ */
+.qz-img-display{width:100%;max-height:240px;object-fit:contain;border-radius:8px;border:1px solid rgba(200,180,120,.15);margin-bottom:14px;display:none;background:rgba(6,10,20,.4);}
+.quiz-hint{font-size:.82rem;color:rgba(212,168,67,.52);font-style:italic;text-align:center;margin-bottom:12px;display:none;}
+.quiz-validate{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;padding:13px 32px;border-radius:5px;border:1px solid rgba(212,168,67,.5);background:rgba(212,168,67,.1);color:var(--gold);cursor:pointer;transition:all .22s;width:100%;max-width:300px;}
+.quiz-validate:hover{background:rgba(212,168,67,.2);box-shadow:0 0 18px rgba(212,168,67,.15);}
+.quiz-validate:disabled{opacity:.4;cursor:default;}
 
 /* QCM CHOICES */
 .quiz-choices{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
@@ -136,6 +145,7 @@ h1{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:900;b
 .quiz-feedback.show{display:block;}
 .quiz-feedback.ok{background:rgba(94,196,138,.1);border:1px solid rgba(94,196,138,.3);color:rgba(94,196,138,.9);}
 .quiz-feedback.ko{background:rgba(232,80,80,.08);border:1px solid rgba(232,80,80,.3);color:rgba(232,223,196,.7);}
+.quiz-feedback.approx{background:rgba(212,168,67,.07);border:1px solid rgba(212,168,67,.35);color:rgba(212,168,67,.85);}
 
 /* NEXT BTN */
 .quiz-next{
@@ -161,6 +171,7 @@ h1{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:900;b
 .rb-num{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;}
 .rb-num.ok{color:var(--green);}
 .rb-num.ko{color:var(--red);}
+.rb-num.mid{color:var(--gold);}
 .rb-lbl{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,223,196,.38);margin-top:2px;}
 .result-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px;}
 .rbtn{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;padding:12px 24px;border-radius:4px;border:1px solid rgba(200,180,120,.25);background:rgba(10,18,36,.8);color:rgba(232,223,196,.55);cursor:pointer;transition:all .2s;}
@@ -215,6 +226,13 @@ footer p{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rg
     <div class="mode-badge">QCM · Chronologie · Époque</div>
     <span class="mode-arrow">→</span>
   </div>
+  <div class="mode-card" style="--acc:linear-gradient(135deg,#1a5c38,#0a3520)" onclick="startQuiz('images')">
+    <div class="mode-icon">🖼️</div>
+    <div class="mode-title">Quiz Images</div>
+    <div class="mode-desc">Une image historique — devine l'année de l'événement. Entrée libre : plus tu es précis, plus tu marques de points !</div>
+    <div class="mode-badge">Libre · Dates · /20 points</div>
+    <span class="mode-arrow">→</span>
+  </div>
 </div>
 
 <!-- QUIZ SCREEN -->
@@ -228,8 +246,14 @@ footer p{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rg
 
   <div class="quiz-card" id="quiz-card">
     <div class="quiz-era" id="qz-era"></div>
+    <img id="qz-img" class="qz-img-display" src="" alt="Illustration historique">
+    <p id="qz-hint" class="quiz-hint"></p>
     <div class="quiz-q" id="qz-question"></div>
     <div class="quiz-choices" id="qz-choices"></div>
+    <div id="qz-date-wrap" class="quiz-date-wrap" style="display:none">
+      <input id="qz-date-input" class="quiz-date-input" type="number" placeholder="Année (ex: -476 pour av. J.-C.)">
+      <button id="qz-validate-btn" class="quiz-validate" onclick="validateImageAnswer()">Valider →</button>
+    </div>
     <div class="quiz-feedback" id="qz-feedback"></div>
   </div>
   <button class="quiz-next" id="quiz-next-btn" onclick="nextQuestion()">Question suivante →</button>
@@ -241,8 +265,9 @@ footer p{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rg
     <div class="result-score" id="result-score">0 / 10</div>
     <div class="result-label">Score final</div>
     <div class="result-breakdown">
-      <div class="rb"><div class="rb-num ok" id="rb-ok">0</div><div class="rb-lbl">Correctes</div></div>
-      <div class="rb"><div class="rb-num ko" id="rb-ko">0</div><div class="rb-lbl">Ratées</div></div>
+      <div class="rb"><div class="rb-num ok" id="rb-ok">0</div><div class="rb-lbl" id="rb-ok-lbl">Correctes</div></div>
+      <div class="rb" id="rb-mid-wrap" style="display:none"><div class="rb-num mid" id="rb-mid">0</div><div class="rb-lbl">Proches</div></div>
+      <div class="rb"><div class="rb-num ko" id="rb-ko">0</div><div class="rb-lbl" id="rb-ko-lbl">Ratées</div></div>
     </div>
     <div class="result-msg" id="result-msg"></div>
     <div class="result-btns">
@@ -538,6 +563,43 @@ const DATE_QCM = [
 ];
 
 /* ══════════════════════════════════════════════
+   IMAGE QUIZ DATABASE — Quelle date ?
+══════════════════════════════════════════════ */
+const IMAGE_QUIZ = [
+  // PRÉHISTOIRE
+  {img:"peintures_grotte_chauvet.webp",       title:"Grotte Chauvet — Premières peintures",         year:-36000, tolerance:3000, era:"Préhistoire",          hint:"Premières grandes peintures rupestres (~36 000 av. J.-C.)"},
+  {img:"Artiste_préhistorique_peignant_un_cheval.webp", title:"Grotte de Lascaux",              year:-17000, tolerance:2000, era:"Préhistoire",          hint:"Chef-d'œuvre du Paléolithique supérieur (~17 000 av. J.-C.)"},
+  {img:"Village néolithique au coucher du soleil.webp", title:"Révolution Néolithique",         year:-10000, tolerance:1000, era:"Préhistoire",          hint:"Invention de l'agriculture au Proche-Orient (~10 000 av. J.-C.)"},
+  // PREMIÈRES CIVILISATIONS
+  {img:"La construction de la pyramide.webp",  title:"Pyramides de Gizeh — Khéops",               year:-2560,  tolerance:100,  era:"Égypte Antique",       hint:"Pharaon Khéops, IVe millénaire av. J.-C."},
+  {img:"babylone vers -1800.webp",             title:"Hammurabi & Babylone — 1er Code de Lois",    year:-1800,  tolerance:50,   era:"Mésopotamie",          hint:"Premier grand code de lois, ~1800 av. J.-C."},
+  {img:"Ramsès II devant ses temples majestueux.webp", title:"Ramsès II — Le Pharaon Bâtisseur", year:-1279,  tolerance:25,   era:"Égypte Antique",       hint:"Le plus célèbre pharaon, XIIIe siècle av. J.-C."},
+  {img:"David_et_Goliath_sur_le_champ_de_bataille.webp", title:"David & Goliath",              year:-1020,  tolerance:30,   era:"Proche-Orient antique", hint:"Israël biblique, vers -1000 av. J.-C."},
+  // GRÈCE ANTIQUE
+  {img:"Rassemblement philosophique à Athènes.webp", title:"Démocratie Athénienne — Clisthène", year:-508,   tolerance:10,   era:"Grèce Antique",        hint:"Invention de la démocratie directe, fin du VIe siècle av. J.-C."},
+  {img:"Socrates face à la fatalité.webp",     title:"Mort de Socrate",                           year:-399,   tolerance:5,    era:"Grèce Antique",        hint:"Le philosophe boit la ciguë, IVe siècle av. J.-C."},
+  {img:"Alexandre le grand Le général au coucher du soleil.webp", title:"Mort d'Alexandre le Grand", year:-323, tolerance:5, era:"Grèce Antique",        hint:"Mort à Babylone à 32 ans, IVe siècle av. J.-C."},
+  // ROME ANTIQUE
+  {img:"Hannibal_traversant_les_Alpes_enneigées.webp", title:"Hannibal traverse les Alpes",    year:-218,   tolerance:10,   era:"Guerres Puniques",     hint:"IIe Guerre Punique, début du IIIe siècle av. J.-C."},
+  {img:"Jules César _ de général à empereur.webp", title:"Assassinat de Jules César",          year:-44,    tolerance:5,    era:"Rome Antique",         hint:"Ides de Mars, Ier siècle av. J.-C."},
+  {img:"Auguste.webp",                         title:"Auguste — 1er Empereur Romain",             year:-27,    tolerance:5,    era:"Empire Romain",        hint:"Naissance de l'Empire romain, ~27 av. J.-C."},
+  {img:"pont_du_gard.webp",                    title:"Construction du Pont du Gard",               year:-19,    tolerance:10,   era:"Empire Romain",        hint:"Chef-d'œuvre de l'ingénierie romaine, ~19 av. J.-C."},
+  {img:"L'éruption de Pompéi en 79 après J.-C..webp", title:"Éruption du Vésuve — Pompéi",    year:79,     tolerance:3,    era:"Empire Romain",        hint:"Le Vésuve ensevelit Pompéi, 79 ap. J.-C."},
+  {img:"Construction_du_Colisée_à_Rome.webp",  title:"Inauguration du Colisée",                   year:80,     tolerance:5,    era:"Empire Romain",        hint:"Amphithéâtre de 50 000 spectateurs, 80 ap. J.-C."},
+  {img:"L'édiction de l'Édit de Milan.webp",   title:"Édit de Milan — Liberté de Culte",          year:313,    tolerance:5,    era:"Bas-Empire",           hint:"Constantin légalise le christianisme, 313 ap. J.-C."},
+  {img:"La chute de Rome, 476 après J.-C..webp", title:"Chute de l'Empire Romain d'Occident",   year:476,    tolerance:3,    era:"Antiquité tardive",    hint:"Fin de l'Antiquité, date-clé à connaître, 476 ap. J.-C."},
+  // MÉROVINGIENS & CAROLINGIENS
+  {img:"Le_baptême_de_Clovis_à_Reims.webp",   title:"Baptême de Clovis",                          year:496,    tolerance:5,    era:"Mérovingiens",         hint:"1er roi barbare catholique, fin du Ve siècle ap. J.-C."},
+  {img:"charles martel.webp",                  title:"Bataille de Poitiers — Charles Martel",      year:732,    tolerance:3,    era:"Carolingiens",         hint:"Arrêt de l'expansion arabe en Europe, 732 ap. J.-C."},
+  {img:"sacre_charlemagne.webp",               title:"Sacre de Charlemagne — Noël 800",            year:800,    tolerance:2,    era:"Carolingiens",         hint:"Couronné Empereur d'Occident le 25 décembre 800"},
+  {img:"traite de verdun.webp",                title:"Traité de Verdun — Naissance de la France",  year:843,    tolerance:3,    era:"Carolingiens",         hint:"Partage de l'empire carolingien, 843 ap. J.-C."},
+  // CAPÉTIENS & MOYEN ÂGE
+  {img:"hugues capet.webp",                    title:"Élection d'Hugues Capet",                    year:987,    tolerance:2,    era:"Capétiens",            hint:"Fondateur de la monarchie capétienne, 987 ap. J.-C."},
+  {img:"guillaume le conquerant.webp",         title:"Conquête normande de l'Angleterre",          year:1066,   tolerance:2,    era:"Moyen Âge",            hint:"Bataille d'Hastings, 1066 ap. J.-C."},
+  {img:"urbain2_croisades.webp",               title:"Lancement de la 1ère Croisade",              year:1095,   tolerance:2,    era:"Moyen Âge",            hint:"Pape Urbain II à Clermont, 1095 ap. J.-C."},
+];
+
+/* ══════════════════════════════════════════════
    QUIZ ENGINE
 ══════════════════════════════════════════════ */
 let currentMode = 'qcm';
@@ -546,24 +608,30 @@ const QUIZ_LENGTH = 10;
 
 function shuffle(arr){ for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr; }
 
+function formatYear(y){
+  if(y===0) return '0 ap. J.-C.';
+  const abs = Math.abs(y);
+  const formatted = abs >= 10000 ? abs.toLocaleString('fr-FR') : String(abs);
+  return y < 0 ? formatted + ' av. J.-C.' : formatted + ' ap. J.-C.';
+}
+
 function startQuiz(mode){
   currentMode = mode;
+  const isImages = mode === 'images';
   const isDate = mode === 'dates';
 
-  // Hide home elements
   document.querySelector('header').style.display='none';
   document.querySelector('.stats-bar').style.display='none';
   document.querySelector('.modes').style.display='none';
   document.querySelector('footer').style.display='none';
 
-  // Build deck
-  const pool = isDate ? [...DATE_QCM] : [...QCM];
+  const pool = isImages ? [...IMAGE_QUIZ] : isDate ? [...DATE_QCM] : [...QCM];
   shuffle(pool);
   deck = pool.slice(0, QUIZ_LENGTH);
   deckIdx = 0; score = 0; answers = [];
 
-  // Update UI
-  document.getElementById('quiz-title-bar').textContent = isDate ? '🗓️ Quiz Dates' : '🎯 Quiz Questions';
+  const titles = {qcm:'🎯 Quiz Questions', dates:'🗓️ Quiz Dates', images:'🖼️ Quiz Images'};
+  document.getElementById('quiz-title-bar').textContent = titles[mode] || '🎯 Quiz Questions';
   document.getElementById('results-screen').classList.remove('open');
   document.getElementById('results-screen').style.display='none';
   document.getElementById('quiz-card').style.display='block';
@@ -592,13 +660,28 @@ function updateDots(){
     const d=document.getElementById('dot-'+i);
     if(!d) continue;
     d.className='qdot';
-    if(i<deckIdx){ d.classList.add(answers[i]?'done-ok':'done-ko'); }
-    else if(i===deckIdx){ d.classList.add('current'); }
+    if(i<deckIdx){
+      if(currentMode==='images'){
+        if(answers[i]===2) d.classList.add('done-ok');
+        else if(answers[i]===1) d.classList.add('done-mid');
+        else d.classList.add('done-ko');
+      } else {
+        d.classList.add(answers[i]?'done-ok':'done-ko');
+      }
+    } else if(i===deckIdx){ d.classList.add('current'); }
   }
 }
 
 function renderQuestion(){
   if(deckIdx >= QUIZ_LENGTH){ showResults(); return; }
+  if(currentMode === 'images'){ renderImageQuestion(); return; }
+
+  // Restore QCM layout (hide image-mode elements)
+  document.getElementById('qz-img').style.display='none';
+  document.getElementById('qz-hint').style.display='none';
+  document.getElementById('qz-date-wrap').style.display='none';
+  document.getElementById('qz-choices').style.display='';
+
   const q = deck[deckIdx];
   document.getElementById('q-num').textContent = deckIdx+1;
   document.getElementById('q-score').textContent = score;
@@ -662,6 +745,82 @@ function selectAnswer(clickedDisplay, isCorrect, expl, correctDisplay, clickedEl
   btn.classList.add('show');
 }
 
+function renderImageQuestion(){
+  const q = deck[deckIdx];
+  document.getElementById('q-num').textContent = deckIdx+1;
+  document.getElementById('q-score').textContent = score;
+  document.getElementById('q-possible').textContent = deckIdx*2;
+  document.getElementById('qz-era').textContent = q.era;
+  document.getElementById('qz-question').textContent = 'Quelle est la date de cet événement ?';
+
+  const img = document.getElementById('qz-img');
+  img.src = 'img/histoire/' + q.img;
+  img.style.display = 'block';
+
+  const hint = document.getElementById('qz-hint');
+  if(q.hint){ hint.textContent = '💡 ' + q.hint; hint.style.display='block'; }
+  else { hint.style.display='none'; }
+
+  document.getElementById('qz-choices').style.display='none';
+  document.getElementById('qz-date-wrap').style.display='flex';
+  const input = document.getElementById('qz-date-input');
+  input.value='';
+  input.className='quiz-date-input';
+  input.disabled=false;
+  const vbtn = document.getElementById('qz-validate-btn');
+  vbtn.style.display='block';
+  vbtn.disabled=false;
+
+  const fb = document.getElementById('qz-feedback');
+  fb.className='quiz-feedback';
+  fb.textContent='';
+  document.getElementById('quiz-next-btn').classList.remove('show');
+  updateDots();
+  setTimeout(()=>input.focus(), 60);
+  document.getElementById('quiz-screen').scrollTo({top:0,behavior:'smooth'});
+}
+
+function validateImageAnswer(){
+  const q = deck[deckIdx];
+  const input = document.getElementById('qz-date-input');
+  const val = parseInt(input.value, 10);
+  if(isNaN(val)){ input.focus(); return; }
+
+  const diff = Math.abs(val - q.year);
+  let pts;
+  if(diff <= q.tolerance/2) pts = 2;
+  else if(diff <= q.tolerance) pts = 1;
+  else pts = 0;
+
+  score += pts;
+  answers.push(pts);
+
+  input.disabled = true;
+  document.getElementById('qz-validate-btn').style.display = 'none';
+
+  const exact = formatYear(q.year);
+  const fb = document.getElementById('qz-feedback');
+  if(pts === 2){
+    input.classList.add('correct');
+    fb.className='quiz-feedback ok show';
+    fb.textContent='✓ Parfait ! La date exacte est : '+exact+'. ('+q.title+')';
+  } else if(pts === 1){
+    input.classList.add('approx');
+    fb.className='quiz-feedback approx show';
+    fb.textContent='★ Proche ! La date exacte est : '+exact+'. (écart : '+diff+' an'+(diff>1?'s':'')+')';
+  } else {
+    input.classList.add('wrong');
+    fb.className='quiz-feedback ko show';
+    fb.textContent='✗ Raté — La date exacte était : '+exact+'. ('+q.title+')';
+  }
+
+  document.getElementById('q-score').textContent = score;
+  const btn = document.getElementById('quiz-next-btn');
+  btn.textContent = deckIdx < QUIZ_LENGTH-1 ? 'Question suivante →' : 'Voir mon score →';
+  btn.classList.add('show');
+  updateDots();
+}
+
 function nextQuestion(){
   deckIdx++;
   renderQuestion();
@@ -673,23 +832,51 @@ function showResults(){
   document.querySelector('.quiz-scoreline').style.display='none';
   document.getElementById('quiz-next-btn').classList.remove('show');
 
-  const ok = answers.filter(Boolean).length;
-  const ko = QUIZ_LENGTH - ok;
-  const pct = ok/QUIZ_LENGTH;
+  let trophy, stars, msg, pct;
 
-  let trophy='🏆', stars='', msg='';
-  if(pct===1){ trophy='🏆'; stars='⭐⭐⭐⭐⭐'; msg='Parfait ! Tu es un véritable explorateur du savoir. Toutes les réponses sont correctes !';}
-  else if(pct>=.8){ trophy='🥇'; stars='⭐⭐⭐⭐'; msg='Excellent ! Tu maîtrises très bien ce chapitre. Encore un effort pour la perfection !';}
-  else if(pct>=.6){ trophy='🥈'; stars='⭐⭐⭐'; msg='Bien joué ! Tu as de bonnes bases. Quelques révisions et tu seras au top !';}
-  else if(pct>=.4){ trophy='🥉'; stars='⭐⭐'; msg='Pas mal pour un début ! Continue à explorer et les bonnes réponses viendront naturellement.';}
-  else { trophy='📚'; stars='⭐'; msg='Le voyage commence ici ! Lis les fiches de l\'Encyclopédie et reviens relever le défi.';}
+  if(currentMode === 'images'){
+    const maxScore = QUIZ_LENGTH * 2;
+    pct = score / maxScore;
+    const exact = answers.filter(a=>a===2).length;
+    const close = answers.filter(a=>a===1).length;
+    const missed = answers.filter(a=>a===0).length;
 
-  document.getElementById('result-trophy').textContent=trophy;
-  document.getElementById('result-stars').textContent=stars;
-  document.getElementById('result-score').textContent=ok+' / '+QUIZ_LENGTH;
-  document.getElementById('rb-ok').textContent=ok;
-  document.getElementById('rb-ko').textContent=ko;
-  document.getElementById('result-msg').textContent=msg;
+    if(pct===1){ trophy='🏆'; stars='⭐⭐⭐⭐⭐'; msg='Parfait ! Tu maîtrises toutes les dates. Explorateur hors pair !';}
+    else if(pct>=.8){ trophy='🥇'; stars='⭐⭐⭐⭐'; msg='Excellent ! Tu as une très bonne mémoire chronologique. Encore quelques dates à affiner !';}
+    else if(pct>=.6){ trophy='🥈'; stars='⭐⭐⭐'; msg='Bien joué ! Tu connais l\'essentiel de la chronologie. Continue à t\'entraîner !';}
+    else if(pct>=.4){ trophy='🥉'; stars='⭐⭐'; msg='Pas mal ! Les dates, ça s\'apprend avec de la pratique. Consulte les flashcards !';}
+    else { trophy='📚'; stars='⭐'; msg='Les dates te résistent encore — mais c\'est en s\'entraînant qu\'on les retient. À toi les flashcards !';}
+
+    document.getElementById('result-score').textContent = score + ' / ' + maxScore;
+    document.getElementById('rb-ok-lbl').textContent = 'Exactes';
+    document.getElementById('rb-ok').textContent = exact;
+    document.getElementById('rb-mid-wrap').style.display = '';
+    document.getElementById('rb-mid').textContent = close;
+    document.getElementById('rb-ko-lbl').textContent = 'Ratées';
+    document.getElementById('rb-ko').textContent = missed;
+
+  } else {
+    const ok = answers.filter(Boolean).length;
+    const ko = QUIZ_LENGTH - ok;
+    pct = ok / QUIZ_LENGTH;
+
+    if(pct===1){ trophy='🏆'; stars='⭐⭐⭐⭐⭐'; msg='Parfait ! Tu es un véritable explorateur du savoir. Toutes les réponses sont correctes !';}
+    else if(pct>=.8){ trophy='🥇'; stars='⭐⭐⭐⭐'; msg='Excellent ! Tu maîtrises très bien ce chapitre. Encore un effort pour la perfection !';}
+    else if(pct>=.6){ trophy='🥈'; stars='⭐⭐⭐'; msg='Bien joué ! Tu as de bonnes bases. Quelques révisions et tu seras au top !';}
+    else if(pct>=.4){ trophy='🥉'; stars='⭐⭐'; msg='Pas mal pour un début ! Continue à explorer et les bonnes réponses viendront naturellement.';}
+    else { trophy='📚'; stars='⭐'; msg='Le voyage commence ici ! Lis les fiches de l\'Encyclopédie et reviens relever le défi.';}
+
+    document.getElementById('result-score').textContent = ok + ' / ' + QUIZ_LENGTH;
+    document.getElementById('rb-ok-lbl').textContent = 'Correctes';
+    document.getElementById('rb-ok').textContent = ok;
+    document.getElementById('rb-mid-wrap').style.display = 'none';
+    document.getElementById('rb-ko-lbl').textContent = 'Ratées';
+    document.getElementById('rb-ko').textContent = ko;
+  }
+
+  document.getElementById('result-trophy').textContent = trophy;
+  document.getElementById('result-stars').textContent = stars;
+  document.getElementById('result-msg').textContent = msg;
 
   const rs=document.getElementById('results-screen');
   rs.style.display='flex';
@@ -707,9 +894,9 @@ function closeQuiz(){
 
 function switchMode(){
   closeQuiz();
-  setTimeout(()=>{
-    startQuiz(currentMode==='qcm'?'dates':'qcm');
-  },100);
+  const modes = ['qcm','dates','images'];
+  const next = modes[(modes.indexOf(currentMode)+1) % modes.length];
+  setTimeout(()=>{ startQuiz(next); },100);
 }
 
 function askAbandon(){
@@ -726,7 +913,14 @@ function confirmAbandon(){
 // Keyboard nav
 document.addEventListener('keydown', e=>{
   if(e.key==='Escape' && document.getElementById('quiz-screen').classList.contains('open')){ askAbandon(); }
-  if(e.key==='Enter' && document.getElementById('quiz-next-btn').classList.contains('show')){ nextQuestion(); }
+  if(e.key==='Enter'){
+    const inputEnabled = currentMode==='images' && !document.getElementById('qz-date-input').disabled
+                         && document.getElementById('qz-date-wrap').style.display!=='none';
+    if(inputEnabled){ validateImageAnswer(); return; }
+    if(document.getElementById('quiz-next-btn').classList.contains('show')){ nextQuestion(); }
+    return;
+  }
+  if(currentMode==='images') return;
   const map={'a':0,'b':1,'c':2,'d':3};
   if(map[e.key.toLowerCase()]!==undefined){
     const choices=document.querySelectorAll('.choice:not(.locked)');
