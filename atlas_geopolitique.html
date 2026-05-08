@@ -414,7 +414,34 @@ h1,-webkit-text-fill-color{-webkit-backface-visibility:hidden;backface-visibilit
 .stab-t{background:rgba(220,140,40,.1); border:1px solid rgba(220,140,40,.3);color:rgba(240,180,100,.9);}
 .stab-i{background:rgba(220,70,50,.1);  border:1px solid rgba(220,70,50,.3); color:rgba(240,150,130,.9);}
 .stab-a{background:rgba(150,90,200,.1); border:1px solid rgba(150,90,200,.3);color:rgba(200,160,240,.9);}
-  
+
+/* ── Infographies view ── */
+#infographies-view{color:var(--star);}
+.inf-header{margin-bottom:28px;}
+.inf-title-main{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:0 0 6px;}
+.inf-subtitle-main{font-family:'Crimson Pro',serif;font-size:1rem;color:rgba(232,223,196,.55);margin:0;}
+#inf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media(max-width:768px){#inf-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){#inf-grid{grid-template-columns:1fr;}}
+.inf-thumb{background:var(--card-bg);border:1px solid rgba(200,180,120,.18);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .25s,box-shadow .25s;}
+.inf-thumb:hover{border-color:rgba(212,168,67,.55);box-shadow:0 0 22px rgba(212,168,67,.12);}
+.inf-img-wrap{aspect-ratio:2/3;overflow:hidden;position:relative;}
+.inf-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+.inf-thumb-body{padding:12px 14px 14px;}
+.inf-thumb-title{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:0 0 5px;line-height:1.4;}
+.inf-thumb-sub{font-family:'Crimson Pro',serif;font-size:.88rem;color:rgba(232,223,196,.62);margin:0;line-height:1.35;}
+/* ── Infographies modal ── */
+#inf-modal{position:fixed;inset:0;z-index:10000;background:rgba(4,8,18,.88);display:flex;align-items:center;justify-content:center;}
+#inf-modal-box{position:relative;width:min(92vw,860px);max-height:90dvh;display:flex;flex-direction:column;background:var(--card-bg);border:1px solid rgba(200,180,120,.22);border-radius:10px;overflow:hidden;}
+#inf-close-btn{position:absolute;top:10px;right:12px;z-index:2;background:rgba(6,10,20,.7);border:1px solid rgba(200,180,120,.3);color:var(--star);font-size:1rem;width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;}
+#inf-close-btn:hover{background:rgba(212,168,67,.15);border-color:var(--gold);}
+#inf-modal-scroll{flex:1;overflow:auto;display:flex;align-items:flex-start;justify-content:center;padding:16px;}
+#inf-modal-img{display:block;transition:width .18s;}
+#inf-zoom-bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 0;border-top:1px solid rgba(200,180,120,.12);}
+.inf-zoom-btn{font-family:'Cinzel',serif;font-size:1.1rem;width:32px;height:32px;border-radius:4px;border:1px solid rgba(200,180,120,.3);background:rgba(212,168,67,.07);color:var(--gold);cursor:pointer;transition:border-color .2s,background .2s;display:flex;align-items:center;justify-content:center;}
+.inf-zoom-btn:hover{background:rgba(212,168,67,.18);border-color:var(--gold);}
+#inf-zoom-label{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;color:rgba(232,223,196,.65);min-width:44px;text-align:center;}
+
 </style>
 </head>
 <body>
@@ -431,6 +458,7 @@ h1,-webkit-text-fill-color{-webkit-backface-visibility:hidden;backface-visibilit
     <button class="cat-tab"        data-cat="economie"      onclick="switchCat('economie')">💰 Éco</button>
     <button class="cat-tab"        data-cat="histoire"      onclick="switchCat('histoire')">⚔️ Histoire</button>
     <button class="cat-tab"        data-cat="environnement" onclick="switchCat('environnement')">🌱 Enviro</button>
+    <button class="cat-tab"        data-cat="infographies"  onclick="switchCat('infographies')">📊 Infographies</button>
   </div>
 </nav>
 <div id="layer-bar"><div id="layer-scroll"></div></div>
@@ -482,6 +510,30 @@ h1,-webkit-text-fill-color{-webkit-backface-visibility:hidden;backface-visibilit
     <div class="panel-scroll" id="panel-scroll"></div>
   </div>
 
+</div>
+
+<!-- INFOGRAPHIES VIEW -->
+<div id="infographies-view" style="display:none;padding:20px 24px 40px;overflow-y:auto;flex:1;">
+  <div class="inf-header">
+    <h2 class="inf-title-main">Infographies</h2>
+    <p class="inf-subtitle-main">Cartes thématiques et visualisations géopolitiques</p>
+  </div>
+  <div id="inf-grid"></div>
+</div>
+
+<!-- INFOGRAPHIES MODAL -->
+<div id="inf-modal" style="display:none;" onclick="closeInfModal(event)">
+  <div id="inf-modal-box">
+    <button id="inf-close-btn" onclick="closeInfModal(null)">✕</button>
+    <div id="inf-modal-scroll">
+      <img id="inf-modal-img" src="" alt="">
+    </div>
+    <div id="inf-zoom-bar">
+      <button class="inf-zoom-btn" onclick="adjInfZoom(-0.25)">−</button>
+      <span id="inf-zoom-label">100%</span>
+      <button class="inf-zoom-btn" onclick="adjInfZoom(+0.25)">+</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1358,14 +1410,128 @@ function buildLayerBar(cat){
   });
 }
 
+// ── INFOGRAPHIES ──
+const INFOGRAPHIES = [
+  {
+    title: "Eau & Sécurité alimentaire",
+    subtitle: "Pourquoi l'accès à l'eau conditionne la production agricole",
+    img: "img/infographies/eau_ressources_alimentaires.png",
+    tags: ["Eau", "Agriculture", "Géopolitique"],
+    countries: []
+  }
+];
+
+let infZoom = 1;
+let infPinchDist0 = null;
+let infZoom0 = 1;
+
+function renderInfographies(){
+  const grid = document.getElementById('inf-grid');
+  grid.innerHTML = '';
+  INFOGRAPHIES.forEach((inf, idx) => {
+    const card = document.createElement('div');
+    card.className = 'inf-thumb';
+    card.onclick = () => openInfModal(idx);
+    card.innerHTML = `
+      <div class="inf-img-wrap"><img src="${inf.img}" alt="${inf.title}" loading="lazy"></div>
+      <div class="inf-thumb-body">
+        <p class="inf-thumb-title">${inf.title}</p>
+        <p class="inf-thumb-sub">${inf.subtitle}</p>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function openInfModal(idx){
+  const inf = INFOGRAPHIES[idx];
+  infZoom = 1;
+  const modal = document.getElementById('inf-modal');
+  const img = document.getElementById('inf-modal-img');
+  img.src = inf.img;
+  img.alt = inf.title;
+  img.onload = () => { img.style.width = '100%'; updateInfZoomLabel(); };
+  img.style.width = '100%';
+  updateInfZoomLabel();
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeInfModal(e){
+  if(e && e.target !== document.getElementById('inf-modal') && e.target !== document.getElementById('inf-close-btn')) return;
+  document.getElementById('inf-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function adjInfZoom(delta){
+  infZoom = Math.min(3, Math.max(1, infZoom + delta));
+  const scroll = document.getElementById('inf-modal-scroll');
+  const img = document.getElementById('inf-modal-img');
+  img.style.width = (infZoom * 100) + '%';
+  updateInfZoomLabel();
+}
+
+function updateInfZoomLabel(){
+  document.getElementById('inf-zoom-label').textContent = Math.round(infZoom * 100) + '%';
+}
+
+// Wheel zoom on modal
+document.getElementById('inf-modal-scroll').addEventListener('wheel', e => {
+  if(document.getElementById('inf-modal').style.display === 'none') return;
+  e.preventDefault();
+  adjInfZoom(e.deltaY < 0 ? 0.25 : -0.25);
+}, {passive: false});
+
+// Pinch zoom on modal
+document.getElementById('inf-modal-scroll').addEventListener('touchstart', e => {
+  if(e.touches.length === 2){
+    infPinchDist0 = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+    infZoom0 = infZoom;
+  }
+}, {passive: true});
+
+document.getElementById('inf-modal-scroll').addEventListener('touchmove', e => {
+  if(e.touches.length === 2 && infPinchDist0){
+    e.preventDefault();
+    const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+    infZoom = Math.min(3, Math.max(1, infZoom0 * dist / infPinchDist0));
+    document.getElementById('inf-modal-img').style.width = (infZoom * 100) + '%';
+    updateInfZoomLabel();
+  }
+}, {passive: false});
+
+document.getElementById('inf-modal-scroll').addEventListener('touchend', () => { infPinchDist0 = null; }, {passive: true});
+
+// Escape to close modal
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && document.getElementById('inf-modal').style.display !== 'none'){
+    document.getElementById('inf-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+});
+
 function switchCat(cat){
   currentCat = cat;
   document.querySelectorAll('.cat-tab').forEach(t =>
     t.classList.toggle('active', t.dataset.cat === cat)
   );
-  buildLayerBar(cat);
-  const first = NAV_CONFIG[cat]?.layers?.[0];
-  if(first) setLayer(first.id);
+  const infView = document.getElementById('infographies-view');
+  const appEl = document.querySelector('.app');
+  const layerBar = document.getElementById('layer-bar');
+  if(cat === 'infographies'){
+    appEl.style.display = 'none';
+    layerBar.style.display = 'none';
+    document.body.style.paddingTop = '42px';
+    infView.style.display = 'block';
+    renderInfographies();
+  } else {
+    infView.style.display = 'none';
+    appEl.style.display = '';
+    layerBar.style.display = '';
+    document.body.style.paddingTop = '';
+    buildLayerBar(cat);
+    const first = NAV_CONFIG[cat]?.layers?.[0];
+    if(first) setLayer(first.id);
+  }
 }
 
 // ── INITIALISATION ──
