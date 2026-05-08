@@ -1486,14 +1486,14 @@ function updateInfZoomLabel(){
 }
 
 // Wheel zoom on modal
+// Wheel : scroll natif dans la modal — stopPropagation pour ne pas atteindre le SVG
 document.getElementById('inf-modal-scroll').addEventListener('wheel', e => {
-  if(document.getElementById('inf-modal').style.display === 'none') return;
-  e.preventDefault();
-  adjInfZoom(e.deltaY < 0 ? 0.25 : -0.25);
-}, {passive: false});
+  e.stopPropagation();
+}, {passive: true});
 
 // Pinch zoom on modal
 document.getElementById('inf-modal-scroll').addEventListener('touchstart', e => {
+  e.stopPropagation();
   if(e.touches.length === 2){
     infPinchDist0 = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
     infZoom0 = infZoom;
@@ -1501,6 +1501,7 @@ document.getElementById('inf-modal-scroll').addEventListener('touchstart', e => 
 }, {passive: true});
 
 document.getElementById('inf-modal-scroll').addEventListener('touchmove', e => {
+  e.stopPropagation();
   if(e.touches.length === 2 && infPinchDist0){
     e.preventDefault();
     const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
@@ -1510,7 +1511,10 @@ document.getElementById('inf-modal-scroll').addEventListener('touchmove', e => {
   }
 }, {passive: false});
 
-document.getElementById('inf-modal-scroll').addEventListener('touchend', () => { infPinchDist0 = null; }, {passive: true});
+document.getElementById('inf-modal-scroll').addEventListener('touchend', e => {
+  e.stopPropagation();
+  infPinchDist0 = null;
+}, {passive: true});
 
 // Escape to close modal
 document.addEventListener('keydown', e => {
