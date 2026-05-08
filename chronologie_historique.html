@@ -397,6 +397,9 @@ body{padding-top:44px;}
   .cta-row{flex-direction:column;align-items:center;gap:10px;}
 }
 
+.card.hl{border-color:rgba(212,168,67,.9)!important;animation:hlPulse 1.2s ease forwards;}
+@keyframes hlPulse{0%{box-shadow:0 0 0 0 rgba(212,168,67,.6);}50%{box-shadow:0 0 0 8px rgba(212,168,67,.2),0 0 35px rgba(212,168,67,.3);}100%{box-shadow:0 0 0 3px rgba(212,168,67,.18),0 0 15px rgba(212,168,67,.12);}}
+
 </style>
 </head>
 <body>
@@ -619,6 +622,24 @@ async function loadData() {
   renderBranch('monde');
   // Appelé ici, après que le DOM est réellement peuplé
   setTimeout(()=>{buildMarkers();rs();setupObs();},50);
+  // Deep-link via URL params (?src=antiquite&title=...)
+  setTimeout(()=>{
+    const p=new URLSearchParams(window.location.search);
+    const src=p.get('src'),title=p.get('title');
+    if(!src)return;
+    const tab=document.querySelector(`.tab[data-tab="${src}"]`);
+    if(tab)tab.click();
+    if(!title)return;
+    setTimeout(()=>{
+      const norm=t=>(t||'').trim().toLowerCase().replace(/\s+/g,' ');
+      const found=Array.from(document.querySelectorAll('.branch.active .ctitle'))
+        .find(el=>norm(el.textContent)===norm(title));
+      if(!found)return;
+      const card=found.closest('.card');
+      found.scrollIntoView({behavior:'smooth',block:'center'});
+      setTimeout(()=>{card.classList.add('hl');setTimeout(()=>card.classList.remove('hl'),2500);},600);
+    },500);
+  },200);
 }
 loadData();
 

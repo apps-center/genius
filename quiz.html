@@ -179,6 +179,10 @@ h1{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:900;b
 .abn-confirm{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;padding:10px 22px;border-radius:4px;border:1px solid rgba(232,80,80,.4);background:rgba(232,80,80,.08);color:#e84848;cursor:pointer;transition:all .2s;}
 .abn-confirm:hover{background:rgba(232,80,80,.18);}
 
+.chrono-link{display:none;margin-top:12px;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;padding:8px 18px;border-radius:3px;border:1px solid rgba(212,168,67,.28);background:rgba(212,168,67,.06);color:rgba(212,168,67,.5);text-decoration:none;transition:all .2s;}
+.chrono-link.show{display:inline-block;}
+.chrono-link:hover{border-color:rgba(212,168,67,.6);color:var(--gold);background:rgba(212,168,67,.12);}
+
 footer{position:relative;z-index:10;text-align:center;padding:24px 20px 40px;border-top:1px solid var(--line);}
 footer p{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,223,196,.18);}
 </style>
@@ -231,6 +235,7 @@ footer p{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rg
     <div class="quiz-q" id="qz-question"></div>
     <div class="quiz-choices" id="qz-choices"></div>
     <div class="quiz-feedback" id="qz-feedback"></div>
+    <a class="chrono-link" id="chrono-link-btn" href="#" target="_blank" rel="noopener">📜 Voir dans la Chronologie</a>
   </div>
   <button class="quiz-next" id="quiz-next-btn" onclick="nextQuestion()">Question suivante →</button>
 
@@ -544,6 +549,20 @@ let currentMode = 'qcm';
 let deck = [], deckIdx = 0, score = 0, answers = [];
 const QUIZ_LENGTH = 10;
 
+const ERA_TO_SRC={
+  'Ère Cosmique':'prehistoire','Ère Biologique':'prehistoire','Préhistoire':'prehistoire',
+  'Premières Civilisations':'antiquite','Égypte & Mésopotamie':'antiquite',
+  'Proche-Orient antique':'antiquite','Antiquité':'antiquite',
+  'Grèce Antique':'antiquite','Rome Antique':'antiquite',
+  'Moyen Âge':'moyenage','Carolingiens':'moyenage','Capétiens':'moyenage',
+  'Renaissance':'tempsmodernes','Guerres de Religion':'tempsmodernes',
+  'Monarchie Absolue':'tempsmodernes','Lumières':'tempsmodernes',
+  'Révolution & XIXe siècle':'contemporaine','Révolution française':'contemporaine',
+  'Napoléon':'contemporaine','XIXe siècle':'contemporaine',
+  'Première Guerre mondiale':'contemporaine','Deuxième Guerre mondiale':'contemporaine',
+  'France Contemporaine':'contemporaine','Histoire du monde':'monde',
+};
+
 function shuffle(arr){ for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr; }
 
 function startQuiz(mode){
@@ -629,6 +648,7 @@ function renderQuestion(){
   fb.className='quiz-feedback';
   fb.textContent='';
   document.getElementById('quiz-next-btn').classList.remove('show');
+  document.getElementById('chrono-link-btn').classList.remove('show');
   updateDots();
 
   // Scroll to top of card
@@ -660,6 +680,8 @@ function selectAnswer(clickedDisplay, isCorrect, expl, correctDisplay, clickedEl
   const btn=document.getElementById('quiz-next-btn');
   btn.textContent = deckIdx<QUIZ_LENGTH-1 ? 'Question suivante →' : 'Voir mon score →';
   btn.classList.add('show');
+  const src=ERA_TO_SRC[deck[deckIdx].era];
+  if(src){const cl=document.getElementById('chrono-link-btn');cl.href=`chronologie_historique.html?src=${src}`;cl.classList.add('show');}
 }
 
 function nextQuestion(){
